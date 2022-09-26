@@ -1,0 +1,37 @@
+// text colors
+$text-dark: #3b4f7d;
+$text-secondary: #8f99bf;
+$text-gray: #868686;
+
+// accent colors
+$accent: #9fa7f0;
+$accent-light: #e1e1ff;
+
+// notification colors
+$alert: #e83a3a;
+$alert-light: #e88e98;
+$alert-bg: #fcf1f1;
+$success: #30a873;
+$success-bg: #e8fff2;
+$info: #d7356b;
+$note: #05a6f2;
+$warning: #ff922e;
+$disabled: #6a7098;
+
+// gradients
+$accent-gradient: linear-gradient(314deg, #c7cdff 0%, #303fc5 100%);
+$secondary-gradient: linear-gradient(314deg, #cad6fe 0%, #d9d3f7 100%);
+$card-light-gradient: linear-gradient(95deg, #d7dbfb 6.5%, #ccd5fe 96%);
+$success-gradient: linear-gradient(314deg, #baffda 0%, #008a50 100%);
+$alert-gradient: linear-gradient(314deg, #ffc7d4 0%, #c53042 100%);
+$disabled-gradient: linear-gradient(314deg, #9da6c2 0%, #dbd7ed 100%);
+
+// fonts
+$main-font: "gilroy", "arial", sans-serif;
+
+// shadows
+$button-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.1), -4px -4px 4px 0px rgba(255, 255, 255, 0.4);
+$button-pressed-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.1) inset, -3px -3px 2px 0px rgba(255, 255, 255, 0.4) inset;
+$field-shadow: -3px -3px 4px 0px rgba(255, 255, 255, 0.15) inset, 3px 3px 4px 0px rgba(0, 0, 0, 0.1) inset;
+$info-title-shadow: 0px 15px 25px 0px rgba(222, 112, 178, 0.7);
+

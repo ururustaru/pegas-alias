@@ -1,0 +1,19 @@
+@import "./src/scss/base/variables";
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.intro__title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.intro__desc {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
