@@ -5,7 +5,7 @@
   right: 15px;
   top: 15px;
   width: 200px;
-  
+
   ul {
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@
   top: -5px;
   right: -5px;
   cursor: pointer;
-  background: #ffffff;
+  background: $light;
   border: 1px solid $text-dark;
   transition: 0.3s;
 
@@ -30,9 +30,9 @@
 
 .page-navigation__item {
   width: 100%;
-  
+
   &:nth-child(odd) {
-    background: #ffffff;
+    background: $light;
   }
 
   &:nth-child(even) {
@@ -44,8 +44,8 @@
   padding: 10px 20px;
   display: block;
   font-size: 16px;
-  color: #000000;
-  
+  color: $dark;
+
   &:hover {
     background: #e1e1e1;
   }
