@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import PageNavigation from './components/page-navigation/page-navigation';
 import Main from './pages/main';
-import Login from './pages/login';
+import Login from './pages/login/login';
 
 import './scss/style.scss';
 
@@ -23,7 +23,7 @@ function App() {
       <PageNavigation/>
       <Routes>
         <Route path="/" element={<Main/>}/>
-        <Route path="/about" element={<Login/>}/>
+        <Route path="/login" element={<Login/>}/>
       </Routes>
     </Router>
   </div>
