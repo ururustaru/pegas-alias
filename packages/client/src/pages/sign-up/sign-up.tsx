@@ -121,7 +121,7 @@ export const SignUp: React.FC = (): JSX.Element => {
 
 				<div className="form__buttons">
 					<Button text="Создать аккаунт" type="submit" />
-					<Button classes="button--light" text="Уже есть аккаунт ?" />
+					<Button classes="button--light" type='button' text="Уже есть аккаунт ?" />
 				</div>
 			</form>
 		</main>

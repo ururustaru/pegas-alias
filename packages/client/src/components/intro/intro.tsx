@@ -4,15 +4,22 @@ import logo from './../../assets/images/logo-round-shadow.png';
 
 interface IIntro {
   small?: boolean;
+  logo?: string;
 }
 
 export function Intro(props: IIntro) {
   return (
-    <div className={props.small ? 'intro intro--small' : 'intro'}>
-      <h1 className="intro__title">Pegas Alias</h1>
-      <p className="intro__desc">Угадывый слова по-новому</p>
+    <div className={'intro ' + (props.small ? 'intro--small' : '')}>
+
+      {!props.small &&
+        <>
+          <h1 className="intro__title">Pegas Alias</h1>
+          <p className="intro__desc">Угадывый слова по-новому</p>
+        </>
+      }
+
       <div className="intro__image-wrap">
-        <img src={logo} alt="Логотип Pegas Alias с единорогом"/>
+        <img src={props.logo ?? logo} alt="Логотип Pegas Alias с единорогом" />
       </div>
     </div>
   )

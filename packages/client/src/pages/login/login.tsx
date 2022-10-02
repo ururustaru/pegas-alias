@@ -69,7 +69,7 @@ export const Login: React.FC = (): JSX.Element => {
 						text="Авторизоваться"
 						type="submit"
 					/>
-					<Button classes="button--light" text="Ещё нет аккаунта ?" />
+					<Button classes="button--light" type='button' text="Ещё нет аккаунта ?" />
 				</div>
 			</form>
 		</main>
