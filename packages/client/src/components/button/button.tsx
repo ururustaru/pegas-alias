@@ -1,5 +1,5 @@
 import React from 'react';
-import {TEvents} from '../../types/common';
+import { TEvents } from '../../types/common';
 import './button.scss';
 
 interface IButton {
@@ -11,7 +11,7 @@ interface IButton {
   events?: TEvents;
 }
 
-function Button(props: IButton) {
+export function Button(props: IButton) {
   return (
     <button
       className={'button ' + props.classes}
@@ -26,4 +26,4 @@ function Button(props: IButton) {
   )
 }
 
-export default Button;
+

@@ -6,7 +6,7 @@ interface IIntro {
   small?: boolean;
 }
 
-function Intro(props: IIntro) {
+export function Intro(props: IIntro) {
   return (
     <div className={props.small ? 'intro intro--small' : 'intro'}>
       <h1 className="intro__title">Pegas Alias</h1>
@@ -18,4 +18,3 @@ function Intro(props: IIntro) {
   )
 }
 
-export default Intro;

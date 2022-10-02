@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Main: React.FC = (): JSX.Element => {
+export const Main: React.FC = (): JSX.Element => {
   return (
     <>
       <main>
@@ -9,5 +9,3 @@ const Main: React.FC = (): JSX.Element => {
     </>
   )
 }
-
-export default Main

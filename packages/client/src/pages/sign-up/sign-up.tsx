@@ -1,36 +1,130 @@
-import React from 'react';
-import Intro from '../../components/intro/intro';
-import FormField from '../../components/form-field/form-field';
-import Button from '../../components/button/button';
+import React, { useRef } from 'react';
+import { useForm } from 'react-hook-form';
 
-const SignUp: React.FC = (): JSX.Element => {
-  return (
-    <main>
-      <Intro small/>
-      <form className="form">
-        <h2 className="form__title">Регистрация</h2>
-        <div className="form__fields">
-          <FormField name="email" type="email" placeholder="Электронная почта"/>
-          <FormField name="login" type="text" placeholder="Логин"/>
-          <FormField name="first_name" type="text" placeholder="Имя"/>
-          <FormField name="second_name" type="text" placeholder="Фамилия"/>
-          <FormField name="phone" type="text" placeholder="Телефон"/>
-          <FormField name="password" type="password"
-            placeholder="Пароль"
-            errorText="Введён неправильный пароль"
-          />
-          <FormField name="confirm-password" type="password"
-            placeholder="Пароль ещё раз"
-          />
-        </div>
+import { Intro, FormField, Button } from '../../components';
+import { errorToString, pattern } from '../../utils';
 
-        <div className="form__buttons">
-          <Button text="Создать аккаунт" type="button"/>
-          <Button classes="button--light" text="Уже есть аккаунт ?"/>
-        </div>
-      </form>
-    </main>
-  )
+export const SignUp: React.FC = (): JSX.Element => {
+	const { email, login, name, phone, password } = pattern();
+
+	const {
+		register,
+		watch,
+		formState: {
+			errors,
+		},
+		handleSubmit
+	} = useForm({ mode: 'onBlur' });
+
+	const passwordField = useRef({});
+	passwordField.current = watch("password", "");
+
+	const onSubmit = (data: Record<string, unknown>) => {
+		console.log(data)
+	}
+
+	return (
+		<main>
+			<Intro small />
+			<form className="form" onSubmit={handleSubmit(onSubmit)}>
+				<h2 className="form__title">Регистрация</h2>
+				<div className="form__fields">
+					<FormField
+						register={register('email', {
+							required: 'Заполните поле',
+							pattern: {
+								value: email,
+								message: 'Некорректно введена почта'
+							}
+						})}
+						errorText={errorToString(errors?.email)}
+						placeholder="Электронная почта"
+					/>
+					<FormField
+						register={register('login', {
+							required: 'Заполните поле',
+							pattern: {
+								value: login,
+								message: 'Некорректно введен логин'
+							},
+							minLength: {
+								value: 3,
+								message: 'Длина меньше 3'
+							},
+							maxLength: {
+								value: 20,
+								message: 'Длина больлше 20'
+							}
+						})}
+						placeholder="Логин"
+						errorText={errorToString(errors?.login)}
+					/>
+					<FormField
+						register={register('first_name', {
+							required: 'Заполните поле',
+							pattern: {
+								value: name,
+								message: 'Некорректно введено имя'
+							}
+						})}
+						placeholder="Имя"
+						errorText={errorToString(errors?.first_name)}
+					/>
+					<FormField
+						register={register<'second_name'>('second_name', {
+							required: 'Заполните поле',
+							pattern: {
+								value: name,
+								message: 'Некорректно введена фамилия'
+							}
+						})}
+						placeholder="Фамилия"
+						errorText={errorToString(errors?.second_name)}
+					/>
+					<FormField
+						register={register('phone', {
+							required: 'Заполните поле',
+							pattern: {
+								value: phone,
+								message: 'Некорректно введен телефон'
+							}
+						})}
+						placeholder="Телефон"
+						errorText={errorToString(errors?.phone)}
+					/>
+					<FormField
+						register={register('password', {
+							required: 'Заполните поле',
+							pattern: {
+								value: password,
+								message: 'Некорректно введен пароль'
+							}
+						})}
+						type="password"
+						placeholder="Пароль"
+						errorText={errorToString(errors?.password)}
+					/>
+					<FormField
+						register={register('confirm_password', {
+							required: 'Заполните поле',
+							validate: value => value === passwordField.current || "Пароли не совпадают",
+							pattern: {
+								value: password,
+								message: 'Некорректно введен пароль'
+							}
+						})}
+						type="password"
+						placeholder="Пароль ещё раз"
+						errorText={errorToString(errors?.confirm_password)}
+					/>
+				</div>
+
+				<div className="form__buttons">
+					<Button text="Создать аккаунт" type="submit" />
+					<Button classes="button--light" text="Уже есть аккаунт ?" />
+				</div>
+			</form>
+		</main>
+	)
 }
 
-export default SignUp;
