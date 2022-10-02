@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import { FormField, Button, Intro } from '../../components';
 import { errorToString, pattern } from '../../utils';
@@ -17,6 +18,8 @@ export const Login: React.FC = (): JSX.Element => {
 		},
 		handleSubmit
 	} = useForm({ mode: 'onBlur' });
+
+	const navigate = useNavigate();
 
 	const onSubmit = (data: Record<string, unknown>) => {
 		console.log(data)
@@ -69,7 +72,14 @@ export const Login: React.FC = (): JSX.Element => {
 						text="Авторизоваться"
 						type="submit"
 					/>
-					<Button classes="button--light" type='button' text="Ещё нет аккаунта ?" />
+					<Button
+						classes="button--light"
+						type='button'
+						text="Ещё нет аккаунта ?"
+						events={{
+							onClick: () => navigate('/sign-up')
+						}}
+					/>
 				</div>
 			</form>
 		</main>

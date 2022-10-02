@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import { Intro, FormField, Button } from '../../components';
 import { errorToString, pattern } from '../../utils';
@@ -18,6 +19,8 @@ export const SignUp: React.FC = (): JSX.Element => {
 
 	const passwordField = useRef({});
 	passwordField.current = watch("password", "");
+
+	const navigate = useNavigate();
 
 	const onSubmit = (data: Record<string, unknown>) => {
 		console.log(data)
@@ -121,7 +124,14 @@ export const SignUp: React.FC = (): JSX.Element => {
 
 				<div className="form__buttons">
 					<Button text="Создать аккаунт" type="submit" />
-					<Button classes="button--light" type='button' text="Уже есть аккаунт ?" />
+					<Button 
+						classes="button--light"
+						type='button'
+						text="Уже есть аккаунт ?"
+						events={{
+							onClick: () => navigate('/login')
+						}}
+					/>
 				</div>
 			</form>
 		</main>
