@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { TEvents } from '../../types/common';
 import './button.scss';
 
 interface IButton {
   text?: string;
   classes?: string;
-  icon?: string;
+  icon?: string | ReactNode;
   type?: 'button' | 'submit' | 'reset' | undefined;
   disabled?: boolean;
   events?: TEvents;
@@ -21,7 +21,7 @@ export function Button(props: IButton) {
       {...props.events}
     >
       {props.text}
-      {props.icon && <span className="button__icon">{props.icon}</span>}
+      {props.icon && <span className="button__icon">{props.icon as ReactNode}</span>}
     </button>
   )
 }
