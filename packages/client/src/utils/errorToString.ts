@@ -1,6 +1,6 @@
 export const errorToString = (value: any): string => {
     if (!value) {
-        return 'Ошибка'
+        return ''
     }
-    return value.message;
+    return value.message || "Ошибка";
 }
