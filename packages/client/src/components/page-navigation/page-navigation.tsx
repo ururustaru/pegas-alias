@@ -36,6 +36,9 @@ function PageNavigation() {
         <li className="page-navigation__item">
           <Link className="page-navigation__link" to="/leaders">Лидеры</Link>
         </li>
+        <li className="page-navigation__item">
+          <Link className="page-navigation__link" to="/round">Раунд</Link>
+        </li>
       </ul>
       <svg className="page-navigation__close"
         onClick={hideMenu}

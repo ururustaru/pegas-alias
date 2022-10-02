@@ -9,6 +9,7 @@ import { Profile } from './pages/profile';
 import { Rules } from './pages/rules';
 import { Leaders } from './pages/leaders';
 import { Forum } from './pages/forum';
+import { Round } from './pages/round/round';
 
 import './scss/style.scss';
 
@@ -37,6 +38,7 @@ export function App() {
         <Route path="/rules" element={<Rules/>}/>
         <Route path="/leaders" element={<Leaders/>}/>
         <Route path="/forum" element={<Forum/>}/>
+        <Route path="/round" element={<Round />} />
       </Routes>
     </Router>
   </div>
