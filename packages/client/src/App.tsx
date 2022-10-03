@@ -5,6 +5,10 @@ import Main from './pages/main';
 import Login from './pages/login';
 
 import './scss/style.scss';
+import NewGame from './pages/new-game';
+import Profile from './pages/profile';
+import Rules from './pages/rules';
+import Leaders from './pages/leaders';
 
 function App() {
   useEffect(() => {
@@ -24,6 +28,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Main/>}/>
         <Route path="/about" element={<Login/>}/>
+        <Route path="/new-game" element={<NewGame/>}/>
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/rules" element={<Rules/>}/>
+        <Route path="/leaders" element={<Leaders/>}/>
       </Routes>
     </Router>
   </div>

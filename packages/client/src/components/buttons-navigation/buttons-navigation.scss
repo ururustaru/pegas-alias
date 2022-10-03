@@ -1,0 +1,11 @@
+@import "./src/scss/base/variables";
+
+.buttons-navigation__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.buttons-navigation__item {
+  min-width: 15px;
+}

@@ -1,12 +1,13 @@
 import React from 'react';
+import {Intro} from '../components/intro/intro';
+import {ButtonsNavigation} from '../components/buttons-navigation/buttons-navigation';
 
 const Main: React.FC = (): JSX.Element => {
   return (
-    <>
-      <main>
-        <h1>Главная страница</h1>
-      </main>
-    </>
+    <main>
+      <Intro />
+      <ButtonsNavigation />
+    </main>
   )
 }
 
