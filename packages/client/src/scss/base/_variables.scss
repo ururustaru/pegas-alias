@@ -38,4 +38,8 @@ $button-pressed-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.1) inset, -3px -3px 2px 
 $field-shadow: -3px -3px 4px 0px rgba(255, 255, 255, 0.15) inset, 3px 3px 4px 0px rgba(0, 0, 0, 0.1) inset;
 $info-title-shadow: 0px 15px 25px 0px rgba(222, 112, 178, 0.7);
 $button-shadow-hover: inset -4px -4px 4px rgba(0, 0, 0, 0.1);
+$menu-item-shadow: 4px 4px 40px 0px rgba(178, 193, 240, 0.7);
+$menu-item-pressed-shadow: 10px 10px 20px 0px rgba(178, 193, 240, 0.4) inset;
 
+// Screen width
+$mobile: 768px;

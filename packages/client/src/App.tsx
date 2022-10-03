@@ -8,6 +8,7 @@ import { NewGame } from './pages/new-game';
 import { Profile } from './pages/profile';
 import { Rules } from './pages/rules';
 import { Leaders } from './pages/leaders';
+import { Forum } from './pages/forum';
 
 import './scss/style.scss';
 
@@ -35,6 +36,7 @@ export function App() {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/rules" element={<Rules/>}/>
         <Route path="/leaders" element={<Leaders/>}/>
+        <Route path="/forum" element={<Forum/>}/>
       </Routes>
     </Router>
   </div>
