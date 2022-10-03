@@ -10,6 +10,12 @@
     font-weight: 500;
     line-height: 1.25;
     display: block;
+    position: relative;
+
+    &:not(:empty) {
+      margin-bottom: -15px;
+      top: -2px;
+    }
   }
 
   &.form-field--error {
