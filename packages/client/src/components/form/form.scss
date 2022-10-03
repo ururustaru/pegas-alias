@@ -1,0 +1,26 @@
+@import "./../../scss/base/_variables";
+
+.form {
+  min-width: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form__title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 28px;
+  display: block;
+}
+
+.form__fields,
+.form__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.form__buttons {
+  margin-top: 28px;
+}

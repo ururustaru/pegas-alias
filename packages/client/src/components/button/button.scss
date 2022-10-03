@@ -1,0 +1,84 @@
+@import "./../../scss/base/_variables";
+
+.button {
+  padding: 15px 30px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  color: $light;
+  background: $accent-gradient;
+  box-shadow: $button-shadow;
+  font-weight: 500;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  border: 0;
+  font-family: $main-font;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 0.3s;
+    border-radius: 16px;
+  }
+
+  &:hover {
+    box-shadow: none;
+
+    &::before {
+      opacity: 1;
+      box-shadow: $button-pressed-shadow;
+    }
+  }
+}
+
+.button--alert {
+  background: $alert-gradient;
+}
+
+.button--light {
+  background: $accent-light;
+  color: $text-dark;
+}
+
+.button--icon-r {
+  svg {
+    margin-left: 6px;
+  }
+}
+
+.button--icon-l {
+  flex-direction: row-reverse;
+
+  svg {
+    margin-right: 6px;
+  }
+}
+
+.button--disabled,
+[disabled] {
+  box-shadow: none;
+  background: $disabled;
+
+  &:hover {
+    &::before {
+      display: none;
+    }
+
+    cursor: not-allowed;
+  }
+}
+
+.button--icon {
+  font-size: 0;
+  padding: 10px;
+}

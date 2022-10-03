@@ -19,7 +19,10 @@ function PageNavigation() {
           <Link className="page-navigation__link" to="/">Главная</Link>
         </li>
         <li className="page-navigation__item">
-          <Link className="page-navigation__link" to="/about">Авторизация</Link>
+          <Link className="page-navigation__link" to="/login">Авторизация</Link>
+        </li>
+        <li className="page-navigation__item">
+          <Link className="page-navigation__link" to="/sign-up">Регистрация</Link>
         </li>
         <li className="page-navigation__item">
           <Link className="page-navigation__link" to="/profile">Профиль</Link>

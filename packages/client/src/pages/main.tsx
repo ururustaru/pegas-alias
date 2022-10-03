@@ -2,7 +2,7 @@ import React from 'react';
 import {Intro} from '../components/intro/intro';
 import {ButtonsNavigation} from '../components/buttons-navigation/buttons-navigation';
 
-const Main: React.FC = (): JSX.Element => {
+export const Main: React.FC = (): JSX.Element => {
   return (
     <main>
       <Intro />
@@ -10,5 +10,3 @@ const Main: React.FC = (): JSX.Element => {
     </main>
   )
 }
-
-export default Main
