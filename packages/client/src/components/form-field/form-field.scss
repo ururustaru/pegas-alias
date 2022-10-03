@@ -23,3 +23,16 @@
   }
 }
 
+.form__fields--center {
+  align-items: center;
+}
+
+.form__fild--row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.form__fild--half {
+  width: 50%;
+}

@@ -1,0 +1,44 @@
+@import "./../../scss/base/variables";
+
+.breadcrumbs {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 44px;
+    margin-left: 109px;
+    margin-top: 50px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.breadcrumbs--btn {
+    display: flex;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    background: $breadcrumbs-bg;
+    box-shadow: $breadcrumbs-shodow;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.breadcrumbs--btn:before {
+    content: url("data:image/svg+xml,%3Csvg width='18' height='14' viewBox='0 0 18 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.833378 7.24086C0.833378 7.56787 0.975922 7.91166 1.20232 8.13805L6.6693 13.5883C6.92085 13.8398 7.22271 13.9656 7.51618 13.9656C8.2289 13.9656 8.71523 13.4709 8.71523 12.8168C8.71523 12.4563 8.55591 12.1628 8.32952 11.9448L6.45129 10.0666L4.58983 8.35606L6.42614 8.45668H15.9011C16.6558 8.45668 17.1589 7.96197 17.1589 7.24086C17.1589 6.51137 16.6558 6.02505 15.9011 6.02505H6.42614L4.59822 6.12566L6.45129 4.41514L8.32952 2.52852C8.55591 2.31051 8.71523 2.02543 8.71523 1.65649C8.71523 1.00246 8.2289 0.507752 7.51618 0.507752C7.22271 0.507752 6.92085 0.633526 6.66091 0.893459L1.20232 6.34367C0.975922 6.57007 0.833378 6.91385 0.833378 7.24086Z' fill='%233B4F7D'/%3E%3C/svg%3E");
+}
+
+.breadcrumbs--label {
+    display: flex;
+    height: 100%;
+    position: relative;
+    justify-content: flex-start;
+    align-items: center;
+    left: 15px;
+    font-weight: bold; 
+}
+
+.breadcrumbs--btn:hover {
+    box-shadow: $breadcrumbs-shadow-hover;
+}

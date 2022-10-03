@@ -63,21 +63,63 @@
     margin-right: 6px;
   }
 }
+
 .button--select {
   justify-content: flex-end;
-}
-.button--select:after {
-  content: url("data:image/svg+xml,%3Csvg width='16' height='9' viewBox='0 0 16 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 1L8 8L1 1' stroke='%233B4F7D' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  display: block;
-  position:absolute;
-  width: 14px;
-  height: 7px;
-  top: 22px;
-  right: 18px;
+
+  &:after {
+    content: url("data:image/svg+xml,%3Csvg width='16' height='9' viewBox='0 0 16 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 1L8 8L1 1' stroke='%233B4F7D' strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round'/%3E%3C/svg%3E");
+    display: block;
+    position:absolute;
+    width: 14px;
+    height: 7px;
+    top: 22px;
+    right: 18px;
+  }
 }
 
-.button--disabled,
-[disabled] {
+.button--with-cancel {
+  height: 50px;
+  justify-content: space-between;
+  background: $secondary-gradient;
+  border: 2px solid $accent;
+  border-radius: 16px;
+  padding-right: 8px;
+  box-shadow: none;
+  cursor: default;
+  
+  svg{
+    display: flex;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    background: $delete-bg;
+    box-shadow: $checkbox-shadow;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  &:hover::before {
+    opacity: 0;
+  }
+}
+
+.button--with-cancel[disabled] {
+  background: $secondary-gradient;
+}
+
+.button--square {
+  padding: 18px 20px;
+}
+
+.button--wide {
+  max-width: 420px;
+  width: 100%;
+}
+
+.button--disabled, [disabled] {
   box-shadow: none;
   background: $disabled;
 

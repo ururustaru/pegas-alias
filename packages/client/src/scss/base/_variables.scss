@@ -21,6 +21,8 @@ $note: #05a6f2;
 $warning: #ff922e;
 $disabled: #6a7098;
 
+$delete-bg: #d6dbf9;
+$breadcrumbs-bg: #dce4f8;
 // gradients
 $accent-gradient: linear-gradient(356deg, #c7cdff 0%, #303fc5 100%);
 $secondary-gradient: linear-gradient(314deg, #cad6fe 0%, #d9d3f7 100%);
@@ -28,7 +30,7 @@ $card-light-gradient: linear-gradient(95deg, #d7dbfb 6.5%, #ccd5fe 96%);
 $success-gradient: linear-gradient(314deg, #baffda 0%, #008a50 100%);
 $alert-gradient: linear-gradient(314deg, #ffc7d4 0%, #c53042 100%);
 $disabled-gradient: linear-gradient(314deg, #9da6c2 0%, #dbd7ed 100%);
-
+$checkbox-gradient: linear-gradient(309.34deg, #c0c7fe -13.68%, #8394ff 171.92%);
 // fonts
 $main-font: "gilroy", "arial", sans-serif;
 
@@ -38,4 +40,6 @@ $button-pressed-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.1) inset, -3px -3px 2px 
 $field-shadow: -3px -3px 4px 0px rgba(255, 255, 255, 0.15) inset, 3px 3px 4px 0px rgba(0, 0, 0, 0.1) inset;
 $info-title-shadow: 0px 15px 25px 0px rgba(222, 112, 178, 0.7);
 $button-shadow-hover: inset -4px -4px 4px rgba(0, 0, 0, 0.1);
-
+$checkbox-shadow: 2px 2px 4px rgba(114, 142, 171, 0.1), -6px -6px 20px white, 4px 4px 20px rgba(111, 140, 176, 0.41);
+$breadcrumbs-shodow: inset -2px -2px 4px white, inset 2px 2px 4px #bac3df;
+$breadcrumbs-shadow-hover:inset 2px 2px 4px#bac3df, inset 2px 2px 4px white;
