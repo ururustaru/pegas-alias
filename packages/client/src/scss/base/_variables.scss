@@ -2,6 +2,7 @@
 $text-dark: #3b4f7d;
 $text-secondary: #8f99bf;
 $text-gray: #868686;
+$text-error: rgba(59, 79, 125, 0.75);
 
 $dark: #000000;
 $light: #ffffff;
@@ -38,3 +39,5 @@ $button-pressed-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.1) inset, -3px -3px 2px 
 $field-shadow: -3px -3px 4px 0px rgba(255, 255, 255, 0.15) inset, 3px 3px 4px 0px rgba(0, 0, 0, 0.1) inset;
 $info-title-shadow: 0px 15px 25px 0px rgba(222, 112, 178, 0.7);
 
+// Screen width
+$mobile: 768px;
