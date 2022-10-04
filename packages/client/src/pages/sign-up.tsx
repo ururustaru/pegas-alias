@@ -2,8 +2,8 @@ import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { Intro, FormField, Button } from '../../components';
-import { errorToString, pattern } from '../../utils';
+import { Intro, FormField, Button } from '../components';
+import { errorToString, pattern } from '../utils';
 
 export const SignUp: React.FC = (): JSX.Element => {
 	const { email, login, name, phone, password } = pattern();
