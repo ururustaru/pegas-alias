@@ -1,9 +1,15 @@
 import React from 'react';
+import {BackLink} from '../components/back-link/back-link';
 
 export const Leaders: React.FC = (): JSX.Element => {
   return (
-    <main>
-      <h1>Лидеры</h1>
-    </main>
+    <>
+      <header>
+        <BackLink text="Таблица лидеров"/>
+      </header>
+      <main>
+        
+      </main>
+    </>
   )
 }

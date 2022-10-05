@@ -31,7 +31,9 @@
     border-radius: 16px;
   }
 
-  &:hover {
+  &:hover,
+  &:active,
+  &--active {
     box-shadow: none;
 
     &::before {

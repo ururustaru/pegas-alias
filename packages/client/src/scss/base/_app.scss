@@ -7,11 +7,17 @@
   min-height: 100vh;
   overflow: hidden;
   overflow-y: auto;
-  padding: 25px;
+  padding: 40px;
+  gap: 35px;
+
+  header {
+    width: 100%;
+  }
   
   main {
     width: 420px;
     max-width: 100%;
     text-align: center;
+    flex-grow: 1;
   }
 }

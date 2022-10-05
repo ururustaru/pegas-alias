@@ -2,30 +2,31 @@
 
 .form-field {
   position: relative;
+}
 
-  .form-field__info {
-    padding: 0 15px;
-    font-size: 12px;
-    margin-top: 4px;
-    font-weight: 500;
-    line-height: 1.25;
-    display: block;
-    position: relative;
-
-    &:not(:empty) {
-      margin-bottom: -15px;
-      top: -2px;
-    }
+.form-field--error {
+  .field {
+    outline: 1px solid $alert;
   }
 
-  &.form-field--error {
-    .field {
-      outline: 1px solid $alert;
-    }
+  .form-field__info {
+    color: $alert;
+  }
+}
 
-    .form-field__info {
-      color: $alert;
-    }
+.form-field__info {
+  padding: 0 15px;
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: 500;
+  line-height: 1.25;
+  display: block;
+  position: relative;
+  text-align: left;
+
+  &:not(:empty) {
+    margin-bottom: -15px;
+    top: -2px;
   }
 }
 
