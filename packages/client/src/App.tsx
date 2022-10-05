@@ -1,14 +1,7 @@
 // import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PageNavigation from './components/page-navigation/page-navigation';
-import { Main } from './pages/main';
-import { Login } from './pages/login';
-import { SignUp } from './pages/sign-up';
-import { NewGame } from './pages/new-game';
-import { Profile } from './pages/profile';
-import { Rules } from './pages/rules';
-import { Leaders } from './pages/leaders';
-import { Forum } from './pages/forum';
+import { Main, Login, SignUp, NewGame, Profile, Rules, Leaders, Forum, Round} from './pages/';
 
 import './scss/style.scss';
 
@@ -37,6 +30,7 @@ export function App() {
         <Route path="/rules" element={<Rules/>}/>
         <Route path="/leaders" element={<Leaders/>}/>
         <Route path="/forum" element={<Forum/>}/>
+        <Route path="/round" element={<Round />} />
       </Routes>
     </Router>
   </div>

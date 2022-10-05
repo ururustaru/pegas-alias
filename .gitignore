@@ -2,6 +2,7 @@ node_modules/
 .env
 .idea
 .vscode
+.vs
 dist
 tmp
 package-lock.json

@@ -24,3 +24,9 @@
 .form__buttons {
   margin-top: 28px;
 }
+
+.form__buttons-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
