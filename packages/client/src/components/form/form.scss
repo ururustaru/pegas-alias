@@ -14,6 +14,25 @@
   display: block;
 }
 
+.form__section-title {
+  text-align: left;
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.form__section-subtitle {
+  display: block;
+  margin-top: 25px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: -12px;
+}
+
+.form__attention {
+  font-size: 23px;
+  font-weight: 700;
+}
+
 .form__fields,
 .form__buttons {
   display: flex;
@@ -29,4 +48,5 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  gap: 20px;
 }

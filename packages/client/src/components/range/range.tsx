@@ -7,7 +7,7 @@ interface IRange {
   percent: Range<0, 100>;
 }
 
-export function Range(props: IRange) {
+export function RangePage(props: IRange) {
   return (
     <div className="range">
       <div className="range__value" data-value={props.percent}></div>
