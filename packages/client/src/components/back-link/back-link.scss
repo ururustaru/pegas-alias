@@ -1,4 +1,5 @@
-@import "./../../scss/base/_variables";
+@import "./../../scss/base/variables";
+@import "./../../scss/base/mixins";
 
 .back-link {
   background: 0;
@@ -50,4 +51,10 @@
   font-size: 24px;
   font-weight: 700;
   color: $text-dark;
+}
+
+@include down($mobile) {
+  .back-link__text {
+    font-size: 20px;
+  }
 }

@@ -6,3 +6,4 @@ export * from './page-navigation/page-navigation';
 export * from './back-link/back-link';
 export * from './checkbox/checkbox';
 export * from './range/range';
+export * from './leaderboard/leaderboard';

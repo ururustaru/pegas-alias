@@ -1,5 +1,5 @@
 import React from 'react';
-import {BackLink} from '../components/back-link/back-link';
+import {BackLink, Leaderboard} from '../components';
 
 export const Leaders: React.FC = (): JSX.Element => {
   return (
@@ -8,7 +8,7 @@ export const Leaders: React.FC = (): JSX.Element => {
         <BackLink text="Таблица лидеров"/>
       </header>
       <main>
-        
+        <Leaderboard/>
       </main>
     </>
   )
