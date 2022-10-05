@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { Button, Breadcrumbs, CheckBox } from '../components';
-import './../../components/form/form.scss';
-import './round.scss';
+import './../components/form/form.scss';
 
 export const Round: React.FC = (): JSX.Element => {
 
