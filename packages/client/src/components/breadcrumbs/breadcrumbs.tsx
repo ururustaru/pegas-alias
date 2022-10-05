@@ -11,8 +11,8 @@ interface IBreadcrumbs {
 export function Breadcrumbs(props: IBreadcrumbs) {
   return (
     <div className={'breadcrumbs ' + props.classes} {...props.events}>
-        <div className="breadcrumbs--btn"></div>
-        <div className="breadcrumbs--label">{props.text}</div>
+        <div className="breadcrumbs__btn"></div>
+        <div className="breadcrumbs__label">{props.text}</div>
     </div>
   )
 }

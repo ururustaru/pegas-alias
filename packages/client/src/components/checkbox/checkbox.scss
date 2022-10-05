@@ -1,6 +1,6 @@
 @import "./../../scss/base/variables";
 
-.custom-checkbox+label {
+.checkbox__input+.checkbox__label {
     display: inline-flex;
     align-items: center;
     user-select: none;
@@ -21,7 +21,7 @@
     background-size: 14px;
   }
 }
-.custom-checkbox:checked+label::before {
+.checkbox__input:checked+.checkbox__label::before {
     background: $checkbox-gradient;
     border-radius: 6px;
     background-repeat: no-repeat;
