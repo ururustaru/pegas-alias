@@ -1,0 +1,20 @@
+@import "./../../scss/base/_variables";
+
+.range {
+  width: 100%;
+  height: 18px;
+  border-radius: 8px;
+  background: 
+    linear-gradient(122.51deg, rgba(214, 227, 243, 0.66) 16.62%, rgba(255, 255, 255, 0.66) 56.74%),
+    linear-gradient(0deg, #E3EDF7, #E3EDF7);
+  box-shadow: 
+    4px 4px 14px 0 rgba(193, 213, 238, 1) inset,
+    -4px -4px 9px 0 rgba(255, 255, 255, 0.88) inset;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.range__value {
+  background: $accent-gradient;
+  height: 16px;
+  border-radius: 8px;
+}

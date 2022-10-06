@@ -2,6 +2,8 @@
 
 .form {
   min-width: 420px;
+  max-width: 420px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
@@ -12,6 +14,25 @@
   font-weight: 700;
   margin-bottom: 28px;
   display: block;
+}
+
+.form__section-title {
+  text-align: left;
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.form__section-subtitle {
+  display: block;
+  margin-top: 25px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: -12px;
+}
+
+.form__attention {
+  font-size: 23px;
+  font-weight: 700;
 }
 
 .form__fields,
@@ -29,4 +50,5 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  gap: 20px;
 }

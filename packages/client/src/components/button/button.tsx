@@ -14,7 +14,7 @@ interface IButton {
 export function Button(props: IButton) {
   return (
     <button
-      className={'button ' + props.classes}
+      className={props.classes ? 'button ' + props.classes : 'button'}
       title={props.text}
       type={props.type ? props.type : undefined}
       disabled={props.disabled ? true : undefined}
