@@ -33,3 +33,24 @@
 .form__fields--center {
   align-items: center;
 }
+
+.flat-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 72px;
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: $text-secondary;
+  border-top: $border-secondary;
+  border-bottom: $border-secondary;
+  box-sizing: border-box;
+  margin-top: 24px;
+}
+.flat-field span {
+  padding: 0px 6px;
+}

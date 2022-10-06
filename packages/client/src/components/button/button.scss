@@ -120,6 +120,11 @@
   background: $secondary-gradient;
 }
 
+.button--bold-text {
+  font-weight: 700;
+  line-height: 19px;
+  color: #3B4F7D;
+}
 .button--square {
   padding: 18px 20px;
 }
@@ -149,4 +154,13 @@
 .button--icon {
   font-size: 0;
   padding: 10px;
+}
+
+.button--icon-22 {
+  width: 37px;
+  text-align: left;
+  display: flex;
+  font-size: 22px;
+  justify-content: flex-start;
+  align-items: center;
 }
