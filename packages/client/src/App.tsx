@@ -1,6 +1,5 @@
 // import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { NotFound, ServerError, Winner } from './components'
 import PageNavigation from './components/page-navigation/page-navigation'
 import {
   Main,
@@ -13,6 +12,9 @@ import {
   ForumPage,
   Round,
   ForumDetail,
+  NotFoundPage,
+  ServerErrorPage,
+  WInnerPage,
 } from './pages/'
 
 import './scss/style.scss'
@@ -45,14 +47,14 @@ export function App() {
           <Route path="/forum" element={<ForumPage />} />
           <Route path="/round" element={<Round />} />
           <Route path="/forum-detail" element={<ForumDetail />} />
-          <Route path="/505" element={<ServerError />} />
+          <Route path="/505" element={<ServerErrorPage />} />
           <Route
             path="/winner"
             element={
-              <Winner nameWinnerTeam="Мудрые черепахи" score="100:91:56" /> //Здесь пропсы указаны для примера
+              <WInnerPage nameWinnerTeam="Мудрые черепахи" score="100:91:56" /> //Здесь пропсы указаны для примера
             }
           />
-          <Route path="/*" element={<NotFound />} />
+          <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </div>
