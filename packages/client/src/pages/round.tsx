@@ -28,8 +28,8 @@ export const Round: React.FC = (): JSX.Element => {
         <div className="form__fields">
           {teamList}
           <div className='flat-field'>Игра ведется до <span>{scoreLimit}</span> очков</div>
-          <div className='round-text'>Следующими играют</div>
-          <div className='round-team'>{ placeholders.teams[currPlayer].name }</div>
+          <div className='round--text'>Следующими играют</div>
+          <div className='round--team'>{ placeholders.teams[currPlayer].name }</div>
           <Button classes="button" text="Начать раунд" />
         </div>
       </form>

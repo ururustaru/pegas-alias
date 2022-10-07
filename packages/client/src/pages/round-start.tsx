@@ -40,5 +40,3 @@ export const RoundStart: React.FC = (): JSX.Element => {
     </>
   )
 }
-
-
