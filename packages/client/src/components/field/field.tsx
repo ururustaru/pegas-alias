@@ -3,7 +3,7 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 import './field.scss';
 
 export interface IField {
-	register: UseFormRegisterReturn<string>;
+	register?: UseFormRegisterReturn<string>;
 	type?: string;
 	placeholder?: string;
 }

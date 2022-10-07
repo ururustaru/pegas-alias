@@ -1,9 +1,15 @@
 import React from 'react';
+import {BackLink, Forums} from '../components';
 
-export const Forum: React.FC = (): JSX.Element => {
+export const ForumPage: React.FC = (): JSX.Element => {
   return (
-    <main>
-      <h1>Форум</h1>
-    </main>
+    <>
+      <header>
+        <BackLink text="Форум"/>
+      </header>
+      <main>
+        <Forums/>
+      </main>
+    </>
   )
 }
