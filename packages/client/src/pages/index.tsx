@@ -8,3 +8,4 @@ export * from './leaders';
 export * from './forum';
 export * from './round';
 export * from './round-start';
+export * from './round-process';
