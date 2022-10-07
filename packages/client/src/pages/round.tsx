@@ -15,7 +15,7 @@ export const Round: React.FC = (): JSX.Element => {
 
   const teamList: JSX.Element[] | null | undefined = [];
   placeholders.teams.forEach(team => {
-    teamList.push( <Button classes="button--light button--bold-text button--with-cancel" disabled text={team.name} icon={<span className='button--icon-22'>{team.score}</span>} />);
+    teamList.push( <Button key={team.name} classes="button--light button--bold-text button--with-cancel" disabled text={team.name} icon={<span className='button--icon-22'>{team.score}</span>} />);
   }); 
 
   return (
