@@ -73,6 +73,26 @@
   font-size: 14px;
 }
 
+.button--positive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 17px 50px;
+  background: $button-positive-gradient;
+  box-shadow: $button-shadow;
+  border-radius: 16px;
+}
+
+.button--negative {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 17px 50px;
+  background: $button-negative-gradient;
+  box-shadow: $button-shadow;
+  border-radius: 16px;
+}
+
 .button--select {
   justify-content: flex-end;
   padding-right: 16px;

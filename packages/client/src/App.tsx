@@ -52,6 +52,7 @@ export function App() {
           <Route path="/round-start" element={<RoundStart />} />
           <Route path="/forum-detail" element={<ForumDetail />} />
           <Route path="/505" element={<ServerErrorPage />} />
+          <Route path="/round-process" element={<RoundProcess />} />
           <Route
             path="/winner"
             element={

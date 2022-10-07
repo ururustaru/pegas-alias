@@ -11,6 +11,7 @@ export * from './forums/forums'
 export * from './server-error/server-error'
 export * from './not-found/not-found'
 export * from './winner/winner'
+export * from './timer-line/timer-line';
 
 // Modals
 export * from './modal/add-forum-modal'
