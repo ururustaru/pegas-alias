@@ -1,9 +1,21 @@
 // import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import PageNavigation from './components/page-navigation/page-navigation';
-import {Main, Login, SignUp, NewGame, Profile, Rules, Leaders, ForumPage, Round, ForumDetail} from './pages/';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { NotFound, ServerError } from './components'
+import PageNavigation from './components/page-navigation/page-navigation'
+import {
+  Main,
+  Login,
+  SignUp,
+  NewGame,
+  Profile,
+  Rules,
+  Leaders,
+  ForumPage,
+  Round,
+  ForumDetail,
+} from './pages/'
 
-import './scss/style.scss';
+import './scss/style.scss'
 
 export function App() {
   // useEffect(() => {
@@ -17,23 +29,26 @@ export function App() {
   //   //
   //   // fetchServerData()
   // }, [])
-  return <div className="app">
-    <Router>
-      <PageNavigation />
-      <Routes>
-        <Route path="/" element={<Main/>}/>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/sign-up" element={<SignUp />}/>
-        <Route path="/about" element={<Login/>}/>
-        <Route path="/new-game" element={<NewGame/>}/>
-        <Route path="/profile" element={<Profile/>}/>
-        <Route path="/rules" element={<Rules/>}/>
-        <Route path="/leaders" element={<Leaders/>}/>
-        <Route path="/forum" element={<ForumPage/>}/>
-        <Route path="/round" element={<Round />} />
-        <Route path="/forum-detail" element={<ForumDetail />}/>
-      </Routes>
-    </Router>
-  </div>
+  return (
+    <div className="app">
+      <Router>
+        <PageNavigation />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/about" element={<Login />} />
+          <Route path="/new-game" element={<NewGame />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/rules" element={<Rules />} />
+          <Route path="/leaders" element={<Leaders />} />
+          <Route path="/forum" element={<ForumPage />} />
+          <Route path="/round" element={<Round />} />
+          <Route path="/forum-detail" element={<ForumDetail />} />
+          <Route path="/505" element={<ServerError />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </div>
+  )
 }
-
