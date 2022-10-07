@@ -20,10 +20,7 @@
                  ["/forum","Форум"],
                  ["/round","Раунд"],
                  ["/round-start","Раунд: Начало"],
-<<<<<<< HEAD
                  ["/round-process","Раунд: Процесс"],
-=======
->>>>>>> c9ccb0d... optimize code base
                ];
    
    const rows = [];
