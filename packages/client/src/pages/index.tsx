@@ -12,7 +12,4 @@ export * from './not-found'
 export * from './server-error'
 export * from './winner'
 export * from './round-start';
-<<<<<<< HEAD
 export * from './round-process';
-=======
->>>>>>> c9ccb0d... optimize code base
