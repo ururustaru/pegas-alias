@@ -33,7 +33,7 @@ export function App() {
         <Route path="/round" element={<Round />} />
         <Route path="/forum-detail" element={<ForumDetail />}/>
         <Route path="/round-start" element={<RoundStart />} />
-        <Route path="/game" element={<RoundProcess />} />
+        <Route path="/round-process" element={<RoundProcess />} />
       </Routes>
     </Router>
   </div>

@@ -20,6 +20,7 @@
                  ["/forum","Форум"],
                  ["/round","Раунд"],
                  ["/round-start","Раунд: Начало"],
+                 ["/round-process","Раунд: Процесс"],
                ];
    
    const rows = [];
