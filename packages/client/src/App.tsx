@@ -12,6 +12,7 @@ import {
   ForumPage,
   Round,
   RoundStart,
+  RoundProcess,
   ForumDetail,
   NotFoundPage,
   ServerErrorPage,
@@ -47,6 +48,7 @@ export function App() {
           <Route path="/leaders" element={<Leaders />} />
           <Route path="/forum" element={<ForumPage />} />
           <Route path="/round" element={<Round />} />
+          <Route path="/game" element={<RoundProcess />} />
           <Route path="/round-start" element={<RoundStart />} />
           <Route path="/forum-detail" element={<ForumDetail />} />
           <Route path="/505" element={<ServerErrorPage />} />
