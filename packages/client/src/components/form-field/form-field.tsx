@@ -4,9 +4,9 @@ import { Field } from '../field/field';
 import { UseFormRegisterReturn } from 'react-hook-form/dist/types';
 
 interface IFormField {
-  register: UseFormRegisterReturn<string>;
+  placeholder: string;
+  register?: UseFormRegisterReturn<string>;
   errorText?: string ;
-  placeholder?: string;
   type?: string;
 }
 
