@@ -1,0 +1,74 @@
+@import './src/scss/base/variables';
+@import './src/scss/base/_mixins';
+
+.winner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.winner__image-wrap {
+  max-width: 300px;
+  margin-bottom: 50px;
+}
+
+.winner__subtitle {
+  font-family: $main-font;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 58px;
+  text-align: center;
+  color: $info;
+  text-shadow: $info-title-shadow;
+  margin-bottom: 28px;
+}
+.winner__text {
+  font-family: $main-font;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 25px;
+  text-align: center;
+  color: $text-dark;
+}
+
+@include down($mobile) {
+  .intro__image-wrap {
+    max-width: 200px;
+    max-height: 200px;
+    margin-bottom: 40px;
+  }
+  .winner__subtitle {
+    margin-bottom: 27px;
+    font-size: 38px;
+    line-height: 46px;
+  }
+  .winner__text {
+    max-width: 306px;
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .winner-score {
+    margin-top: 12px;
+    margin-bottom: 70px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+.winner__backlink {
+  margin-right: auto;
+}
+.winner__score {
+  font-family: $main-font;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 33px;
+  color: $text-secondary;
+  margin-top: 28px;
+  margin-bottom: 42px;
+}

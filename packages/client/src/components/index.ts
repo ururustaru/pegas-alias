@@ -10,6 +10,7 @@ export * from './leaderboard/leaderboard'
 export * from './forums/forums'
 export * from './server-error/server-error'
 export * from './not-found/not-found'
+export * from './winner/winner'
 
 // Modals
 export * from './modal/add-forum-modal'
