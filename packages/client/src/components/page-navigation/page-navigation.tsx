@@ -7,11 +7,11 @@ import {Link} from 'react-router-dom'
 import React from 'react';
 import './page-navigation.scss';
 
-function hideMenu(): void {
-  document.querySelector('.page-navigation')?.classList.add('visually-hidden')
-}
-
 function PageNavigation() {
+  function hideMenu(): void {
+    document.querySelector('.page-navigation')?.classList.add('visually-hidden')
+  }
+  
   return (
     <nav className="page-navigation">
       <ul>
@@ -19,7 +19,25 @@ function PageNavigation() {
           <Link className="page-navigation__link" to="/">Главная</Link>
         </li>
         <li className="page-navigation__item">
-          <Link className="page-navigation__link" to="/about">Авторизация</Link>
+          <Link className="page-navigation__link" to="/login">Авторизация</Link>
+        </li>
+        <li className="page-navigation__item">
+          <Link className="page-navigation__link" to="/sign-up">Регистрация</Link>
+        </li>
+        <li className="page-navigation__item">
+          <Link className="page-navigation__link" to="/profile">Профиль</Link>
+        </li>
+        <li className="page-navigation__item">
+          <Link className="page-navigation__link" to="/rules">Правила</Link>
+        </li>
+        <li className="page-navigation__item">
+          <Link className="page-navigation__link" to="/forum">Форум</Link>
+        </li>
+        <li className="page-navigation__item">
+          <Link className="page-navigation__link" to="/leaders">Лидеры</Link>
+        </li>
+        <li className="page-navigation__item">
+          <Link className="page-navigation__link" to="/round">Раунд</Link>
         </li>
       </ul>
       <svg className="page-navigation__close"

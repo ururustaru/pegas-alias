@@ -1,0 +1,75 @@
+@import "./../../scss/base/variables";
+
+.forums {
+  width: 420px;
+  margin: 0 auto;
+}
+
+.forums__header {
+  margin-bottom: 30px;
+  
+  .button {
+    width: 100%;
+  }
+}
+
+.forums__list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.forums__item {
+  background: $card-light;
+  box-shadow: $card-shadow;
+  padding: 18px 20px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $text-dark;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 0.3s;
+    border-radius: 16px;
+  }
+
+  &:hover,
+  &:active,
+  &--active {
+    box-shadow: none;
+
+    &::before {
+      opacity: 1;
+      box-shadow: $button-pressed-shadow;
+    }
+  }
+}
+
+.forums__item-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.forums__item-desc {
+  font-size: 16px;
+  color: $text-secondary;
+  margin-bottom: 18px;
+}
+
+.forums__item-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+}

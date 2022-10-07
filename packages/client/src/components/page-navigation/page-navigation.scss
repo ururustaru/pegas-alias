@@ -5,6 +5,7 @@
   right: 15px;
   top: 15px;
   width: 200px;
+  z-index: 10;
 
   ul {
     display: flex;
@@ -24,7 +25,7 @@
   transition: 0.3s;
 
   &:hover {
-    background: #e1e1e1;
+    background: #e9e9e9;
   }
 }
 
@@ -32,21 +33,25 @@
   width: 100%;
 
   &:nth-child(odd) {
-    background: $light;
+    background: $accent-gradient;
+    
+    .page-navigation__link {
+      color: $light;
+    }
   }
 
   &:nth-child(even) {
-    background: #f3f3f3;
+    background: $card-light-gradient;
   }
 }
 
 .page-navigation__link {
-  padding: 10px 20px;
+  padding: 8px 10px;
   display: block;
-  font-size: 16px;
+  font-size: 14px;
   color: $dark;
 
   &:hover {
-    background: #e1e1e1;
+    padding-left: 15px;
   }
 }

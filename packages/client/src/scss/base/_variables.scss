@@ -5,10 +5,12 @@ $text-gray: #868686;
 $text-error: rgba(59, 79, 125, 0.75);
 
 $dark: #000000;
+$card-light: #E3EDF7;
 $light: #ffffff;
 
 // accent colors
 $accent: #9fa7f0;
+$accent-background: #ccd6fe;
 $accent-light: #e1e1ff;
 
 // notification colors
@@ -22,13 +24,20 @@ $note: #05a6f2;
 $warning: #ff922e;
 $disabled: #6a7098;
 
+$delete-bg: #d6dbf9;
+$breadcrumbs-bg: #dce4f8;
+
 // gradients
-$accent-gradient: linear-gradient(314deg, #c7cdff 0%, #303fc5 100%);
+$accent-gradient: linear-gradient(356deg, #c7cdff 0%, #303fc5 100%);
 $secondary-gradient: linear-gradient(314deg, #cad6fe 0%, #d9d3f7 100%);
 $card-light-gradient: linear-gradient(95deg, #d7dbfb 6.5%, #ccd5fe 96%);
+$card-linear-gradient: 
+  linear-gradient(308.48deg, #D4E0FD 2.36%, #DFE6F9 61.95%),
+  linear-gradient(267.62deg, rgba(214, 227, 243, 0.46) 8.2%, rgba(255, 255, 255, 0.46) 82.68%);
 $success-gradient: linear-gradient(314deg, #baffda 0%, #008a50 100%);
 $alert-gradient: linear-gradient(314deg, #ffc7d4 0%, #c53042 100%);
 $disabled-gradient: linear-gradient(314deg, #9da6c2 0%, #dbd7ed 100%);
+$checkbox-gradient: linear-gradient(309.34deg, #c0c7fe -13.68%, #8394ff 171.92%);
 
 // fonts
 $main-font: "gilroy", "arial", sans-serif;
@@ -38,6 +47,16 @@ $button-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.1), -4px -4px 4px 0px rgba(255, 
 $button-pressed-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.1) inset, -3px -3px 2px 0px rgba(255, 255, 255, 0.4) inset;
 $field-shadow: -3px -3px 4px 0px rgba(255, 255, 255, 0.15) inset, 3px 3px 4px 0px rgba(0, 0, 0, 0.1) inset;
 $info-title-shadow: 0px 15px 25px 0px rgba(222, 112, 178, 0.7);
+$button-shadow-hover: inset -4px -4px 4px rgba(0, 0, 0, 0.1);
+$menu-item-shadow: 4px 4px 40px 0px rgba(178, 193, 240, 0.7);
+$menu-item-pressed-shadow: 10px 10px 20px 0px rgba(178, 193, 240, 0.4) inset;
+$checkbox-shadow: 2px 2px 4px rgba(114, 142, 171, 0.1), -6px -6px 20px white, 4px 4px 20px rgba(111, 140, 176, 0.41);
+$breadcrumbs-shadow: inset -2px -2px 4px white, inset 2px 2px 4px #bac3df;
+$breadcrumbs-shadow-hover:inset 2px 2px 4px#bac3df, inset 2px 2px 4px white;
+$card-shadow: 
+  4px 4px 20px 0px rgba(111, 140, 176, 0.41),
+  -6px -6px 20px 0px rgba(255, 255, 255, 1),
+  2px 2px 4px 0px rgba(114, 142, 171, 0.1);
 
 // Screen width
 $mobile: 768px;

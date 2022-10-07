@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
-  background: url('./src/assets/images/app-bg.png') center / 100% 100% no-repeat;
+  background: url('./src/assets/images/app-bg.png') center / 100% 103% no-repeat;
+  overflow-x: hidden;
 
   @include down(768px) {
     background-image: url('./src/assets/images/app-bg-mobile.png');
