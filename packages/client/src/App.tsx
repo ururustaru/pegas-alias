@@ -1,7 +1,7 @@
 // import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PageNavigation from './components/page-navigation/page-navigation';
-import {Main, Login, SignUp, NewGame, Profile, Rules, Leaders, ForumPage, Round, ForumDetail, RoundStart, RoundProcess} from './pages/';
+import {Main, Login, SignUp, NewGame, Profile, Rules, Leaders, ForumPage, Round, ForumDetail, RoundStart, RoundProcess, RoundEnd} from './pages/';
 
 import './scss/style.scss';
 
@@ -34,6 +34,7 @@ export function App() {
         <Route path="/forum-detail" element={<ForumDetail />}/>
         <Route path="/round-start" element={<RoundStart />} />
         <Route path="/round-process" element={<RoundProcess />} />
+        <Route path="/round-end" element={<RoundEnd />} />
       </Routes>
     </Router>
   </div>
