@@ -11,11 +11,6 @@ export function Leaderboard() {
           <Button text="По количеству побед" classes="button--active button--light button--small"/>
           <Button text="По количеству игр" classes="button--light button--small"/>
           <Button text="По количеству отгаданных слов" classes="button--light button--small"/> 
-          <select className="leaderboard__select">
-            <option value="victories">По количеству побед</option>
-            <option value="count">По количеству игр</option>
-            <option value="words">По количеству отгаданных слов</option>
-          </select>
         </div>
       </div>
       <div className="leaderboard__results">
