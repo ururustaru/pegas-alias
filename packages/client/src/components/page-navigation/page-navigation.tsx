@@ -21,6 +21,7 @@
                  ["/round","Раунд"],
                  ["/round-start","Раунд: Начало"],
                  ["/round-process","Раунд: Процесс"],
+                 ["/round-end","Раунд: Итог"],
                ];
    
    const rows = [];
