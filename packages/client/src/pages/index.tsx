@@ -10,3 +10,4 @@ export * from './forum-detail';
 export * from './round';
 export * from './round-start';
 export * from './round-process';
+export * from './round-end';

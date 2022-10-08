@@ -33,6 +33,7 @@ export function App() {
         <Route path="/round" element={<Round />} />
         <Route path="/round-start" element={<RoundStart />} />
         <Route path="/round-process" element={<RoundProcess />} />
+        <Route path="/round-end" element={<RoundEnd />} />
       </Routes>
     </Router>
   </div>
