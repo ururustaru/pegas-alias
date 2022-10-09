@@ -1,0 +1,48 @@
+@import "./../../scss/base/_variables";
+
+.round--text {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: $text-secondary;
+    padding-top: 77px;
+}
+
+.round--team {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: $text-secondary;
+    margin-top: -24px;
+}
+
+.round--big-text {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 73px;
+    text-align: center;
+}
+
+#round-canvas {
+    background: linear-gradient(308.48deg, rgba(255, 255, 255, 0.53) 2.36%, rgba(255, 255, 255, 0) 61.95%), #E3EDF7;
+    box-shadow: 2px 2px 4px rgba(114, 142, 171, 0.1), -6px -6px 20px #FFFFFF, 4px 4px 20px rgba(111, 140, 176, 0.41);
+    border-radius: 14px;
+    margin: 75px 0;
+}
+
+.round--buttons{
+    display: flex;
+    flex-direction: row;
+    width: 420px;
+    margin: auto;
+    justify-content:space-evenly;
+    align-items: center;
+    padding-bottom: 20px;
+}
