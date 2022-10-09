@@ -65,7 +65,6 @@ export function App() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/about" element={<Login />} />
           <Route path="/new-game" element={<NewGame />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/change-password" element={<ChangePassword />} />
@@ -87,10 +86,9 @@ export function App() {
               />
             }
           />
-          <Route path="/game" element={<RoundProcess />} />
           <Route path="/round-start" element={<RoundStart />} />
           <Route path="/forum-detail" element={<ForumDetail />} />
-          <Route path="/505" element={<ServerErrorPage />} />
+          <Route path="/500" element={<ServerErrorPage />} />
           <Route path="/round-process" element={<RoundProcess />} />
           <Route
             path="/winner"
