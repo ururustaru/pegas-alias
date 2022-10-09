@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Button, TimerLine } from '../components';
-import './../components/form/form.scss';
+import './../scss/form/form.scss';
 
 export class RoundProcess extends React.Component {
   state = {

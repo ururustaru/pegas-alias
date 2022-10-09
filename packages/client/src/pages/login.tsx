@@ -3,11 +3,15 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { FormField, Button, Intro } from '../components';
+import { loginUser } from '../services/http/login';
 import { errorToString, pattern } from '../utils';
 
-import '../components/form/form.scss';
+
+import './../scss/form/form.scss';
+
 
 export const Login: React.FC = (): JSX.Element => {
+
 
 	const { login, password } = pattern();
 
@@ -22,7 +26,7 @@ export const Login: React.FC = (): JSX.Element => {
 	const navigate = useNavigate();
 
 	const onSubmit = (data: Record<string, unknown>) => {
-		console.log(data)
+		loginUser(data)
 	}
 
 	return (
@@ -49,6 +53,7 @@ export const Login: React.FC = (): JSX.Element => {
 							}
 						})}
 						placeholder="Логин"
+						value="nini2"
 						errorText={errorToString(errors?.login)}
 					/>
 
@@ -62,6 +67,7 @@ export const Login: React.FC = (): JSX.Element => {
 						})}
 						type="password"
 						placeholder="Пароль"
+						value="Qwerty!23456"
 						errorText={errorToString(errors?.password)}
 					/>
 

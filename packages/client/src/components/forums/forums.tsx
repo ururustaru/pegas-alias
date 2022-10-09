@@ -1,7 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Button, AddForumModal} from './../../components';
-
+import { Link } from 'react-router-dom';
+import { Button, AddForumModal } from './../../components';
+import { useToggle } from '../../services/hooks';
 import './forums.scss';
 
 // todo: Заменить на реальные данные
@@ -44,20 +44,10 @@ const FORUMS_STUB = [
   }
 ]
 
-export class Forums extends React.Component {
-  state = {
-    showModal: false
-  }
+export const Forums = () => {
+  const [value, toggleValue] = useToggle();
 
-  showModal = () => {
-    this.setState({ showModal: true })
-  }
-
-  closeModal = () => {
-    this.setState({ showModal: false })
-  }
-
-  forumsList = FORUMS_STUB.map(forum => {
+  const forumsList = FORUMS_STUB.map(forum => {
     return <Link className="forums__item" key={forum.title} to="/forum-detail">
       <span className="forums__item-title">{forum.title}</span>
       <span className="forums__item-desc">{forum.description}</span>
@@ -68,23 +58,67 @@ export class Forums extends React.Component {
     </Link>
   })
   
-  render() {
-    return (
-      <div className="forums">
-        <header className="forums__header">
-          <Button text="Создать тему"
-            events={{
-              onClick: this.showModal
-            }}
-          />
-        </header>
-        <div className="forums__list">
-          {this.forumsList}
-        </div>
-        <AddForumModal isOpen={this.state.showModal} closeModal={this.closeModal}/>
+  return (
+    <div className="forums">
+      <header className="forums__header">
+        <Button text="Создать тему"
+          events={{
+            onClick: ()=>{toggleValue()}
+          }}
+        />
+      </header>
+      <div className="forums__list">
+        {forumsList}
       </div>
-    )
-  }
+      <AddForumModal isOpen={value} close={toggleValue} />
+    </div>
+  );
 }
+
+// export class Forums extends React.Component {
+
+
+
+//   state = {
+//     showModal: false
+//   }
+
+//   showModal = () => {
+//     this.setState({ showModal: true })
+//   }
+
+//   closeModal = () => {
+//     this.setState({ showModal: false })
+//   }
+
+//   forumsList = FORUMS_STUB.map(forum => {
+//     return <Link className="forums__item" key={forum.title} to="/forum-detail">
+//       <span className="forums__item-title">{forum.title}</span>
+//       <span className="forums__item-desc">{forum.description}</span>
+//       <div className="forums__item-info">
+//         <span className="forums__item-info-value">{forum.commentsCount}</span>
+//         <span className="forums__item-info-value">{forum.lastCommentDate}</span>
+//       </div>
+//     </Link>
+//   })
+
+//   render() {
+//     return (
+//       <div className="forums">
+//         <header className="forums__header">
+//           <Button text="Создать тему"
+//             events={{
+//               onClick: this.showModal
+//             }}
+//           />
+//         </header>
+//         <div className="forums__list">
+//           {this.forumsList}
+//         </div>
+//         <AddForumModal isOpen={this.state.showModal} closeModal={this.closeModal} />
+//       </div>
+//     )
+//   }
+// }
 
 

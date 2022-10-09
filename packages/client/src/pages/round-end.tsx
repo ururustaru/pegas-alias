@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import { Button, BackLink } from '../components';
-import './../components/form/form.scss';
+import './../scss/form/form.scss';
 import './../components/round/round.scss';
 
 export const RoundEnd: React.FC = (): JSX.Element => {

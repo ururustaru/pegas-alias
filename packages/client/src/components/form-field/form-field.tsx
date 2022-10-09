@@ -8,6 +8,7 @@ interface IFormField {
   register?: UseFormRegisterReturn<string>;
   errorText?: string ;
   type?: string;
+  value?:string;
 }
 
 export function FormField(props: IFormField) {

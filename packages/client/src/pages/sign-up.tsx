@@ -3,7 +3,10 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { Intro, FormField, Button } from '../components';
+import { registerUser } from '../services/http/login';
 import { errorToString, pattern } from '../utils';
+
+import './../scss/form/form.scss';
 
 export const SignUp: React.FC = (): JSX.Element => {
 	const { email, login, name, phone, password } = pattern();
@@ -23,7 +26,7 @@ export const SignUp: React.FC = (): JSX.Element => {
 	const navigate = useNavigate();
 
 	const onSubmit = (data: Record<string, unknown>) => {
-		console.log(data)
+		registerUser(data)
 	}
 
 	return (

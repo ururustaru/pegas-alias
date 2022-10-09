@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Button, BackLink, CheckBox } from '../components';
-import './../components/form/form.scss';
+import './../scss/form/form.scss';
 
 export const RoundStart: React.FC = (): JSX.Element => {
   return (

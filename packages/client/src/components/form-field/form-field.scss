@@ -6,11 +6,17 @@
 
 .form-field--error {
   .field {
-    outline: 1px solid $alert;
+    border: 1px solid $alert;
   }
 
-  .form-field__info {
-    color: $alert;
+  &.form-field--error {
+    .field {
+      border: 1px solid $alert;
+    }
+
+    .form-field__info {
+      color: $alert;
+    }
   }
 }
 
@@ -51,12 +57,14 @@
   box-sizing: border-box;
   margin-top: 24px;
 }
+
 .flat-field--noborder {
   height: 24px;
   border-top: none;
   border-bottom: none;
   margin-top: 0px;
 }
+
 .flat-field span {
   padding: 0px 6px;
 }

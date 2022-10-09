@@ -2,9 +2,7 @@
  * Данный компонент является вспомогательным для навигации по экранам вёрстки
  * TODO: Удалить после реализации вёрстки всех экранов
  */
-
  import {Link} from 'react-router-dom'
- import React from 'react';
  import './page-navigation.scss';
  
  function PageNavigation() {
@@ -16,6 +14,7 @@
                  ["/login", "Авторизация"],
                  ["/sign-up", "Регистрация"],
                  ["/profile","Профиль"],
+                 ["/change-password","Профиль"],
                  ["/rules","Правила"],
                  ["/forum","Форум"],
                  ["/round","Раунд"],
@@ -60,4 +59,3 @@
  }
  
  export default PageNavigation;
- 

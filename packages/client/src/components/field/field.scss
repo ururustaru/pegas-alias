@@ -16,11 +16,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  border: none;
-  outline: 2px solid transparent;
+  outline: none;
+  border: 1px solid transparent;
 
   &:focus {
-    outline: 2px solid #ACB3F2;
+    border: 1px solid #ACB3F2;
   }
 
   @include input-placeholder {
