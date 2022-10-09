@@ -2,7 +2,15 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PageNavigation from './components/page-navigation/page-navigation';
-import {Main, Login, SignUp, NewGame, Profile, Rules, Leaders, ForumPage, Round, ForumDetail, RoundStart, RoundProcess, RoundEnd, ScoreInRoundPage} from './pages/';
+import {Main, Login, SignUp, NewGame, Profile, Rules, Leaders, ForumPage, Round} from './pages/';
+import { ForumDetail } from './pages/forum-detail';
+import { NotFoundPage } from './pages/not-found';
+import { RoundEnd } from './pages/round-end';
+import { RoundProcess } from './pages/round-process';
+import { RoundStart } from './pages/round-start';
+import { ScoreInRoundPage } from './pages/score-in-round';
+import { ServerErrorPage } from './pages/server-error';
+import { WInnerPage } from './pages/winner';
 
 import './scss/style.scss'
 
