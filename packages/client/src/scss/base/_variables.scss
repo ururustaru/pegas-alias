@@ -8,6 +8,7 @@ $dark: #000000;
 $card-light: #E3EDF7;
 $light: #ffffff;
 
+$border-secondary: 1px solid #b3c6f1;
 // accent colors
 $accent: #9fa7f0;
 $accent-background: #ccd6fe;
@@ -38,7 +39,10 @@ $success-gradient: linear-gradient(314deg, #baffda 0%, #008a50 100%);
 $alert-gradient: linear-gradient(314deg, #ffc7d4 0%, #c53042 100%);
 $disabled-gradient: linear-gradient(314deg, #9da6c2 0%, #dbd7ed 100%);
 $checkbox-gradient: linear-gradient(309.34deg, #c0c7fe -13.68%, #8394ff 171.92%);
-
+$timer-gradient: linear-gradient(to left, #CCD5F9, #3746C8);
+$button-negative-gradient: linear-gradient(313.94deg, #FFC7D4 0%, #C53042 100%);
+$button-positive-gradient: linear-gradient(313.94deg, #BAFFDA 0%, #008A50 100%);
+  /* Button shadow */
 // fonts
 $main-font: "gilroy", "arial", sans-serif;
 

@@ -1,21 +1,7 @@
 // import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import PageNavigation from './components/page-navigation/page-navigation'
-import {
-  Main,
-  Login,
-  SignUp,
-  NewGame,
-  Profile,
-  Rules,
-  Leaders,
-  ForumPage,
-  Round,
-  ForumDetail,
-  NotFoundPage,
-  ServerErrorPage,
-  WInnerPage,
-} from './pages/'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import PageNavigation from './components/page-navigation/page-navigation';
+import {Main, Login, SignUp, NewGame, Profile, Rules, Leaders, ForumPage, Round, ForumDetail, RoundStart, RoundProcess, RoundEnd} from './pages/';
 
 import './scss/style.scss'
 
@@ -46,8 +32,11 @@ export function App() {
           <Route path="/leaders" element={<Leaders />} />
           <Route path="/forum" element={<ForumPage />} />
           <Route path="/round" element={<Round />} />
+          <Route path="/game" element={<RoundProcess />} />
+          <Route path="/round-start" element={<RoundStart />} />
           <Route path="/forum-detail" element={<ForumDetail />} />
           <Route path="/505" element={<ServerErrorPage />} />
+          <Route path="/round-process" element={<RoundProcess />} />
           <Route
             path="/winner"
             element={
@@ -55,8 +44,12 @@ export function App() {
             }
           />
           <Route path="/*" element={<NotFoundPage />} />
+        <Route path="/round-start" element={<RoundStart />} />
+        <Route path="/round-process" element={<RoundProcess />} />
+        <Route path="/round-end" element={<RoundEnd />} />
         </Routes>
       </Router>
     </div>
   )
 }
+
