@@ -1,0 +1,66 @@
+@import './src/scss/base/variables';
+@import './src/scss/base/_mixins';
+
+.server-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.server-error__title {
+  font-family: $main-font;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 44px;
+  margin-bottom: 6px;
+  color: $text-dark;
+}
+
+.server-error__desc {
+  font-family: $main-font;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 400;
+  margin-bottom: 60px;
+  color: $text-error;
+}
+
+.server-error__image-wrap {
+  max-width: 300px;
+  margin-bottom: 50px;
+}
+
+.server-error__subtitle {
+  font-family: $main-font;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 58px;
+  text-align: center;
+  color: $info;
+  text-shadow: $info-title-shadow;
+  margin-bottom: 12px;
+}
+.server-error__text {
+  font-family: $main-font;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: center;  
+  color: $text-dark;
+}
+@include down($mobile) {
+  .intro__image-wrap {
+    max-width: 200px;
+    max-height: 200px;
+    margin-bottom: 20px;
+  }
+  .server-error__subtitle {
+    margin-bottom: 10px;
+  }
+  .server-error__text {
+    max-width: 184px;
+  }
+}
