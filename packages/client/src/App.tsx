@@ -1,23 +1,19 @@
 
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Main, Login, SignUp, NewGame, Profile, Rules, Leaders, Round, ChangePassword, ForumPage } from './pages/index';
+import {
+  Main, Login, SignUp, NewGame, Profile, Rules, Leaders,
+  Round, ChangePassword, ForumPage, ScoreInRoundPage,
+  RoundStart, ForumDetail, ServerErrorPage, RoundProcess,
+  WInnerPage, NotFoundPage, RoundEnd
+} from './pages';
 
+import { PageNavigation } from './components';
 
-import './scss/style.scss';
 import { getUserAPI } from './services/http/profile';
 import { getUser } from './services/store/userSlice';
-import PageNavigation from './components/page-navigation/page-navigation';
-import { ForumDetail } from './pages/forum-detail';
-import { NotFoundPage } from './pages/not-found';
-import { RoundEnd } from './pages/round-end';
-import { RoundProcess } from './pages/round-process';
-import { RoundStart } from './pages/round-start';
-import { ScoreInRoundPage } from './pages/score-in-round';
-import { ServerErrorPage } from './pages/server-error';
-import { WInnerPage } from './pages/winner';
 
-import './scss/style.scss'
+import './scss/style.scss';
 
 
 export function App() {
@@ -35,27 +31,6 @@ export function App() {
   //   //
   //   // fetchServerData()
   // }, [])
-
-  // return <div className="app">
-  //   <Router>
-  //     <PageNavigation />
-  //     <Routes>
-
-  //       <Route path="/" element={<Main />} />
-  //       <Route path="/login" element={<Login />} />
-  //       <Route path="/sign-up" element={<SignUp />} />
-  //       <Route path="/profile" element={<Profile />} />
-        
-  //       <Route path="/about" element={<Login />} />
-  //       <Route path="/new-game" element={<NewGame />} />
-  //       <Route path="/rules" element={<Rules />} />
-  //       <Route path="/leaders" element={<Leaders />} />
-  //       <Route path="/forum" element={<Forum />} />
-  //       <Route path="/round" element={<Round />} />
-
-  //     </Routes>
-  //   </Router>
-  // </div>
 
   return (
     <div className="app">
@@ -97,9 +72,9 @@ export function App() {
             }
           />
           <Route path="/*" element={<NotFoundPage />} />
-        <Route path="/round-start" element={<RoundStart />} />
-        <Route path="/round-process" element={<RoundProcess />} />
-        <Route path="/round-end" element={<RoundEnd />} />
+          <Route path="/round-start" element={<RoundStart />} />
+          <Route path="/round-process" element={<RoundProcess />} />
+          <Route path="/round-end" element={<RoundEnd />} />
         </Routes>
       </Router>
     </div>
