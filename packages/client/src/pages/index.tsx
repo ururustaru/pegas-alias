@@ -14,3 +14,5 @@ export * from './winner'
 export * from './round-start';
 export * from './round-process';
 export * from './round-end';
+export * from './score-in-round'
+

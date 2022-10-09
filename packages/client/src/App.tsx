@@ -1,7 +1,8 @@
 // import { useEffect } from 'react';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PageNavigation from './components/page-navigation/page-navigation';
-import {Main, Login, SignUp, NewGame, Profile, Rules, Leaders, ForumPage, Round, ForumDetail, RoundStart, RoundProcess, RoundEnd} from './pages/';
+import {Main, Login, SignUp, NewGame, Profile, Rules, Leaders, ForumPage, Round, ForumDetail, RoundStart, RoundProcess, RoundEnd, ScoreInRoundPage} from './pages/';
 
 import './scss/style.scss'
 
@@ -32,6 +33,20 @@ export function App() {
           <Route path="/leaders" element={<Leaders />} />
           <Route path="/forum" element={<ForumPage />} />
           <Route path="/round" element={<Round />} />
+          <Route
+            path="/score-in-round"
+            element={
+              <ScoreInRoundPage
+                numberRound={1} //Данные указаны для примера использования
+                nextNameTeam={'Настольные монстры'}
+                arrayScoreTeams={[
+                  { id: '1', nameTeam: 'Мудрые черепахи', scoreTeam: 15 },
+                  { id: '2', nameTeam: 'Настольные монстры', scoreTeam: 0 },
+                  { id: '3', nameTeam: 'Девочки', scoreTeam: 0 },
+                ]}
+              />
+            }
+          />
           <Route path="/game" element={<RoundProcess />} />
           <Route path="/round-start" element={<RoundStart />} />
           <Route path="/forum-detail" element={<ForumDetail />} />
@@ -52,4 +67,3 @@ export function App() {
     </div>
   )
 }
-
