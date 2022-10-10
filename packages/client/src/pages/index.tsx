@@ -6,7 +6,6 @@ export * from './profile';
 export * from './rules';
 export * from './leaders';
 export * from './forum';
-export * from './round';
 export * from './change-password';
 export * from './forum-detail';
 export * from './not-found';

@@ -1,9 +1,8 @@
-
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   Main, Login, SignUp, NewGame, Profile, Rules, Leaders,
-  Round, ChangePassword, ForumPage, ScoreInRoundPage,
+  ChangePassword, ForumPage, ScoreInRoundPage,
   RoundStart, ForumDetail, ServerErrorPage, RoundProcess,
   WInnerPage, NotFoundPage, RoundEnd
 } from './pages';
@@ -46,7 +45,6 @@ export function App() {
           <Route path="/rules" element={<Rules />} />
           <Route path="/leaders" element={<Leaders />} />
           <Route path="/forum" element={<ForumPage />} />
-          <Route path="/round" element={<Round />} />
           <Route
             path="/score-in-round"
             element={

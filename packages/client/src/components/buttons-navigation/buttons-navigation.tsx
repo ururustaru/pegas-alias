@@ -7,7 +7,7 @@ export function ButtonsNavigation() {
     <nav className="buttons-navigation">
       <ul className="buttons-navigation__list">
         <li className="buttons-navigation__item buttons-navigation__item--big">
-          <Link className="buttons-navigation__link buttons-navigation__link--rocket" to="/new-game">Новая игра</Link>
+          <Link className="buttons-navigation__link buttons-navigation__link--rocket" to="/round-start">Новая игра</Link>
         </li>
         <li className="buttons-navigation__item">
           <Link className="buttons-navigation__link buttons-navigation__link--profile" to="/profile">Профиль</Link>

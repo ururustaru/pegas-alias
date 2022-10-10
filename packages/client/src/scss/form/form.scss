@@ -51,4 +51,12 @@
   flex-direction: row;
   justify-content: space-around;
   gap: 20px;
+  
+  .button {
+    white-space: nowrap;
+  }
+}
+
+.form__fields--center {
+  align-items: center;
 }
