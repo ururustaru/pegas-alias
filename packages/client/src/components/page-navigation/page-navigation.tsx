@@ -26,7 +26,7 @@ export function PageNavigation() {
     { link: '/round-end', text: 'Раунд: Итог' },
     { link: '/score-in-round', text: 'Что-то в раунде(Ошибка)' },
     { link: '/winner', text: 'Победители' },
-    { link: '/505', text: '500' },
+    { link: '/500', text: '500' },
     { link: '/qwqqwwq', text: '404' },
     
   ];
