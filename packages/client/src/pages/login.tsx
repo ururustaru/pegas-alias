@@ -11,8 +11,6 @@ import './../scss/form/form.scss';
 
 
 export const Login: React.FC = (): JSX.Element => {
-
-
 	const { login, password } = pattern();
 
 	const {

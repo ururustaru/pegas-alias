@@ -1,7 +1,6 @@
 import { FormField, Button } from '../../components';
 import { Modal } from './modal';
 
-import './modal.scss';
 import './../../scss/form/form.scss';
 
 interface IModal {

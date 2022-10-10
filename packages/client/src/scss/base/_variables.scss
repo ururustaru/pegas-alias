@@ -30,6 +30,7 @@ $delete-bg: #d6dbf9;
 $breadcrumbs-bg: #dce4f8;
 $background-score: #D3DFFD;
 $border-score: #B3C6F1;
+
 // gradients
 $accent-gradient: linear-gradient(356deg, #c7cdff 0%, #303fc5 100%);
 $secondary-gradient: linear-gradient(314deg, #cad6fe 0%, #d9d3f7 100%);
@@ -41,13 +42,7 @@ $success-gradient: linear-gradient(314deg, #baffda 0%, #008a50 100%);
 $alert-gradient: linear-gradient(314deg, #ffc7d4 0%, #c53042 100%);
 $disabled-gradient: linear-gradient(314deg, #9da6c2 0%, #dbd7ed 100%);
 $checkbox-gradient: linear-gradient(309.34deg, #c0c7fe -13.68%, #8394ff 171.92%);
-
 $avatar-gradient: linear-gradient(59deg, #e1daf7 0%, #d2ddfd 100%);
-
-$timer-gradient: linear-gradient(to left, #CCD5F9, #3746C8);
-$button-negative-gradient: linear-gradient(313.94deg, #FFC7D4 0%, #C53042 100%);
-$button-positive-gradient: linear-gradient(313.94deg, #BAFFDA 0%, #008A50 100%);
-  /* Button shadow */
 
 // fonts
 $main-font: "gilroy", "arial", sans-serif;
@@ -67,8 +62,6 @@ $card-shadow:
   4px 4px 20px 0px rgba(111, 140, 176, 0.41),
   -6px -6px 20px 0px rgba(255, 255, 255, 1),
   2px 2px 4px 0px rgba(114, 142, 171, 0.1);
-
-
 $icon-shadow: 2px 2px 4px rgba(114, 142, 171, 0.1), -6px -6px 20px #FFFFFF, 4px 4px 20px rgba(111, 140, 176, 0.41);
 $avatar-shadow: 10px 10px 20px #BFCAE4, -10px -10px 20px #EBEBFF;
 

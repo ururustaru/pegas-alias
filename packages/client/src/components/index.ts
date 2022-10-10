@@ -13,11 +13,11 @@ export * from './forums/forums'
 export * from './server-error/server-error'
 export * from './not-found/not-found'
 export * from './winner/winner'
-export * from './timer-line/timer-line';
+export * from './timer/timer';
 export * from './score-in-round/score-in-round'
-export * from './modal/add-forum-modal'
-export * from './modal/edit-avatar-modal'
+export * from './round-board/round-board';
 
 // Modals
 export * from './modal/add-forum-modal'
+export * from './modal/edit-avatar-modal'
 

@@ -1,5 +1,5 @@
 @import './src/scss/base/variables';
-@import './src/scss/base/_mixins';
+@import './src/scss/base/mixins';
 
 .winner {
   display: flex;
@@ -26,6 +26,7 @@
   text-shadow: $info-title-shadow;
   margin-bottom: 28px;
 }
+
 .winner__text {
   font-family: $main-font;
   font-style: normal;
@@ -36,12 +37,18 @@
   color: $text-dark;
 }
 
+.winner__score {
+  font-family: $main-font;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 33px;
+  color: $text-secondary;
+  margin-top: 28px;
+  margin-bottom: 42px;
+}
+
 @include down($mobile) {
-  .intro__image-wrap {
-    max-width: 200px;
-    max-height: 200px;
-    margin-bottom: 40px;
-  }
   .winner__subtitle {
     margin-bottom: 27px;
     font-size: 38px;
@@ -58,17 +65,4 @@
     font-size: 20px;
     line-height: 24px;
   }
-}
-.winner__backlink {
-  margin-right: auto;
-}
-.winner__score {
-  font-family: $main-font;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 27px;
-  line-height: 33px;
-  color: $text-secondary;
-  margin-top: 28px;
-  margin-bottom: 42px;
 }

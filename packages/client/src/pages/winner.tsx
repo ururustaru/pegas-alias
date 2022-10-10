@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Winner } from '../components'
+import {BackLink, Winner} from '../components'
 
 interface IWinnerPage {
   nameWinnerTeam: string
@@ -7,8 +7,13 @@ interface IWinnerPage {
 }
 export const WInnerPage: FC<IWinnerPage> = ({ nameWinnerTeam, score }) => {
   return (
-    <main>
-      <Winner nameWinnerTeam={nameWinnerTeam} score={score} />
-    </main>
+    <>
+      <header>
+        <BackLink text="Есть победитель!"/>
+      </header>
+      <main>
+        <Winner nameWinnerTeam={nameWinnerTeam} score={score} />
+      </main>
+    </>
   )
 }

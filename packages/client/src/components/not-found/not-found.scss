@@ -1,5 +1,5 @@
 @import './src/scss/base/variables';
-@import './src/scss/base/_mixins';
+@import './src/scss/base/mixins';
 
 .not-found {
   display: flex;
@@ -9,6 +9,7 @@
   text-align: center;
   width: 100%;
 }
+
 .not-found__title {
   font-family: $main-font;
   font-size: 36px;
@@ -43,18 +44,25 @@
   text-shadow: $info-title-shadow;
   margin-bottom: 12px;
 }
+
 .not-found__text {
   font-family: $main-font;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;
-  text-align: center;  
+  text-align: center;
   color: $text-dark;
 }
-.not-found__text_link {
-  text-decoration: underline;
+
+.not-found__text--link {
+  border-bottom: 1px solid;
+  
+  &:hover {
+    opacity: .7;
+  }
 }
+
 @include down($mobile) {
   .intro__image-wrap {
     max-width: 200px;
@@ -67,10 +75,4 @@
   .not-found__text {
     max-width: 184px;
   }
-  .not-found__backlink {
-    display: none;
-  }
-}
-.not-found__backlink {
-  margin-right: auto;
 }
