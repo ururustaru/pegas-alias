@@ -8,7 +8,7 @@ export default {
   moduleNameMapper: {
     '^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|svg)$': 'jest-transform-stub'
   },
-  transformIgnorePatterns: ["node_modules/(?!axios)"],
+  transformIgnorePatterns: ['node_modules/(?!axios)'],
   globals: {
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
