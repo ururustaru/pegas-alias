@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { getUser } from '../services/store/userSlice';
-import { FormField, Button, Avatar } from './../components';
+import { FormField, Button, Avatar } from '../components';
 
-import { changeProfileAPI, getUserAPI } from '../services/http/profile';
+import { changeProfileAPI } from '../services/http/profile';
 import { errorToString, pattern } from '../utils';
 
 import './../scss/form/form.scss';
-
-
 
 export const Profile: React.FC = (): JSX.Element => {
   const { email, login, name, phone } = pattern();

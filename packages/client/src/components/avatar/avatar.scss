@@ -15,11 +15,10 @@
   border-radius: 50%;
 }
 
-
-.avatar-edit {
+.avatar__edit {
   position: absolute;
-  bottom: 0px;
-  right: 0px;
+  bottom: 0;
+  right: 0;
   background: $icon-bg;
   box-shadow: $icon-shadow;
   border-radius: 12px;
@@ -27,7 +26,7 @@
   cursor: pointer;
 }
 
-.avatar-title {
+.avatar__title {
   font-style: normal;
   font-weight: 700;
   font-size: 20px;

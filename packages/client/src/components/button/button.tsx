@@ -6,7 +6,7 @@ interface IButton {
   text?: string;
   classes?: string;
   icon?: string | ReactNode;
-  type?: 'button' | 'submit' | 'reset' | undefined;
+  type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   events?: TEvents;
 }

@@ -32,7 +32,7 @@ export function EditAvatarModal(props: IModal) {
 
   return (
     <Modal isOpen={props.isOpen} close={props.close}>
-      <h1 className="avatar-title">Поменять аватар</h1>
+      <h1 className="avatar__title">Поменять аватар</h1>
       <input
         style={{ display: 'none' }}
         ref={inputRef}

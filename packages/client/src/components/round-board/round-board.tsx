@@ -3,11 +3,12 @@ import {Button} from '../../components/';
 
 import './round-board.scss';
 
-export function RoundBoard() {
+export function RoundBoard(): JSX.Element {
   const currPlayer = 0;
   
   const currRound = 1;
   
+  // TODO: [https://pegas-alias.atlassian.net/browse/PEGAS-36] Избавиться от замоканных данных
   const teams = {
     'teams': [
       {'name': 'Настольные монстры', 'score': 20},

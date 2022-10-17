@@ -4,7 +4,7 @@ import { Button, AddForumModal } from './../../components';
 import { useToggle } from '../../services/hooks';
 import './forums.scss';
 
-// todo: Заменить на реальные данные
+// TODO: [https://pegas-alias.atlassian.net/browse/PEGAS-36] Избавиться от замоканных данных
 const FORUMS_STUB = [
   {
     title: 'Тактики объяснения',
@@ -74,51 +74,3 @@ export const Forums = () => {
     </div>
   );
 }
-
-// export class Forums extends React.Component {
-
-
-
-//   state = {
-//     showModal: false
-//   }
-
-//   showModal = () => {
-//     this.setState({ showModal: true })
-//   }
-
-//   closeModal = () => {
-//     this.setState({ showModal: false })
-//   }
-
-//   forumsList = FORUMS_STUB.map(forum => {
-//     return <Link className="forums__item" key={forum.title} to="/forum-detail">
-//       <span className="forums__item-title">{forum.title}</span>
-//       <span className="forums__item-desc">{forum.description}</span>
-//       <div className="forums__item-info">
-//         <span className="forums__item-info-value">{forum.commentsCount}</span>
-//         <span className="forums__item-info-value">{forum.lastCommentDate}</span>
-//       </div>
-//     </Link>
-//   })
-
-//   render() {
-//     return (
-//       <div className="forums">
-//         <header className="forums__header">
-//           <Button text="Создать тему"
-//             events={{
-//               onClick: this.showModal
-//             }}
-//           />
-//         </header>
-//         <div className="forums__list">
-//           {this.forumsList}
-//         </div>
-//         <AddForumModal isOpen={this.state.showModal} closeModal={this.closeModal} />
-//       </div>
-//     )
-//   }
-// }
-
-

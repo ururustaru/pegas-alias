@@ -10,9 +10,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-style: normal;
   font-weight: 700;
-  font-size: 32px;
+  font-size: 36px;
   border-radius: 8px;
   background:
     linear-gradient(122.51deg, rgba(214, 227, 243, 0.66) 16.62%, rgba(255, 255, 255, 0.66) 56.74%),
@@ -25,7 +24,7 @@
 
 .timer__value {
   z-index: 99;
-  text-shadow: 0 4px 10px rgba(255, 255, 255, 0.6);
+  text-shadow: 0 4px 15px rgba(255, 255, 255, 0.8);
 }
 
 .timer__indicator {

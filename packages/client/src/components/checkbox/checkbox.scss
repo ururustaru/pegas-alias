@@ -30,5 +30,5 @@
 .checkbox__input:checked + .checkbox__label::before {
   border-radius: 6px;
   background-size: 14px;
-  background-color: #A4B0FF;
+  background-color: $accent;
 }

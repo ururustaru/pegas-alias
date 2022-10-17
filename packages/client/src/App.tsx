@@ -4,7 +4,7 @@ import {
   Main, Login, SignUp, NewGame, Profile, Rules, Leaders,
   ChangePassword, ForumPage, ScoreInRoundPage,
   RoundStart, ForumDetail, ServerErrorPage, RoundProcess,
-  WInnerPage, NotFoundPage, RoundEnd
+  WinnerPage, NotFoundPage, RoundEnd
 } from './pages';
 
 import { PageNavigation } from './components';
@@ -18,18 +18,6 @@ import './scss/style.scss';
 export function App() {
   const dispatch = useDispatch();
   getUserAPI().then(data => dispatch(getUser(data)))
-
-  // useEffect(() => {
-  //   // Предустановка я.практикум:
-  //   // const fetchServerData = async () => {
-  //   //   const url = `http://localhost:${__SERVER_PORT__}`
-  //   //   const response = await fetch(url)
-  //   //   const data = await response.json()
-  //   //   console.log(data)
-  //   // }
-  //   //
-  //   // fetchServerData()
-  // }, [])
 
   return (
     <div className="app">
@@ -63,12 +51,7 @@ export function App() {
           <Route path="/forum-detail" element={<ForumDetail />} />
           <Route path="/500" element={<ServerErrorPage />} />
           <Route path="/round-process" element={<RoundProcess />} />
-          <Route
-            path="/winner"
-            element={
-              <WInnerPage nameWinnerTeam="Мудрые черепахи" score="100:91:56" /> //Здесь пропсы указаны для примера
-            }
-          />
+          <Route path="/winner" element={<WinnerPage />} />
           <Route path="/*" element={<NotFoundPage />} />
           <Route path="/round-start" element={<RoundStart />} />
           <Route path="/round-process" element={<RoundProcess />} />

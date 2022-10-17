@@ -5,11 +5,11 @@ import './../scss/form/form.scss';
 import './../components/round/round.scss';
 
 export class RoundProcess extends React.Component {
+  // TODO: [https://pegas-alias.atlassian.net/browse/PEGAS-36] Избавиться от замоканных данных
   state = {
-    timer: 58,
+    timer: 59,
     timerLimit: 60  
   }
-  intervalIDs:NodeJS.Timeout[] = [];
 
   componentDidMount() {
     const canvas = document.getElementById("round-canvas") as HTMLCanvasElement;
