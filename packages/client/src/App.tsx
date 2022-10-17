@@ -33,20 +33,7 @@ export function App() {
           <Route path="/rules" element={<Rules />} />
           <Route path="/leaders" element={<Leaders />} />
           <Route path="/forum" element={<ForumPage />} />
-          <Route
-            path="/score-in-round"
-            element={
-              <ScoreInRoundPage
-                numberRound={1} //Данные указаны для примера использования
-                nextNameTeam={'Настольные монстры'}
-                arrayScoreTeams={[
-                  { id: '1', nameTeam: 'Мудрые черепахи', scoreTeam: 15 },
-                  { id: '2', nameTeam: 'Настольные монстры', scoreTeam: 0 },
-                  { id: '3', nameTeam: 'Девочки', scoreTeam: 0 },
-                ]}
-              />
-            }
-          />
+          <Route path="/score-in-round" element={<ScoreInRoundPage />} />
           <Route path="/round-start" element={<RoundStart />} />
           <Route path="/forum-detail" element={<ForumDetail />} />
           <Route path="/500" element={<ServerErrorPage />} />
