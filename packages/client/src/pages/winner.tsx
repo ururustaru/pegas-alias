@@ -1,7 +1,7 @@
-import { FC } from 'react'
+import React from 'react'
 import { BackLink, Winner } from '../components'
 
-export const WinnerPage: FC = (): JSX.Element => {
+export const WinnerPage: React.FC = (): JSX.Element => {
   return (
     <>
       <header>

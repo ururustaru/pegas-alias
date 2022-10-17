@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { useToggle } from '../../services/hooks';
 import './page-navigation.scss';
 
-export function PageNavigation() {
+export function PageNavigation(): JSX.Element {
   const [value, valueToggle] = useToggle(true);
 
   const links = [

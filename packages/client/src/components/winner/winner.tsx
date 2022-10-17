@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React from 'react'
 import logo from '../../assets/images/winner.png'
 import { Link } from 'react-router-dom'
 import { Button } from '../../components'
@@ -8,7 +8,7 @@ interface IWinner {
   nameWinnerTeam: string
   score: string
 }
-export const Winner: FC<IWinner> = ({ nameWinnerTeam, score }) => {
+export const Winner: React.FC<IWinner> = ({ nameWinnerTeam, score }) => {
   return (
     <div className="winner">
       <div className="winner__image-wrap">

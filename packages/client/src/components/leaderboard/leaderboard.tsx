@@ -2,7 +2,14 @@ import React from 'react';
 import { Button, RangeLine } from '../../components';
 import './leaderboard.scss';
 
+// TODO: [https://pegas-alias.atlassian.net/browse/PEGAS-36] Избавиться от замоканных данных
+import { LEADERBOARD } from '../../mocks/leaderboard';
+
 export function Leaderboard() {
+  function getPercentOfVictories(victories: number, games: number): number {
+    return victories / games * 100;
+  }
+  
   return (
     <div className="leaderboard">
       <div className="leaderboard__sort">
@@ -14,46 +21,18 @@ export function Leaderboard() {
         </div>
       </div>
       <div className="leaderboard__results">
-        <div className="leaderboard__result-item">
-          <span className="leaderboard__result-title">Девочки:</span>
-          <div className="leaderboard__result-info">
-            <span className="leaderboard__result-value">15 игр, 15 побед</span>
-            <span className="leaderboard__result-value">9605 слов</span>
-          </div>
-          <RangeLine percent={99}/>
-        </div>
-        <div className="leaderboard__result-item">
-          <span className="leaderboard__result-title">Мудрые черепахи:</span>
-          <div className="leaderboard__result-info">
-            <span className="leaderboard__result-value">12 игр, 10 побед</span>
-            <span className="leaderboard__result-value">215 слов</span>
-          </div>
-          <RangeLine percent={80}/>
-        </div>
-        <div className="leaderboard__result-item">
-          <span className="leaderboard__result-title">Веселые бизончики:</span>
-          <div className="leaderboard__result-info">
-            <span className="leaderboard__result-value">6 игр, 3 победы</span>
-            <span className="leaderboard__result-value">105 слов</span>
-          </div>
-          <RangeLine percent={50}/>
-        </div>
-        <div className="leaderboard__result-item">
-          <span className="leaderboard__result-title">Настольные монстры:</span>
-          <div className="leaderboard__result-info">
-            <span className="leaderboard__result-value">3 игры, 2 победы</span>
-            <span className="leaderboard__result-value">56 слов</span>
-          </div>
-          <RangeLine percent={66}/>
-        </div>
-        <div className="leaderboard__result-item">
-          <span className="leaderboard__result-title">Киноманы:</span>
-          <div className="leaderboard__result-info">
-            <span className="leaderboard__result-value">2 игры, 0 побед</span>
-            <span className="leaderboard__result-value">2 слова</span>
-          </div>
-          <RangeLine percent={0}/>
-        </div>
+        {LEADERBOARD.map(team => {
+          return (
+            <div className="leaderboard__result-item" key={team.name}>
+              <span className="leaderboard__result-title">{team.name}:</span>
+              <div className="leaderboard__result-info">
+                <span className="leaderboard__result-value">{team.games} игр, {team.victories} побед</span>
+                <span className="leaderboard__result-value">{team.words} слов</span>
+              </div>
+              <RangeLine percent={getPercentOfVictories(team.victories, team.games)}/>
+            </div>
+          )
+        })}
       </div>
     </div>
   )

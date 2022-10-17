@@ -5,70 +5,31 @@ import { useToggle } from '../../services/hooks';
 import './forums.scss';
 
 // TODO: [https://pegas-alias.atlassian.net/browse/PEGAS-36] Избавиться от замоканных данных
-const FORUMS_STUB = [
-  {
-    title: 'Тактики объяснения',
-    description: 'Обсуждаем самые распространённые практики объяснения и отгадывания',
-    commentsCount: '12 комментариев',
-    lastCommentDate: '20:52',
-  },
-  {
-    title: 'Помогите разобраться с правилами',
-    description: 'Как можно залутаться и нормально побегать пострелять ? Это ж стрелялка ?',
-    commentsCount: '1 комментарий',
-    lastCommentDate: 'Вчера',
-  },
-  {
-    title: 'А можно мальчикам играть против девочек ?',
-    description: 'Блин, они всегда выигрывают. Может где-то в правилах прописать ?',
-    commentsCount: '1237 комментариев',
-    lastCommentDate: '25.09.2022',
-  },
-  {
-    title: 'Тактики объяснения 2',
-    description: 'Обсуждаем самые распространённые практики объяснения и отгадывания',
-    commentsCount: '12 комментариев',
-    lastCommentDate: '20:52',
-  },
-  {
-    title: 'Помогите разобраться с правилами 2',
-    description: 'Как можно залутаться и нормально побегать пострелять ? Это ж стрелялка ?',
-    commentsCount: '1 комментарий',
-    lastCommentDate: 'Вчера',
-  },
-  {
-    title: 'А можно мальчикам играть против девочек 2 ?',
-    description: 'Блин, они всегда выигрывают. Может где-то в правилах прописать ?',
-    commentsCount: '1237 комментариев',
-    lastCommentDate: '25.09.2022',
-  }
-]
+import { FORUMS_STUB } from '../../mocks/forums';
 
 export const Forums = () => {
   const [value, toggleValue] = useToggle();
 
-  const forumsList = FORUMS_STUB.map(forum => {
-    return <Link className="forums__item" key={forum.title} to="/forum-detail">
-      <span className="forums__item-title">{forum.title}</span>
-      <span className="forums__item-desc">{forum.description}</span>
-      <div className="forums__item-info">
-        <span className="forums__item-info-value">{forum.commentsCount}</span>
-        <span className="forums__item-info-value">{forum.lastCommentDate}</span>
-      </div>
-    </Link>
-  })
-  
   return (
     <div className="forums">
       <header className="forums__header">
         <Button text="Создать тему"
           events={{
-            onClick: ()=>{toggleValue()}
+            onClick: () => {toggleValue()}
           }}
         />
       </header>
       <div className="forums__list">
-        {forumsList}
+        {FORUMS_STUB.map(forum => {
+          return <Link className="forums__item" key={forum.title} to="/forum-detail">
+            <span className="forums__item-title">{forum.title}</span>
+            <span className="forums__item-desc">{forum.description}</span>
+            <div className="forums__item-info">
+              <span className="forums__item-info-value">{forum.commentsCount}</span>
+              <span className="forums__item-info-value">{forum.lastCommentDate}</span>
+            </div>
+          </Link>
+        })}
       </div>
       <AddForumModal isOpen={value} close={toggleValue} />
     </div>

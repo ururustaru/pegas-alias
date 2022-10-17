@@ -1,10 +1,8 @@
 import React from 'react';
-import {Range} from '../../types/common';
-
 import './range.scss';
 
 interface IRange {
-  percent: Range<0, 101>;
+  percent: number;
 }
 
 export function RangeLine(props: IRange) {

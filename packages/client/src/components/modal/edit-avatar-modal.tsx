@@ -15,13 +15,14 @@ export function EditAvatarModal(props: IModal) {
   const changeFileName = (name: string) => {
     setValue(name);
   }
+  
   const inputRef: any = useRef(null);
 
   const handleClick = () => {
     inputRef.current.click();
   };
 
-  const handleFileChange = (event: any) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileObj = event.target.files && event.target.files[0];
     if (!fileObj) {
       return;

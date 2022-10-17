@@ -1,8 +1,8 @@
-import { FC } from 'react'
+import React from 'react'
 import './server-error.scss'
 import logo from '../../assets/images/505.png'
 
-export const ServerError: FC = () => {
+export const ServerError: React.FC = () => {
   return (
     <div className="server-error">
       <h1 className="server-error__title">Pegas Alias</h1>

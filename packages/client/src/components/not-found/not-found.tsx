@@ -1,10 +1,10 @@
-import { FC } from 'react'
+import React from 'react'
 import logo from '../../assets/images/404.png'
 import { Link } from 'react-router-dom'
 
 import './not-found.scss'
 
-export const NotFound: FC = () => {
+export const NotFound: React.FC = () => {
   return (
     <div className="not-found">
       <h1 className="not-found__title">Pegas Alias</h1>

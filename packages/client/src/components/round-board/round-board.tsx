@@ -30,6 +30,7 @@ export function RoundBoard(): JSX.Element {
 
   const wordList: JSX.Element[] | null | undefined = [];
   
+  // Возвращает css-класс состояния очков [http://joxi.ru/KAxQy8wCw1ongr]
   const getWordScoreClass = (score: number) : string => {
     let result = 'round-board__word-score';
     if (score === -1) {

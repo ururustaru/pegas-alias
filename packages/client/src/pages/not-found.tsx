@@ -1,7 +1,7 @@
-import { FC } from 'react'
+import React from 'react'
 import {BackLink, NotFound} from '../components'
 
-export const NotFoundPage: FC = () => {
+export const NotFoundPage: React.FC = () => {
   return (
     <>
       <header>

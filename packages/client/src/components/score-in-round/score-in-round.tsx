@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React from 'react'
 import { Button } from '../button/button'
 import './score-in-round.scss'
 
@@ -11,7 +11,7 @@ interface IScoreInRound {
   arrayScoreTeams: IScoreCommnad[]
   nextNameTeam: string
 }
-export const ScoreInRound: FC<IScoreInRound> = ({
+export const ScoreInRound: React.FC<IScoreInRound> = ({
   nextNameTeam,
   arrayScoreTeams,
 }) => {

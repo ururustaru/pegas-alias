@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React from 'react'
 import { BackLink, ScoreInRound } from '../components'
 
 interface IScoreCommnad {
@@ -11,7 +11,7 @@ interface IScoreInRoundPage {
   nextNameTeam: string
   numberRound: number
 }
-export const ScoreInRoundPage: FC<IScoreInRoundPage> = ({
+export const ScoreInRoundPage: React.FC<IScoreInRoundPage> = ({
   numberRound,
   nextNameTeam,
   arrayScoreTeams,

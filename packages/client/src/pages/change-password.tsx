@@ -24,12 +24,16 @@ export const ChangePassword: React.FC = (): JSX.Element => {
   } = useForm({ mode: 'onBlur' });
 
   const passwordField = useRef({});
-  passwordField.current = watch("newPassword", "");
+  passwordField.current = watch('newPassword', '');
 
   const navigate = useNavigate();
 
-  const onSubmit = (data: Record<string, unknown>) => {
+  const onSubmit = (data: Record<string, unknown>): void => {
     changePasswordAPI(data)
+  }
+  
+  const onChangePasswordClick = (): void => {
+    navigate('/profile');
   }
 
   return (
@@ -84,10 +88,10 @@ export const ChangePassword: React.FC = (): JSX.Element => {
           />
           <Button
             classes="button--light"
-            type='button'
+            type="button"
             text="Изменить пароль"
             events={{
-              onClick: () => navigate('/profile')
+              onClick: onChangePasswordClick
             }}
           />
         </div>
