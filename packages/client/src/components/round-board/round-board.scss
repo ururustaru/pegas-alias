@@ -1,0 +1,122 @@
+@import "./src/scss/base/variables";
+@import "./src/scss/base/mixins";
+
+.round-board__title {
+  font-size: 24px;
+  color: $text-dark;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-align: center;
+  display: block;
+}
+
+.round-board__subtitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: $text-secondary;
+  margin-bottom: 40px;
+  display: block; 
+}
+
+.round-board__words {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 420px;
+  margin: 0 auto 40px;
+}
+
+.round-board__word {
+  background: $card-light;
+  box-shadow: $card-shadow;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 18px;
+  position: relative;
+}
+
+.round-board__word-value {
+  flex-grow: 1;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  word-break: break-all;
+}
+
+.round-board__word-score {
+  font-size: 16px;
+  font-weight: 700;
+  color: $text-dark;
+  min-width: 40px;
+  
+  &--minus {
+    color: $alert;
+  }
+  
+  &--zero {
+    color: $text-secondary;
+  }
+}
+
+.round-board__question-button {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: -10px;
+  left: -16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.3);
+  
+  &::before {
+    border-radius: 12px;
+  }
+}
+
+.round-board__word-actions {
+  display: flex;
+  gap: 10px;
+  
+  .button {
+    padding: 6px;
+    width: 30px;
+    height: 30px;
+    border-radius: 12px;
+
+    &::before {
+      border-radius: 12px;
+    }
+  }
+}
+
+.round-board__summary {
+  font-size: 22px;
+  font-weight: 700;
+  color: $text-secondary;
+  max-width: 350px;
+  text-align: center;
+  margin: 0 auto 40px;
+  line-height: 1.3;
+}
+
+.round-board__next {
+  width: 100%;
+  max-width: 320px;
+}
+
+@include down($mobile) {
+  .round-board__word-value {
+    font-size: 14px;
+  }
+  .round-board__word-actions {
+    flex-wrap: wrap;
+    max-width: 72px;
+  }
+  .round-board__word {
+    padding: 10px 12px;
+  }
+  .round-board__question-button {
+    position: static;
+  }
+}

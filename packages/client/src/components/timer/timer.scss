@@ -1,0 +1,38 @@
+@import "./../../scss/base/variables";
+
+.timer {
+  width: 320px;
+  height: 16px;
+  position: relative;
+  overflow: visible;
+  margin: 80px auto 50px;
+  color: $text-dark;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 36px;
+  border-radius: 8px;
+  background:
+    linear-gradient(122.51deg, rgba(214, 227, 243, 0.66) 16.62%, rgba(255, 255, 255, 0.66) 56.74%),
+    linear-gradient(0deg, #E3EDF7, #E3EDF7);
+  box-shadow:
+    4px 4px 14px 0 rgba(193, 213, 238, 1) inset,
+    -4px -4px 9px 0 rgba(255, 255, 255, 0.88) inset;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.timer__value {
+  z-index: 99;
+  text-shadow: 0 4px 15px rgba(255, 255, 255, 0.8);
+}
+
+.timer__indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 14px;
+  background: $accent-gradient;
+  border-radius: 20px;
+  z-index: 1;
+}

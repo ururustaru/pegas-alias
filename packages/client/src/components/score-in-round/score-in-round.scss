@@ -1,0 +1,79 @@
+@import "./src/scss/base/variables";
+@import "./src/scss/base/_mixins";
+
+.score-in-round {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.score-in-round__command {
+  background: $background-score;
+  box-shadow: $checkbox-shadow;
+  border-radius: 12px;
+  min-height: 55px;
+  width: 420px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  align-items: center;
+}
+.score-in-round__command_text {
+  font-family: $main-font;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: $text-dark;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.score-in-round__commands {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.score-in-round__info {
+  font-family: $main-font;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: $text-secondary;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-top: 1px solid $border-score;
+  border-bottom: 1px solid $border-score;
+  width: 420px;
+  margin-bottom: 77px;
+}
+.score-in-round__text {
+  font-family: $main-font;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: $text-secondary;
+  margin-bottom: 6px;
+}
+.score-in-round__next-team {
+  margin-bottom: 25px;
+  font-family: $main-font;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 27px;
+  color: $text-secondary;
+}
+@include down($mobile) {
+  .score-in-round__command {
+    width: 320px;
+  }
+  .score-in-round__info {
+    width: 100%;
+  }
+}

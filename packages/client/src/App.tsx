@@ -1,18 +1,50 @@
-import { useEffect } from 'react'
-import './App.css'
+import { useDispatch } from 'react-redux';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  Main, Login, SignUp, NewGame, Profile, Rules, Leaders,
+  ChangePassword, ForumPage, ScoreInRoundPage,
+  RoundStart, ForumDetail, ServerErrorPage, RoundProcess,
+  WinnerPage, NotFoundPage, RoundEnd
+} from './pages';
 
-function App() {
-  useEffect(() => {
-    const fetchServerData = async () => {
-      const url = `http://localhost:${__SERVER_PORT__}`
-      const response = await fetch(url)
-      const data = await response.json()
-      console.log(data)
-    }
+import { PageNavigation } from './components';
 
-    fetchServerData()
-  }, [])
-  return <div className="App">Вот тут будет жить ваше приложение :)</div>
+import { getUserAPI } from './services/http/profile';
+import { getUser } from './services/store/userSlice';
+
+import './scss/style.scss';
+
+
+export function App() {
+  const dispatch = useDispatch();
+  getUserAPI().then(data => dispatch(getUser(data)))
+
+  return (
+    <div className="app">
+      <Router>
+        <PageNavigation />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/new-game" element={<NewGame />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/rules" element={<Rules />} />
+          <Route path="/leaders" element={<Leaders />} />
+          <Route path="/forum" element={<ForumPage />} />
+          <Route path="/score-in-round" element={<ScoreInRoundPage />} />
+          <Route path="/round-start" element={<RoundStart />} />
+          <Route path="/forum-detail" element={<ForumDetail />} />
+          <Route path="/500" element={<ServerErrorPage />} />
+          <Route path="/round-process" element={<RoundProcess />} />
+          <Route path="/winner" element={<WinnerPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
+          <Route path="/round-start" element={<RoundStart />} />
+          <Route path="/round-process" element={<RoundProcess />} />
+          <Route path="/round-end" element={<RoundEnd />} />
+        </Routes>
+      </Router>
+    </div>
+  )
 }
-
-export default App

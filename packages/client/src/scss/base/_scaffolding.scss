@@ -1,0 +1,79 @@
+html {
+  box-sizing: border-box;
+  background: url('./src/assets/images/app-bg.png') center / 100% 103% no-repeat;
+  overflow-x: hidden;
+
+  @include down(768px) {
+    background-image: url('./src/assets/images/app-bg-mobile.png');
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+*::selection {
+  background: $accent-light;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-family: $main-font;
+  color: $text-dark;
+  font-size: 18px;
+  line-height: 1;
+}
+
+a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+button {
+  transition: 0.3s;
+}
+
+input,
+select,
+textarea {
+  appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+path {
+  transition: 0.3s;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.mb-28 {
+  margin-bottom: 28px;
+}
