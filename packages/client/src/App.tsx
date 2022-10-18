@@ -1,24 +1,29 @@
-import { useDispatch } from 'react-redux';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import {
-  Main, Login, SignUp, NewGame, Profile, Rules, Leaders,
-  ChangePassword, ForumPage, ScoreInRoundPage,
-  RoundStart, ForumDetail, ServerErrorPage, RoundProcess,
-  WinnerPage, NotFoundPage, RoundEnd
-} from './pages';
+  Main,
+  Login,
+  SignUp,
+  NewGame,
+  Profile,
+  Rules,
+  Leaders,
+  ChangePassword,
+  ForumPage,
+  ScoreInRoundPage,
+  RoundStart,
+  ForumDetail,
+  ServerErrorPage,
+  RoundProcess,
+  WinnerPage,
+  NotFoundPage,
+  RoundEnd,
+} from './pages'
 
-import { PageNavigation } from './components';
+import { PageNavigation } from './components'
 
-import { getUserAPI } from './services/http/profile';
-import { getUser } from './services/store/userSlice';
-
-import './scss/style.scss';
-
+import './scss/style.scss'
 
 export function App() {
-  const dispatch = useDispatch();
-  getUserAPI().then(data => dispatch(getUser(data)))
-
   return (
     <div className="app">
       <Router>

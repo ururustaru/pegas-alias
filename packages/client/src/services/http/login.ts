@@ -1,25 +1,34 @@
-import { instanse } from './axios';
+import { instanse } from './axios'
 
 export const registerUser = (data: any) => {
-  instanse.post('/auth/signup', data)
+  return instanse
+    .post('/auth/signup', data)
     .then(response => {
-      console.log(response);
+      return response
     })
     .catch(error => {
-      console.log(error);
+      return error
     })
 }
 
 export const loginUser = (data: any) => {
-  instanse.post('/auth/signin', data)
+  return instanse
+    .post('/auth/signin', data)
     .then(response => {
-      console.log(response);
+      return response
     })
     .catch(error => {
-      console.log(error);
+      return error
     })
 }
 
 export const logoutUser = () => {
-  instanse.post('/auth/logout');
+  return instanse
+    .post('/auth/logout')
+    .then(response => {
+      return response
+    })
+    .catch(error => {
+      return error
+    })
 }
