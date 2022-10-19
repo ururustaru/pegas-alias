@@ -6,38 +6,52 @@ import './../components/round/round.scss';
 
 export class RoundProcess extends React.Component {
   state = {
-    timer: 58,
-    timerLimit: 60  
+    timerLimit: 60,
+    timer: 60,
+    counter: 0,
+    words: ['гипопотам','носорог','единорог'],
+    animation: false
   }
-  intervalIDs:NodeJS.Timeout[] = [];
 
   componentDidMount() {
+    if (this.state.timer < this.state.timerLimit) { 
+      return 
+    }
+
+    this.state.timer--;
+
     const idInterval = setInterval( ()=> {
       if (this.state.timer > 0 ) {
         this.setState( { timer: this.state.timer - 1, timerLimit: 60 });
       } else {
         clearInterval(idInterval);
-        console.log('stop!');
+        this.state.counter++; 
       }
     }, 1000);
   }
 
+  handler = {"onClick": (event: Event) => { 
+    event.preventDefault(); 
+    this.state.counter++;
+  }};
+
   render() {
     return <>
-      <header>
+      <header key="{this.state.timer}">
         <Timer count={ this.state.timer } limit={ this.state.timerLimit } />
       </header>
-      <main>
+      <main key="{this.state.counter}">
         <div className="round">
-          <div className="round__result">+13</div>
+          <div className="round__result">+13 {this.state.words[this.state.counter]} </div>
           <div className="round__stages">
-            <CanvasComponent />
+            <CanvasComponent key={this.state.counter} width={450} height={400} word={this.state.words[this.state.counter]} />
           </div>
 
           <div className="round__buttons">
-            <Button classes="button--success" text="Отгадали" />
-            <Button classes="button--alert" text="Не отгадали"/>
-            <Button classes="button--light" text="Не знаю слово" />
+
+            <Button classes="button--success" text="Отгадали" type='button' events={this.handler} />
+            <Button classes="button--alert" text="Не отгадали" type='button' events={this.handler} />
+            <Button classes="button--light" text="Не знаю слово" type='button' events={this.handler} />
           </div>
         </div>
       </main>
