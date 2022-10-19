@@ -402,7 +402,7 @@ export const getUser: AppThunk = () => {
         if (res) {
           dispatch({
             type: USER_REQUEST_SUCCESS,
-            user: res.user,
+            user: res,
           })
         } else {
           dispatch({
