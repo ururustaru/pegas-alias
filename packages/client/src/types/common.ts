@@ -3,6 +3,7 @@ import { ThunkAction } from 'redux-thunk'
 import { Action, ActionCreator, Dispatch } from 'redux'
 import { TWSActions } from '../services/actions/websocket'
 import { store } from '../services/store/store'
+import { TLoginActions } from '../services/redux/login/actions/login'
 
 export type TEvents = Record<string, (e: Event) => void>
 
@@ -18,7 +19,11 @@ export type Range<F extends number, T extends number> = Exclude<
   Enumerate<F>
 >
 
-export type TAppActions = TUserActions | TWSActions
+
+
+
+export type TAppActions = TUserActions | TWSActions | TLoginActions
+
 export type RootState = ReturnType<typeof store.getState>
 export type AppThunk<TReturn = void> = ActionCreator<
   ThunkAction<TReturn, Action, RootState, TAppActions>

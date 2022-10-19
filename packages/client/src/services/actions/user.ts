@@ -52,6 +52,33 @@ interface IUserRequestSuccessAction {
     second_name?: string
   }
 }
+
+interface IUser<T> extends IAny<T> {
+  readonly user: {
+    login: string
+    email: string
+    phone?: string
+    display_name?: string
+    first_name?: string
+    second_name?: string
+  }
+}
+const ewrewrwe: IUser<typeof USER_REQUEST_SUCCESS> = {
+  type: USER_REQUEST_SUCCESS,
+  user: {
+    email: '',
+    login: '',
+    display_name: '',
+    first_name: '',
+    phone: '',
+    second_name: ''
+  }
+}
+
+interface IAny<T> {
+  readonly type: T
+}
+
 interface IUserRequestFailedAction {
   readonly type: typeof USER_REQUEST_FAILED
 }
@@ -141,6 +168,7 @@ export type TUserActions =
   | IUserUpdatePasswordRequestAction
   | IUserUpdatePasswordSuccessAction
   | IUserUpdatePasswordFaiedAction
+  | IAny<typeof USER_REQUEST_FAILED>
 interface IRegistration {
   login: string
   email: string
