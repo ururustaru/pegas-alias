@@ -3,6 +3,7 @@ import {Button, Timer} from '../components';
 import { CanvasComponent } from '../components/canvas/canvas';
 import './../scss/form/form.scss';
 import './../components/round/round.scss';
+import { Fullscreen } from '../components/fullscreen/fullscreen';
 
 export class RoundProcess extends React.Component {
   state = {
@@ -32,9 +33,6 @@ export class RoundProcess extends React.Component {
 
   handler = {"onClick": (event: Event) => { 
     event.preventDefault(); 
-    console.log(this.state.words.length);
-    console.log(this.state.words);
-    console.log(this.state.counter);
     
     if (this.state.words.length > this.state.counter + 1) {
       this.state.counter++;
@@ -46,6 +44,7 @@ export class RoundProcess extends React.Component {
   render() {
     return <>
       <header key="{this.state.timer}">
+        <Fullscreen />
         <Timer count={ this.state.timer } limit={ this.state.timerLimit } />
       </header>
       <main key="{this.state.counter}">
