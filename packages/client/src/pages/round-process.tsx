@@ -32,7 +32,15 @@ export class RoundProcess extends React.Component {
 
   handler = {"onClick": (event: Event) => { 
     event.preventDefault(); 
-    this.state.counter++;
+    console.log(this.state.words.length);
+    console.log(this.state.words);
+    console.log(this.state.counter);
+    
+    if (this.state.words.length > this.state.counter + 1) {
+      this.state.counter++;
+    }else{
+      alert('dictionary Out...');
+    }
   }};
 
   render() {
