@@ -158,7 +158,7 @@ export const registration: AppThunk = (data: IRegistration) => {
           //setTokens(res)
           dispatch({
             type: USER_REGISTRATION_SUCCESS,
-            user: res.data.user,
+            user: res,
           })
         } else {
           dispatch({
@@ -189,7 +189,7 @@ export const authorization: AppThunk = (data: IAuthorization) => {
           //setTokens(res)
           dispatch({
             type: USER_REQUEST_SUCCESS,
-            user: res.data.user,
+            user: res,
           })
         } else {
           dispatch({
@@ -331,7 +331,7 @@ export const changeUserProfile: AppThunk = (data: IChangeUserProfile) => {
         if (res) {
           dispatch({
             type: UPDATE_USER_SUCCESS,
-            user: res.data.user,
+            user: res,
           })
         } else {
           dispatch({
