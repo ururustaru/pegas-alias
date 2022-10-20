@@ -3,7 +3,7 @@ import {Button, Timer} from '../components';
 import { CanvasComponent } from '../components/canvas/canvas';
 import './../scss/form/form.scss';
 import './../components/round/round.scss';
-import { Fullscreen } from '../components/fullscreen/fullscreen';
+import { FullscreenBtn } from '../components/fullscreen-btn/fullscreen-btn';
 
 export class RoundProcess extends React.Component {
   state = {
@@ -37,14 +37,14 @@ export class RoundProcess extends React.Component {
     if (this.state.words.length > this.state.counter + 1) {
       this.state.counter++;
     }else{
-      alert('dictionary Out...');
+      console.log('load new words');
     }
   }};
 
   render() {
     return <>
       <header key="{this.state.timer}">
-        <Fullscreen />
+        <FullscreenBtn />
         <Timer count={ this.state.timer } limit={ this.state.timerLimit } />
       </header>
       <main key="{this.state.counter}">

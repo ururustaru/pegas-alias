@@ -1,7 +1,7 @@
 import React from 'react'
-import './fullscreen.scss'
+import './fullscreen-btn.scss'
 
-export function Fullscreen() {
+export function FullscreenBtn() {
 
   function handleClick(): void {
     if (document.fullscreenElement) {
