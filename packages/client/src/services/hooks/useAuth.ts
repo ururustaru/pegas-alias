@@ -1,9 +1,6 @@
-import { useStore } from 'react-redux'
-
-const userSelector = (state: any) => state.user.user
+import { useSelector } from 'react-redux'
 
 export const useAuth = (): boolean => {
-  const { getState } = useStore()
-  const isAuthenticated = userSelector(getState())
+  const isAuthenticated = useSelector((state: any) => state.user.user)
   return !!isAuthenticated
 }
