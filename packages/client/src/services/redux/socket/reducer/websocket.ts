@@ -3,8 +3,8 @@ import {
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
-} from '../actions/websocket'
-import type { TWSActions } from '../actions/websocket'
+} from '../action/websocket'
+import type { TWSActions } from '../action/websocket'
 
 type TWSState = {
   wsConnected: boolean

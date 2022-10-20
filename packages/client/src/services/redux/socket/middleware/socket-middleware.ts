@@ -1,6 +1,7 @@
 import type { Middleware, MiddlewareAPI } from 'redux'
-import type { TAppActions, AppDispatch, RootState } from '../../types/common'
-import { IWsConnectionStart, TWSSocketActions } from '../actions/websocket'
+import { AppDispatch, RootState, TAppActions } from '../../common'
+
+import { IWsConnectionStart, TWSSocketActions } from '../action/websocket'
 
 export const socketMiddleware = (wsActions: TWSSocketActions): Middleware => {
   return ((store: MiddlewareAPI<AppDispatch, RootState>) => {

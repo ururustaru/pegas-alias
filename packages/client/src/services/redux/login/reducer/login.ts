@@ -1,15 +1,5 @@
-import {
-  USER_REGISTRATION_REQUEST,
-  USER_REGISTRATION_SUCCESS,
-  USER_REGISTRATION_FAILED,
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAILED,
-  LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
-  LOGOUT_FAILED,
-  TLoginActions
-} from './../actions/login';
+import { USER_SIGNUP_REQUEST } from "../type/const"
+import { TLoginActions } from "../type/type"
 
 type TLoginInitState = {
   user: any
@@ -27,7 +17,7 @@ const userInitialState: TLoginInitState = {
 
 export const loginReducer = (state = userInitialState, action: TLoginActions) => {
   switch (action.type) {
-    case USER_REGISTRATION_REQUEST: {
+    case USER_SIGNUP_REQUEST: {
       return {
         ...state,
         userRegistration: {
