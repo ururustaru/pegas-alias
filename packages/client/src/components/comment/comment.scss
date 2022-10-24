@@ -45,7 +45,7 @@
 .comment__like-icon {
   width: 20px;
   height: 20px;
-  background: url('./src/assets/images/heart.svg') center / contain no-repeat;
+  background: url('@/assets/images/heart.svg') center / contain no-repeat;
   margin-right: 8px;
   cursor: pointer;
   transition: 0.3s;
@@ -55,7 +55,7 @@
   }
 
   &--liked {
-    background-image: url('./src/assets/images/heart-full.svg');
+    background-image: url('@/assets/images/heart-full.svg');
   }
 }
 

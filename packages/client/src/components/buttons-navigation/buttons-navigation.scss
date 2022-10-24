@@ -1,5 +1,5 @@
-@import './src/scss/base/variables';
-@import './src/scss/base/_mixins';
+@import 'src/scss/base/variables';
+@import 'src/scss/base/mixins';
 
 .buttons-navigation {
   max-width: 420px;
@@ -59,27 +59,27 @@
   }
 
   &--rocket {
-    background: url('./src/assets/images/rocket-linear-icon.svg') center / 80px
+    background: url('@/assets/images/rocket-linear-icon.svg') center / 80px
       80px no-repeat;
   }
 
   &--profile {
-    background: url('./src/assets/images/user-linear-icon.svg') center / 80px
+    background: url('@/assets/images/user-linear-icon.svg') center / 80px
       80px no-repeat;
   }
 
   &--rules {
-    background: url('./src/assets/images/paper-linear-icon.svg') center / 80px
+    background: url('@/assets/images/paper-linear-icon.svg') center / 80px
       80px no-repeat;
   }
 
   &--forum {
-    background: url('./src/assets/images/chat-linear-icon.svg') center / 80px
+    background: url('@/assets/images/chat-linear-icon.svg') center / 80px
       80px no-repeat;
   }
 
   &--leaders {
-    background: url('./src/assets/images/chart-linear-icon.svg') center / 80px
+    background: url('@/assets/images/chart-linear-icon.svg') center / 80px
       80px no-repeat;
   }
 }

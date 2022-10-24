@@ -4,7 +4,7 @@ import { EditAvatarModal } from '../index'
 
 import './avatar.scss'
 import logo from './../../assets/images/logo-round-shadow.png'
-import editIcon from './../../assets/images/Edit.svg'
+import editIcon from '../../assets/images/edit.svg'
 
 export const Avatar: React.FC = (): JSX.Element => {
   const [value, toggleValue] = useToggle()
