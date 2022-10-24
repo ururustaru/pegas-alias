@@ -1,14 +1,14 @@
-import React, { ReactNode } from 'react';
-import { TEvents } from '../../types/common';
-import './button.scss';
+import React, { ReactNode } from 'react'
+import { TEvents } from '../../types/common'
+import './button.scss'
 
 interface IButton {
-  text?: string;
-  classes?: string;
-  icon?: string | ReactNode;
-  type?: 'button' | 'submit' | 'reset';
-  disabled?: boolean;
-  events?: TEvents;
+  text?: string
+  classes?: string
+  icon?: string | ReactNode
+  type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
+  events?: TEvents
 }
 
 export function Button(props: IButton) {
@@ -18,12 +18,11 @@ export function Button(props: IButton) {
       title={props.text}
       type={props.type ? props.type : undefined}
       disabled={props.disabled ? true : undefined}
-      {...props.events}
-    >
+      {...props.events}>
       {props.text}
-      {props.icon && <span className="button__icon">{props.icon as ReactNode}</span>}
+      {props.icon && (
+        <span className="button__icon">{props.icon as ReactNode}</span>
+      )}
     </button>
   )
 }
-
-

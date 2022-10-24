@@ -1,14 +1,13 @@
-import React from "react";
-import { useToggle } from "../../services/hooks";
-import { EditAvatarModal } from "../index";
+import React from 'react'
+import { useToggle } from '../../services/hooks'
+import { EditAvatarModal } from '../index'
 
-import './avatar.scss';
-import logo from './../../assets/images/logo-round-shadow.png';
-import editIcon from './../../assets/images/Edit.svg';
+import './avatar.scss'
+import logo from './../../assets/images/logo-round-shadow.png'
+import editIcon from './../../assets/images/Edit.svg'
 
 export const Avatar: React.FC = (): JSX.Element => {
-
-  const [value, toggleValue] = useToggle();
+  const [value, toggleValue] = useToggle()
 
   return (
     <>

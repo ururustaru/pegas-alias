@@ -1,4 +1,4 @@
-@import "./src/scss/base/variables";
+@import './src/scss/base/variables';
 
 .page-navigation {
   position: fixed;
@@ -34,7 +34,7 @@
 
   &:nth-child(odd) {
     background: $accent-gradient;
-    
+
     .page-navigation__link {
       color: $light;
     }

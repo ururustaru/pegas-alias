@@ -1,5 +1,5 @@
-@import "./../../scss/base/variables";
-@import "./../../scss/base/mixins";
+@import './../../scss/base/variables';
+@import './../../scss/base/mixins';
 
 .comment {
   padding: 0 20px 20px;
@@ -49,11 +49,11 @@
   margin-right: 8px;
   cursor: pointer;
   transition: 0.3s;
-  
+
   &:hover {
-    opacity: .8;
+    opacity: 0.8;
   }
-  
+
   &--liked {
     background-image: url('./src/assets/images/heart-full.svg');
   }
@@ -87,11 +87,11 @@
   border-bottom: 1px solid;
   padding: 0;
   cursor: pointer;
-  
+
   &:hover {
-    opacity: .7;
+    opacity: 0.7;
   }
-  
+
   &--alert {
     color: $alert;
   }
@@ -104,7 +104,6 @@
 .comment__sticker-image {
   max-height: 300px;
 }
-
 
 @include down($mobile) {
   .comment__text {
