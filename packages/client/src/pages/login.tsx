@@ -43,7 +43,7 @@ export const Login: React.FC = (): JSX.Element => {
               },
               maxLength: {
                 value: 20,
-                message: 'Длина больлше 20',
+                message: 'Длина больше 20',
               },
             })}
             placeholder="Логин"
