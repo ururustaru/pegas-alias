@@ -16,6 +16,9 @@ export * from './winner/winner'
 export * from './timer/timer';
 export * from './score-in-round/score-in-round'
 export * from './round-board/round-board';
+export * from './forum-body/forum-body';
+export * from './comment/comment';
+export * from './comment-field/comment-field';
 
 // Modals
 export * from './modal/add-forum-modal'

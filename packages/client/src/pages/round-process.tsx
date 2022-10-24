@@ -31,31 +31,31 @@ export class RoundProcess extends React.Component {
     }, 1000);
   }
 
-  handler = {"onClick": (event: Event) => { 
-    event.preventDefault(); 
-    
-    if (this.state.words.length > this.state.counter + 1) {
-      this.state.counter++;
-    }else{
-      console.log('load new words');
+  handler = {
+    onClick: (event: Event) => { 
+      event.preventDefault(); 
+      if (this.state.words.length > this.state.counter + 1) {
+        this.state.counter++;
+      } else {
+        console.log('load new words');
+      }
     }
-  }};
+  };
 
   render() {
     return <>
-      <header key="{this.state.timer}">
+      <header key={this.state.timer}>
         <FullscreenBtn />
         <Timer count={ this.state.timer } limit={ this.state.timerLimit } />
       </header>
-      <main key="{this.state.counter}">
+      <main key={this.state.counter}>
         <div className="round">
-          <div className="round__result">+13 {this.state.words[this.state.counter]} </div>
+          <div className="round__result">{this.state.counter}</div>
           <div className="round__stages">
             <CanvasComponent key={this.state.counter} width={450} height={400} word={this.state.words[this.state.counter]} />
           </div>
 
           <div className="round__buttons">
-
             <Button classes="button--success" text="Отгадали" type='button' events={this.handler} />
             <Button classes="button--alert" text="Не отгадали" type='button' events={this.handler} />
             <Button classes="button--light" text="Не знаю слово" type='button' events={this.handler} />
