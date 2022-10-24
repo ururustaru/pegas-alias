@@ -1,13 +1,14 @@
 import React, { useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from '../services/hooks/redux-hooks'
 
 import { Intro, FormField, Button } from '../components'
 import { errorToString, pattern } from '../utils'
 
 import './../scss/form/form.scss'
-import { registration } from '../services/actions/user'
+// import { registration } from '../services/actions/user'
+import { useDispatch } from '../services/redux/common'
+import { registration } from '../services/redux/login/actions/login'
 
 export const SignUp: React.FC = (): JSX.Element => {
   const { email, login, name, phone, password } = pattern()

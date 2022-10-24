@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useDispatch } from './services/hooks/redux-hooks'
+
 import {
   Main,
   Login,
@@ -23,14 +23,17 @@ import {
 import { PageNavigation } from './components'
 
 import './scss/style.scss'
-import { getUser } from './services/actions'
+
 import { useEffect } from 'react'
+import { useDispatch } from './services/redux/common'
+import { getUser } from './services/redux/user/actions/user'
 
 export function App() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getUser())
   }, [])
+  
 
   return (
     <div className="app">

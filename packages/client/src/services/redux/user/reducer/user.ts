@@ -1,5 +1,6 @@
 import { TUserActions } from './../type/type';
 import { UserInfo } from '../../../../types/user';
+import { USER_REQUEST_SUCCESS } from '../type/const';
 
 type TUserInitialState = {
   user: UserInfo
@@ -19,7 +20,15 @@ const userInitialState: TUserInitialState = {
 }
 
 export const userReducer = (state = userInitialState, action: TUserActions): TUserInitialState => {
+
   switch (action.type) {
+    case USER_REQUEST_SUCCESS: {
+      console.log('salam')
+      return{
+        ...state,
+        user: action.user
+      }
+    }
     // case USER_REQUEST: {
     //   return {
     //     ...state,

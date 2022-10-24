@@ -3,11 +3,11 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { FormField, Button, Intro } from '../components'
+import { useDispatch } from '../services/redux/common'
+import { authorization } from '../services/redux/login/actions/login'
 import { errorToString, pattern } from '../utils'
-import { useDispatch } from '../services/hooks/redux-hooks'
 
 import './../scss/form/form.scss'
-import { authorization } from '../services/actions'
 
 export const Login: React.FC = (): JSX.Element => {
   const { login, password } = pattern()

@@ -2,16 +2,16 @@ import React, { useRef } from 'react'
 
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from '../services/hooks/redux-hooks'
 
 import { FormField, Button, Avatar, BackLink } from '../components'
 import { errorToString, pattern } from '../utils'
 
 import './../scss/form/form.scss'
-import { changeUserPassword } from '../services/actions/user'
+import { useDispatch, useSelector } from '../services/redux/common'
+import { changeUserPassword } from '../services/redux/user/actions/user'
 
 export const ChangePassword: React.FC = (): JSX.Element => {
-  const user = useSelector(store => store.user)
+  const user:any = useSelector(store => store.user)
   const dispatch = useDispatch()
 
   const { password } = pattern()

@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from '../services/hooks/redux-hooks'
 
 import { FormField, Button, Avatar, BackLink } from '../components'
 
 import { errorToString, pattern } from '../utils'
 
 import './../scss/form/form.scss'
-import { changeUserProfile } from '../services/actions'
+import { useDispatch, useSelector } from '../services/redux/common'
+import { changeUserProfile, getUser } from '../services/redux/user/actions/user'
+import { UserInfo } from '../types/user'
 
 export const Profile: React.FC = (): JSX.Element => {
   const { email, login, name, phone } = pattern()
   const dispatch = useDispatch()
-  const user = useSelector(store => store.user)
 
+  const user: UserInfo = useSelector(store => store.user.user)
+  
   const {
     register,
     formState: { errors },
@@ -27,8 +29,10 @@ export const Profile: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     reset(user)
-  }, [user])
+    console.log(dispatch)
+  }, [] )
 
+  
   const navigate = useNavigate()
 
   const onSubmit = (data: Record<string, unknown>) => {
