@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { getUser } from '../services/store/userSlice';
-import {FormField, Button, Avatar, BackLink} from '../components';
+import { FormField, Button, Avatar, BackLink } from '../components';
 
 import { changeProfileAPI } from '../services/http/profile';
 import { errorToString, pattern } from '../utils';
@@ -12,8 +12,10 @@ import './../scss/form/form.scss';
 
 export const Profile: React.FC = (): JSX.Element => {
   const { email, login, name, phone } = pattern();
+
   const dispatch = useDispatch();
-  const user = useSelector((state: any) => state.user.user);
+  const user = Object.assign(useSelector((state: any) => state.user.user));
+
   const {
     register,
     formState: {
@@ -39,7 +41,7 @@ export const Profile: React.FC = (): JSX.Element => {
   return (
     <>
       <header>
-        <BackLink text="В главное меню"/>
+        <BackLink text="В главное меню" />
       </header>
       <main>
         <Avatar />

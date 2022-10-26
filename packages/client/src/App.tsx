@@ -10,14 +10,19 @@ import {
 import { PageNavigation } from './components';
 
 import { getUserAPI } from './services/http/profile';
-import { getUser } from './services/store/userSlice';
+import { getUser, getUserApi } from './services/store/userSlice';
 
 import './scss/style.scss';
+import { useEffect } from 'react';
 
 
 export function App() {
-  const dispatch = useDispatch();
-  getUserAPI().then(data => dispatch(getUser(data)))
+  const dispatch = useDispatch<any>();
+  useEffect(()=>{
+    dispatch(getUserApi());
+  },[dispatch])
+  
+  //getUserAPI().then(data => dispatch(getUser(data)))
 
   return (
     <div className="app">
