@@ -16,6 +16,7 @@ export const Profile: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const user = Object.assign(useSelector((state: any) => state.user.user));
 
+
   const {
     register,
     formState: {
@@ -27,10 +28,10 @@ export const Profile: React.FC = (): JSX.Element => {
     defaultValues: user,
     mode: 'onBlur'
   });
-
-  useEffect(() => {
-    reset(user);
-  }, [user])
+  
+  // useEffect(() => {
+  //   reset(user);
+  // }, [user])
 
   const navigate = useNavigate();
 
@@ -56,9 +57,11 @@ export const Profile: React.FC = (): JSX.Element => {
                 pattern: {
                   value: email,
                   message: 'Некорректно введена почта'
-                }
+                },
+                value: user?.email
+
               })}
-              value={user?.email}
+
               placeholder="Почта"
               errorText={errorToString(errors?.email)}
             />
@@ -77,10 +80,10 @@ export const Profile: React.FC = (): JSX.Element => {
                 maxLength: {
                   value: 20,
                   message: 'Длина больлше 20'
-                }
+                },
+                value: user?.login
               })}
               placeholder="Логин"
-              value={user?.login}
               errorText={errorToString(errors?.login)}
             />
 
@@ -93,10 +96,11 @@ export const Profile: React.FC = (): JSX.Element => {
                 maxLength: {
                   value: 20,
                   message: 'Длина больлше 20'
-                }
+                },
+                value: user?.display_name
               })}
               placeholder="Имя в чате"
-              value={user?.display_name}
+
               errorText={errorToString(errors?.display_name)}
             />
 
@@ -106,10 +110,10 @@ export const Profile: React.FC = (): JSX.Element => {
                 pattern: {
                   value: name,
                   message: 'Некорректно введено имя'
-                }
+                },
+                value: user?.first_name
               })}
               placeholder="Имя"
-              value={user?.first_name}
               errorText={errorToString(errors?.first_name)}
             />
 
@@ -119,10 +123,10 @@ export const Profile: React.FC = (): JSX.Element => {
                 pattern: {
                   value: name,
                   message: 'Некорректно введено фамилия'
-                }
+                },
+                value: user?.second_name
               })}
               placeholder="Фамилия"
-              value={user?.second_name}
               errorText={errorToString(errors?.second_name)}
             />
 
@@ -132,10 +136,10 @@ export const Profile: React.FC = (): JSX.Element => {
                 pattern: {
                   value: phone,
                   message: 'Некорректно введен телефон'
-                }
+                },
+                value:user?.phone
               })}
               placeholder="Телефон"
-              value={user?.phone}
               errorText={errorToString(errors?.phone)}
             />
 
