@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from './services/hooks/useState';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   Main, Login, SignUp, NewGame, Profile, Rules, Leaders,
@@ -9,20 +9,17 @@ import {
 
 import { PageNavigation } from './components';
 
-import { getUserAPI } from './services/http/profile';
-import { getUser, getUserApi } from './services/store/userSlice';
+import { getUserApi } from './services/store/userSlice';
 
 import './scss/style.scss';
 import { useEffect } from 'react';
 
 
 export function App() {
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
   useEffect(()=>{
     dispatch(getUserApi());
   },[dispatch])
-  
-  //getUserAPI().then(data => dispatch(getUser(data)))
 
   return (
     <div className="app">

@@ -1,21 +1,20 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../services/hooks/useState';
 
-import { getUser } from '../services/store/userSlice';
+import { changeProfile } from '../services/store/userSlice';
 import { FormField, Button, Avatar, BackLink } from '../components';
 
-import { changeProfileAPI } from '../services/http/profile';
 import { errorToString, pattern } from '../utils';
 import './../scss/form/form.scss';
+import { UserInfo } from '../types/user';
 
 export const Profile: React.FC = (): JSX.Element => {
   const { email, login, name, phone } = pattern();
 
-  const dispatch = useDispatch();
-  const user = Object.assign(useSelector((state: any) => state.user.user));
-
+  const dispatch = useAppDispatch();
+  const user: UserInfo = useAppSelector(state => state.user.user);
 
   const {
     register,
@@ -28,15 +27,15 @@ export const Profile: React.FC = (): JSX.Element => {
     defaultValues: user,
     mode: 'onBlur'
   });
-  
-  // useEffect(() => {
-  //   reset(user);
-  // }, [user])
+
+  useEffect(() => {
+    reset(user);
+  }, [user])
 
   const navigate = useNavigate();
 
-  const onSubmit = (data: Record<string, unknown>) => {
-    changeProfileAPI(data).then(result => dispatch(getUser(result)))
+  const onSubmit = (data: UserInfo) => {
+    dispatch(changeProfile(data));
   }
 
   return (
@@ -52,7 +51,7 @@ export const Profile: React.FC = (): JSX.Element => {
           <div className="form__fields">
 
             <FormField
-              register={register('form.email', {
+              register={register('email', {
                 required: 'Заполните поле',
                 pattern: {
                   value: email,
@@ -67,7 +66,7 @@ export const Profile: React.FC = (): JSX.Element => {
             />
 
             <FormField
-              register={register('form.login', {
+              register={register('login', {
                 required: 'Заполните поле',
                 pattern: {
                   value: login,
@@ -137,7 +136,7 @@ export const Profile: React.FC = (): JSX.Element => {
                   value: phone,
                   message: 'Некорректно введен телефон'
                 },
-                value:user?.phone
+                value: user?.phone
               })}
               placeholder="Телефон"
               errorText={errorToString(errors?.phone)}
