@@ -2,12 +2,11 @@ import React from 'react';
 import { render, fireEvent, act, Matcher, SelectorMatcherOptions } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { Login } from '../pages/login';
-import { loginUser } from '../services/http/login';
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-let getByText: ((id: Matcher, options?: SelectorMatcherOptions | undefined) => HTMLElement) | ((arg0: string) => any), container;
+let getByText: ((id: Matcher, options?: SelectorMatcherOptions | undefined) => HTMLElement) | ((arg0: string) => any);
 jest.mock('../services/http/login', () => {
     const originalModule = jest.requireActual('../services/http/login');
     return {
@@ -17,7 +16,7 @@ jest.mock('../services/http/login', () => {
     };
 });
 
-var mock = new MockAdapter(axios);
+const mock = new MockAdapter(axios);
 const data = { response: true, username: "testuser", password: "testpswd" };
 mock.onPost('https://ya-praktikum.tech/api/v2/auth/signin').reply(200, data);
 
@@ -41,7 +40,7 @@ describe('Login', () => {
 
     it('click Login', async () => {
         act(() => {
-            const { container } = render(
+            render(
             <BrowserRouter>
                 <Routes>   
                     <Route path="*" element= {<Login/>}/>
@@ -59,7 +58,7 @@ describe('Login', () => {
 
     it('click Registration', () => {
         act(() => {
-            const { container } = render(
+            render(
             <BrowserRouter>
                 <Routes>   
                     <Route path="*" element= {<Login/>}/>
