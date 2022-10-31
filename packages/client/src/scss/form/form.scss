@@ -1,4 +1,4 @@
-@import "./../../scss/base/variables";
+@import './../../scss/base/variables';
 
 .form {
   min-width: 420px;
@@ -51,7 +51,7 @@
   flex-direction: row;
   justify-content: space-around;
   gap: 20px;
-  
+
   .button {
     white-space: nowrap;
   }

@@ -1,5 +1,5 @@
-@import "./src/scss/base/variables";
-@import "./src/scss/base/_mixins";
+@import 'src/scss/base/variables';
+@import 'src/scss/base/mixins';
 
 .buttons-navigation {
   max-width: 420px;
@@ -14,7 +14,7 @@
 
 .buttons-navigation__item {
   min-width: calc(50% - 7.5px);
-  
+
   &--big {
     width: 100%;
   }
@@ -36,7 +36,7 @@
   text-align: center;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -46,8 +46,10 @@
     transition: 0.3s;
     border-radius: 30px;
   }
-  
-  &:hover, &:focus, &:active {
+
+  &:hover,
+  &:focus,
+  &:active {
     box-shadow: none;
 
     &::before {
@@ -55,25 +57,30 @@
       box-shadow: $menu-item-pressed-shadow;
     }
   }
-  
+
   &--rocket {
-    background: url('./src/assets/images/rocket-linear-icon.svg') center / 80px 80px no-repeat;
+    background: url('@/assets/images/rocket-linear-icon.svg') center / 80px
+      80px no-repeat;
   }
 
   &--profile {
-    background: url('./src/assets/images/user-linear-icon.svg') center / 80px 80px no-repeat;
+    background: url('@/assets/images/user-linear-icon.svg') center / 80px
+      80px no-repeat;
   }
 
   &--rules {
-    background: url('./src/assets/images/paper-linear-icon.svg') center / 80px 80px no-repeat;
+    background: url('@/assets/images/paper-linear-icon.svg') center / 80px
+      80px no-repeat;
   }
 
   &--forum {
-    background: url('./src/assets/images/chat-linear-icon.svg') center / 80px 80px no-repeat;
+    background: url('@/assets/images/chat-linear-icon.svg') center / 80px
+      80px no-repeat;
   }
 
   &--leaders {
-    background: url('./src/assets/images/chart-linear-icon.svg') center / 80px 80px no-repeat;
+    background: url('@/assets/images/chart-linear-icon.svg') center / 80px
+      80px no-repeat;
   }
 }
 

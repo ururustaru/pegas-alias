@@ -18,21 +18,19 @@ export const Profile: React.FC = (): JSX.Element => {
 
   const {
     register,
-    formState: {
-      errors
-    },
+    formState: { errors },
     reset,
     handleSubmit,
   } = useForm({
     defaultValues: user,
-    mode: 'onBlur'
-  });
+    mode: 'onBlur',
+  })
 
   useEffect(() => {
-    reset(user);
+    reset(user)
   }, [user])
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const onSubmit = (data: UserInfo) => {
     dispatch(changeProfile(data));
@@ -49,7 +47,6 @@ export const Profile: React.FC = (): JSX.Element => {
           <h2 className="form__title">{user?.display_name ?? user?.login}</h2>
 
           <div className="form__fields">
-
             <FormField
               register={register('email', {
                 required: 'Заполните поле',
@@ -58,9 +55,7 @@ export const Profile: React.FC = (): JSX.Element => {
                   message: 'Некорректно введена почта'
                 },
                 value: user?.email
-
               })}
-
               placeholder="Почта"
               errorText={errorToString(errors?.email)}
             />
@@ -70,11 +65,11 @@ export const Profile: React.FC = (): JSX.Element => {
                 required: 'Заполните поле',
                 pattern: {
                   value: login,
-                  message: 'Некорректно введен логин'
+                  message: 'Некорректно введен логин',
                 },
                 minLength: {
                   value: 3,
-                  message: 'Длина меньше 3'
+                  message: 'Длина меньше 3',
                 },
                 maxLength: {
                   value: 20,
@@ -90,7 +85,7 @@ export const Profile: React.FC = (): JSX.Element => {
               register={register('display_name', {
                 minLength: {
                   value: 3,
-                  message: 'Длина меньше 3'
+                  message: 'Длина меньше 3',
                 },
                 maxLength: {
                   value: 20,
@@ -141,28 +136,24 @@ export const Profile: React.FC = (): JSX.Element => {
               placeholder="Телефон"
               errorText={errorToString(errors?.phone)}
             />
-
           </div>
 
           <div className="form__buttons">
-            <Button
-              text="Сохранить"
-              type="submit"
-            />
+            <Button text="Сохранить" type="submit" />
             <Button
               classes="button--light"
-              type='button'
+              type="button"
               text="Изменить пароль"
               events={{
-                onClick: () => navigate('/change-password')
+                onClick: () => navigate('/change-password'),
               }}
             />
             <Button
               classes="button--alert"
-              type='button'
+              type="button"
               text="Выйти из аккаунта"
               events={{
-                onClick: () => navigate('/login')
+                onClick: () => navigate('/login'),
               }}
             />
           </div>

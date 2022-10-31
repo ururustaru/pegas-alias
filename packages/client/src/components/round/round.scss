@@ -1,5 +1,5 @@
-@import "./src/scss/base/variables";
-@import "./src/scss/base/mixins";
+@import 'src/scss/base/variables';
+@import 'src/scss/base/mixins';
 
 .round__result {
   text-shadow: 0 4px 12px rgba(255, 255, 255, 0.8);
@@ -12,7 +12,7 @@
 .round__card {
   background: $card-light;
   box-shadow: $card-shadow;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 14px;
   font-family: $main-font;
   max-width: 100%;
@@ -31,7 +31,7 @@
     width: calc(100% - 40px);
     background: $card-light;
     box-shadow: $card-shadow;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 14px;
     font-family: $main-font;
     bottom: -20px;
@@ -46,7 +46,7 @@
     width: calc(100% - 80px);
     background: $card-light;
     box-shadow: $card-shadow;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 14px;
     font-family: $main-font;
     bottom: -40px;
@@ -63,7 +63,7 @@
   margin: 0 auto;
   gap: 20px;
   max-width: 370px;
-  
+
   .button {
     flex-grow: 1;
     max-width: 180px;

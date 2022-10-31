@@ -24,7 +24,6 @@
   }
 }
 
-
 // @include down(768px) = @media (max-width: 768x)
 @mixin down($res) {
   @media screen and (max-width: $res) {

@@ -28,5 +28,5 @@ export const LEADERBOARD = [
     games: 2,
     victories: 0,
     words: 2,
-  }
+  },
 ]

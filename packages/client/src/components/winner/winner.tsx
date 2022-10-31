@@ -15,9 +15,7 @@ export const Winner: React.FC<IWinner> = ({ nameWinnerTeam, score }) => {
         <img src={logo} alt="Логотип Pegas Alias с единорогом" />
       </div>
       <h1 className="winner__subtitle">Есть победитель!</h1>
-      <p className="winner__text">
-        Победила команда «{nameWinnerTeam}»
-      </p>
+      <p className="winner__text">Победила команда «{nameWinnerTeam}»</p>
       <p className="winner__score">Счет {score}</p>
       <Link to="/">
         <Button classes="button--winner" text="В главное меню" type="button" />

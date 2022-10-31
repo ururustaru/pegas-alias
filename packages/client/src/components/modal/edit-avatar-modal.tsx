@@ -1,35 +1,33 @@
-import React, { useRef, useState } from 'react';
-import { Button } from '../../components';
-import { Modal } from './modal';
-import './../../scss/form/form.scss';
+import React, { useRef, useState } from 'react'
+import { Button } from '../../components'
+import { Modal } from './modal'
+import './../../scss/form/form.scss'
 
 interface IModal {
-  isOpen: boolean;
+  isOpen: boolean
   close: () => void
 }
 
 export function EditAvatarModal(props: IModal) {
-
-  const [name, setValue] = useState<string>();
+  const [name, setValue] = useState<string>()
 
   const changeFileName = (name: string) => {
-    setValue(name);
+    setValue(name)
   }
-  
-  const inputRef: any = useRef(null);
+
+  const inputRef: any = useRef(null)
 
   const handleClick = () => {
-    inputRef.current.click();
-  };
+    inputRef.current.click()
+  }
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const fileObj = event.target.files && event.target.files[0];
+    const fileObj = event.target.files && event.target.files[0]
     if (!fileObj) {
-      return;
+      return
     }
-    changeFileName(fileObj.name);
-
-  };
+    changeFileName(fileObj.name)
+  }
 
   return (
     <Modal isOpen={props.isOpen} close={props.close}>
@@ -43,22 +41,14 @@ export function EditAvatarModal(props: IModal) {
 
       <Button
         events={{
-          onClick: handleClick
+          onClick: handleClick,
         }}
-
         classes="button--light mb-28"
-        type='button'
+        type="button"
         text="Выберите файл"
       />
-      <Button
-        classes="mb-28"
-        text="Сохранить"
-        type="submit"
-      />
-      <p>{name ?? "Файл не выбран"}</p>
+      <Button classes="mb-28" text="Сохранить" type="submit" />
+      <p>{name ?? 'Файл не выбран'}</p>
     </Modal>
-
   )
 }
-
-

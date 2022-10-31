@@ -1,7 +1,7 @@
 import React from 'react'
 import { BackLink, ScoreInRound } from '../components'
 
-export const ScoreInRoundPage: React.FC = () : JSX.Element => {
+export const ScoreInRoundPage: React.FC = (): JSX.Element => {
   return (
     <>
       <header>
