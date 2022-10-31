@@ -1,5 +1,5 @@
-@import "./variables";
-@import "./mixins";
+@import './variables';
+@import './mixins';
 
 .app {
   display: flex;
@@ -16,7 +16,7 @@
   header {
     width: 100%;
   }
-  
+
   main {
     display: flex;
     flex-direction: column;
@@ -39,7 +39,8 @@
       margin-bottom: 20px;
     }
 
-    b, strong {
+    b,
+    strong {
       font-weight: 700;
     }
 

@@ -10,15 +10,13 @@ export function BackLink(props: IBackLink) {
   function historyBack(): void {
     window.history.back()
   }
-  
+
   function handleClick(): void {
-    props.link ? props.link() : historyBack();
+    props.link ? props.link() : historyBack()
   }
-  
+
   return (
-    <button
-      className="back-link"
-      onClick={handleClick}>
+    <button className="back-link" onClick={handleClick}>
       <span className="back-link__icon-wrap">
         <svg
           className="back-link__icon"

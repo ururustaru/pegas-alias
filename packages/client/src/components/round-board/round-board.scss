@@ -1,5 +1,5 @@
-@import "./src/scss/base/variables";
-@import "./src/scss/base/mixins";
+@import 'src/scss/base/variables';
+@import 'src/scss/base/mixins';
 
 .round-board__title {
   font-size: 24px;
@@ -15,7 +15,7 @@
   font-weight: 700;
   color: $text-secondary;
   margin-bottom: 40px;
-  display: block; 
+  display: block;
 }
 
 .round-board__words {
@@ -29,7 +29,7 @@
 .round-board__word {
   background: $card-light;
   box-shadow: $card-shadow;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -50,11 +50,11 @@
   font-weight: 700;
   color: $text-dark;
   min-width: 40px;
-  
+
   &--minus {
     color: $alert;
   }
-  
+
   &--zero {
     color: $text-secondary;
   }
@@ -67,8 +67,8 @@
   top: -10px;
   left: -16px;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.3);
-  
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
   &::before {
     border-radius: 12px;
   }
@@ -77,7 +77,7 @@
 .round-board__word-actions {
   display: flex;
   gap: 10px;
-  
+
   .button {
     padding: 6px;
     width: 30px;

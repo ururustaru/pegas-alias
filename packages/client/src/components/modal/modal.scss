@@ -1,4 +1,4 @@
-@import "./../../scss/base/variables";
+@import './../../scss/base/variables';
 
 .modal {
   position: fixed;
@@ -10,10 +10,10 @@
   justify-content: center;
   align-items: center;
   z-index: -1;
-  
+
   &--open {
     z-index: 2;
-    
+
     .modal__overlay {
       opacity: 1;
       visibility: visible;
@@ -63,15 +63,15 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background: url('./src/assets/images/cross-icon.svg') center / 24px no-repeat;
+  background: url('@/assets/images/cross-icon.svg') center / 24px no-repeat;
   width: 24px;
   height: 24px;
   display: block;
   cursor: pointer;
   transition: 0.3s;
-  
+
   &:hover {
-    opacity: .7;
+    opacity: 0.7;
   }
 }
 
