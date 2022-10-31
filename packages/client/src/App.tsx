@@ -9,10 +9,10 @@ import {
 
 import { PageNavigation } from './components';
 
-import { getUserApi } from './services/store/userSlice';
 
 import './scss/style.scss';
 import { useEffect } from 'react';
+import { getUserApi } from './services/store/user/userThunk';
 
 
 export function App() {

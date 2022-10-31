@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../services/hooks/useState';
 
-import { changeProfile } from '../services/store/userSlice';
 import { FormField, Button, Avatar, BackLink } from '../components';
 
 import { errorToString, pattern } from '../utils';
 import './../scss/form/form.scss';
 import { UserInfo } from '../types/user';
+import { changeProfile } from '../services/store/user';
 
 export const Profile: React.FC = (): JSX.Element => {
   const { email, login, name, phone } = pattern();

@@ -1,27 +1,8 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { UserInfo } from '../../types/user';
-import { changeProfileAPI, getUserAPI } from '../http/profile';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { UserInfo } from '../../../types/user';
+import { UserState } from './type';
+import { changeProfile, getUserApi } from './userThunk';
 
-export const getUserApi = createAsyncThunk(
-  'user/getUserApi',
-  async function () {
-    const response = await getUserAPI();
-    return response;
-  }
-)
-
-export const changeProfile = createAsyncThunk(
-  'user/changeProfile',
-  async function (data: UserInfo) {
-    const response = await changeProfileAPI(data);
-    return response;
-  }
-)
-
-type UserState = {
-  user: UserInfo;
-  status: string;
-}
 
 const initialState: UserState = {
   user: {
