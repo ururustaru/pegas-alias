@@ -1,5 +1,5 @@
-import { useDispatch } from 'react-redux'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useAppDispatch } from './services/hooks/useState';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   Main,
   Login,
@@ -22,14 +22,16 @@ import {
 
 import { PageNavigation } from './components'
 
-import { getUserAPI } from './services/http/profile'
-import { getUser } from './services/store/userSlice'
-
 import './scss/style.scss'
+import './scss/style.scss';
+import { useEffect } from 'react';
+import { getUserApi } from './services/store/user/userThunk';
 
 export function App() {
-  const dispatch = useDispatch()
-  getUserAPI().then(data => dispatch(getUser(data)))
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getUserApi());
+  }, [dispatch])
 
   return (
     <div className="app">

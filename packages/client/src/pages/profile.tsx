@@ -1,43 +1,47 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../services/hooks/useState';
 
-import { getUser } from '../services/store/userSlice'
-import { FormField, Button, Avatar, BackLink } from '../components'
+import { FormField, Button, Avatar, BackLink } from '../components';
 
-import { changeProfileAPI } from '../services/http/profile'
-import { errorToString, pattern } from '../utils'
-import './../scss/form/form.scss'
+import { errorToString, pattern } from '../utils';
+import './../scss/form/form.scss';
+import { UserInfo } from '../types/user';
+import { changeProfile } from '../services/store/user';
 
 export const Profile: React.FC = (): JSX.Element => {
-  const { email, login, name, phone } = pattern()
-  const dispatch = useDispatch()
-  const user = useSelector((state: any) => state.user.user)
+  const { email, login, name, phone } = pattern();
+
+  const dispatch = useAppDispatch();
+  const user: UserInfo = useAppSelector(state => state.user.user);
+
   const {
     register,
-    formState: { errors },
+    formState: {
+      errors
+    },
     reset,
     handleSubmit,
   } = useForm({
     defaultValues: user,
-    mode: 'onBlur',
-  })
+    mode: 'onBlur'
+  });
 
   useEffect(() => {
-    reset(user)
+    reset(user);
   }, [user])
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const onSubmit = (data: Record<string, unknown>) => {
-    changeProfileAPI(data).then(result => dispatch(getUser(result)))
+  const onSubmit = (data: UserInfo) => {
+    dispatch(changeProfile(data));
   }
 
   return (
     <>
       <header>
-        <BackLink text="В главное меню" />
+        <BackLink text="В главное меню"/>
       </header>
       <main>
         <Avatar />
@@ -45,37 +49,38 @@ export const Profile: React.FC = (): JSX.Element => {
           <h2 className="form__title">{user?.display_name ?? user?.login}</h2>
 
           <div className="form__fields">
+
             <FormField
-              register={register('form.email', {
+              register={register('email', {
                 required: 'Заполните поле',
                 pattern: {
                   value: email,
-                  message: 'Некорректно введена почта',
+                  message: 'Некорректно введена почта'
                 },
+                value: user?.email
               })}
-              value={user?.email}
               placeholder="Почта"
               errorText={errorToString(errors?.email)}
             />
 
             <FormField
-              register={register('form.login', {
+              register={register('login', {
                 required: 'Заполните поле',
                 pattern: {
                   value: login,
-                  message: 'Некорректно введен логин',
+                  message: 'Некорректно введен логин'
                 },
                 minLength: {
                   value: 3,
-                  message: 'Длина меньше 3',
+                  message: 'Длина меньше 3'
                 },
                 maxLength: {
                   value: 20,
-                  message: 'Длина больлше 20',
+                  message: 'Длина больлше 20'
                 },
+                value: user?.login
               })}
               placeholder="Логин"
-              value={user?.login}
               errorText={errorToString(errors?.login)}
             />
 
@@ -83,15 +88,16 @@ export const Profile: React.FC = (): JSX.Element => {
               register={register('display_name', {
                 minLength: {
                   value: 3,
-                  message: 'Длина меньше 3',
+                  message: 'Длина меньше 3'
                 },
                 maxLength: {
                   value: 20,
-                  message: 'Длина больлше 20',
+                  message: 'Длина больлше 20'
                 },
+                value: user?.display_name
               })}
               placeholder="Имя в чате"
-              value={user?.display_name}
+
               errorText={errorToString(errors?.display_name)}
             />
 
@@ -100,11 +106,11 @@ export const Profile: React.FC = (): JSX.Element => {
                 required: 'Заполните поле',
                 pattern: {
                   value: name,
-                  message: 'Некорректно введено имя',
+                  message: 'Некорректно введено имя'
                 },
+                value: user?.first_name
               })}
               placeholder="Имя"
-              value={user?.first_name}
               errorText={errorToString(errors?.first_name)}
             />
 
@@ -113,11 +119,11 @@ export const Profile: React.FC = (): JSX.Element => {
                 required: 'Заполните поле',
                 pattern: {
                   value: name,
-                  message: 'Некорректно введено фамилия',
+                  message: 'Некорректно введено фамилия'
                 },
+                value: user?.second_name
               })}
               placeholder="Фамилия"
-              value={user?.second_name}
               errorText={errorToString(errors?.second_name)}
             />
 
@@ -126,31 +132,35 @@ export const Profile: React.FC = (): JSX.Element => {
                 required: 'Заполните поле',
                 pattern: {
                   value: phone,
-                  message: 'Некорректно введен телефон',
+                  message: 'Некорректно введен телефон'
                 },
+                value: user?.phone
               })}
               placeholder="Телефон"
-              value={user?.phone}
               errorText={errorToString(errors?.phone)}
             />
+
           </div>
 
           <div className="form__buttons">
-            <Button text="Сохранить" type="submit" />
+            <Button
+              text="Сохранить"
+              type="submit"
+            />
             <Button
               classes="button--light"
-              type="button"
+              type='button'
               text="Изменить пароль"
               events={{
-                onClick: () => navigate('/change-password'),
+                onClick: () => navigate('/change-password')
               }}
             />
             <Button
               classes="button--alert"
-              type="button"
+              type='button'
               text="Выйти из аккаунта"
               events={{
-                onClick: () => navigate('/login'),
+                onClick: () => navigate('/login')
               }}
             />
           </div>
