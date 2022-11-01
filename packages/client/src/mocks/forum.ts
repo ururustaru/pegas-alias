@@ -1,11 +1,12 @@
 export const FORUM_STUB = {
   subject: {
-    text: 'Привет! Частенько новичку или старичку (всякое бывает) на форуме хочется задать вопрос, на который он не ' +
+    text:
+      'Привет! Частенько новичку или старичку (всякое бывает) на форуме хочется задать вопрос, на который он не ' +
       'знает ответ. Эта тема создана, чтобы дать ответы на ваши небольшие вопросы, которые не требуют создания ' +
       'отдельной темы. Для завсегдатаев форумов — помогайте ответами на вопросы; я знаю, что многие из вас любят ' +
       'чистоту и порядок. Сделаем мир светлее и добрее.',
     createDate: '15.06.2018',
-    updateDate: 'вчера'
+    updateDate: 'вчера',
   },
   comments: [
     {
@@ -43,8 +44,8 @@ export const FORUM_STUB = {
           likes: 11,
           isMine: true,
           isLiked: false,
-        }
-      ]
+        },
+      ],
     },
     {
       id: 6,
@@ -54,7 +55,7 @@ export const FORUM_STUB = {
       createDate: 'март 2019',
       likes: 0,
       isMine: false,
-      isLiked: false
+      isLiked: false,
     },
     {
       id: 4,
@@ -63,7 +64,7 @@ export const FORUM_STUB = {
       createDate: '3 дня назад',
       likes: 123,
       isMine: false,
-      isLiked: false
+      isLiked: false,
     },
     {
       id: 5,
@@ -72,7 +73,7 @@ export const FORUM_STUB = {
       createDate: 'март 2019',
       likes: 0,
       isMine: false,
-      isLiked: false
-    }
-  ]
+      isLiked: false,
+    },
+  ],
 }

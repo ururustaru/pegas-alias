@@ -1,10 +1,10 @@
-import { FormField, Button } from '../../components';
-import { Modal } from './modal';
+import { FormField, Button } from '../../components'
+import { Modal } from './modal'
 
-import './../../scss/form/form.scss';
+import './../../scss/form/form.scss'
 
 interface IModal {
-  isOpen: boolean;
+  isOpen: boolean
   close: () => void
 }
 
@@ -19,16 +19,10 @@ export function AddForumModal(props: IModal) {
           text="Создать"
           type="button"
           events={{
-            onClick: props.close
+            onClick: props.close,
           }}
         />
       </form>
     </Modal>
-
   )
 }
-
-
-
-
-

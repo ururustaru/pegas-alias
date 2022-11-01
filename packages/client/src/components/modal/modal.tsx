@@ -1,18 +1,21 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react'
 
-import './modal.scss';
+import './modal.scss'
 
 interface IModal {
-  children: ReactNode;
-  isOpen: boolean;
-  close: () => void;
+  children: ReactNode
+  isOpen: boolean
+  close: () => void
 }
 
-export const Modal: React.FC<IModal> = ({ children, isOpen, close }: IModal): JSX.Element => {
+export const Modal: React.FC<IModal> = ({
+  children,
+  isOpen,
+  close,
+}: IModal): JSX.Element => {
   return (
     <>
-      {
-        isOpen &&
+      {isOpen && (
         <div className="modal modal--open">
           <div className="modal__overlay" onClick={close}></div>
           <div className="modal__body">
@@ -20,7 +23,7 @@ export const Modal: React.FC<IModal> = ({ children, isOpen, close }: IModal): JS
             {children}
           </div>
         </div>
-      }
+      )}
     </>
   )
 }

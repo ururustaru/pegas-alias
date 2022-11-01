@@ -61,5 +61,5 @@ const userSilce = createSlice({
   },
 })
 
-export const { getUser } = userSilce.actions;
-export default userSilce.reducer;
+export const { getUser } = userSilce.actions
+export default userSilce.reducer

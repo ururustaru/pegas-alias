@@ -1,6 +1,6 @@
-import React from 'react';
-import {Intro} from '../components/intro/intro';
-import {ButtonsNavigation} from '../components/buttons-navigation/buttons-navigation';
+import React from 'react'
+import { Intro } from '../components'
+import { ButtonsNavigation } from '../components/buttons-navigation/buttons-navigation'
 
 export const Main: React.FC = (): JSX.Element => {
   return (

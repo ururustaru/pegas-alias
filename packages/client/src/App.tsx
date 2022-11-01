@@ -1,19 +1,31 @@
 import { useAppDispatch } from './services/hooks/useState';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
-  Main, Login, SignUp, NewGame, Profile, Rules, Leaders,
-  ChangePassword, ForumPage, ScoreInRoundPage,
-  RoundStart, ForumDetail, ServerErrorPage, RoundProcess,
-  WinnerPage, NotFoundPage, RoundEnd
-} from './pages';
+  Main,
+  Login,
+  SignUp,
+  NewGame,
+  Profile,
+  Rules,
+  Leaders,
+  ChangePassword,
+  ForumPage,
+  ScoreInRoundPage,
+  RoundStart,
+  ForumDetail,
+  ServerErrorPage,
+  RoundProcess,
+  WinnerPage,
+  NotFoundPage,
+  RoundEnd,
+} from './pages'
 
-import { PageNavigation } from './components';
+import { PageNavigation } from './components'
 
 import { getUserApi } from './services/store/userSlice';
 
 import './scss/style.scss';
 import { useEffect } from 'react';
-
 
 export function App() {
   const dispatch = useAppDispatch();
