@@ -22,6 +22,7 @@ import {
 
 import { PageNavigation } from './components'
 
+import './scss/style.scss'
 import './scss/style.scss';
 import { useEffect } from 'react';
 import { getUserApi } from './services/store/user/userThunk';
