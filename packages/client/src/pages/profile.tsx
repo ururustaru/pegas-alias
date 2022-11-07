@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../services/hooks/useState';
 
-import { getUser } from '../services/store/userSlice';
-import {FormField, Button, Avatar, BackLink} from '../components';
+import { FormField, Button, Avatar, BackLink } from '../components';
 
-import { changeProfileAPI } from '../services/http/profile';
 import { errorToString, pattern } from '../utils';
-
 import './../scss/form/form.scss';
+import { UserInfo } from '../types/user';
+import { changeProfile } from '../services/store/user';
 
 export const Profile: React.FC = (): JSX.Element => {
   const { email, login, name, phone } = pattern();
-  const dispatch = useDispatch();
-  const user = useSelector((state: any) => state.user.user);
+
+  const dispatch = useAppDispatch();
+  const user: UserInfo = useAppSelector(state => state.user.user);
 
   const {
     register,
@@ -34,8 +34,8 @@ export const Profile: React.FC = (): JSX.Element => {
 
   const navigate = useNavigate();
 
-  const onSubmit = (data: Record<string, unknown>) => {
-    changeProfileAPI(data).then(result => dispatch(getUser(result)))
+  const onSubmit = (data: UserInfo) => {
+    dispatch(changeProfile(data));
   }
 
   return (
@@ -51,20 +51,20 @@ export const Profile: React.FC = (): JSX.Element => {
           <div className="form__fields">
 
             <FormField
-              register={register('form.email', {
+              register={register('email', {
                 required: 'Заполните поле',
                 pattern: {
                   value: email,
                   message: 'Некорректно введена почта'
-                }
+                },
+                value: user?.email
               })}
-              value={user?.email}
               placeholder="Почта"
               errorText={errorToString(errors?.email)}
             />
 
             <FormField
-              register={register('form.login', {
+              register={register('login', {
                 required: 'Заполните поле',
                 pattern: {
                   value: login,
@@ -77,10 +77,10 @@ export const Profile: React.FC = (): JSX.Element => {
                 maxLength: {
                   value: 20,
                   message: 'Длина больлше 20'
-                }
+                },
+                value: user?.login
               })}
               placeholder="Логин"
-              value={user?.login}
               errorText={errorToString(errors?.login)}
             />
 
@@ -93,10 +93,11 @@ export const Profile: React.FC = (): JSX.Element => {
                 maxLength: {
                   value: 20,
                   message: 'Длина больлше 20'
-                }
+                },
+                value: user?.display_name
               })}
               placeholder="Имя в чате"
-              value={user?.display_name}
+
               errorText={errorToString(errors?.display_name)}
             />
 
@@ -106,10 +107,10 @@ export const Profile: React.FC = (): JSX.Element => {
                 pattern: {
                   value: name,
                   message: 'Некорректно введено имя'
-                }
+                },
+                value: user?.first_name
               })}
               placeholder="Имя"
-              value={user?.first_name}
               errorText={errorToString(errors?.first_name)}
             />
 
@@ -119,10 +120,10 @@ export const Profile: React.FC = (): JSX.Element => {
                 pattern: {
                   value: name,
                   message: 'Некорректно введено фамилия'
-                }
+                },
+                value: user?.second_name
               })}
               placeholder="Фамилия"
-              value={user?.second_name}
               errorText={errorToString(errors?.second_name)}
             />
 
@@ -132,10 +133,10 @@ export const Profile: React.FC = (): JSX.Element => {
                 pattern: {
                   value: phone,
                   message: 'Некорректно введен телефон'
-                }
+                },
+                value: user?.phone
               })}
               placeholder="Телефон"
-              value={user?.phone}
               errorText={errorToString(errors?.phone)}
             />
 
@@ -168,5 +169,3 @@ export const Profile: React.FC = (): JSX.Element => {
     </>
   )
 }
-
-

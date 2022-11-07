@@ -1,5 +1,5 @@
-@import "./../../scss/base/variables";
-@import "./../../scss/base/mixins";
+@import './../../scss/base/variables';
+@import './../../scss/base/mixins';
 
 .back-link {
   background: 0;
@@ -8,11 +8,11 @@
   align-items: center;
   font-family: $main-font;
   cursor: pointer;
-  
+
   &:hover {
     .back-link__icon-wrap {
       box-shadow: none;
-      
+
       &::before {
         opacity: 1;
         box-shadow: $button-pressed-shadow;
@@ -22,6 +22,7 @@
 }
 
 .back-link__icon-wrap {
+  min-width: 44px;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -29,13 +30,13 @@
   justify-content: center;
   align-items: center;
   box-shadow: $button-shadow;
-  background: #DCE4F8;
+  background: $breadcrumbs-bg;
   margin-right: 15px;
   transition: 0.3s;
   position: relative;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -51,9 +52,13 @@
   font-size: 24px;
   font-weight: 700;
   color: $text-dark;
+  text-align: left;
 }
 
 @include down($mobile) {
+  .back-link {
+    margin-bottom: 30px;
+  }
   .back-link__text {
     font-size: 20px;
   }

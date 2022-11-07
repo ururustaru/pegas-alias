@@ -1,0 +1,11 @@
+@import './../../scss/base/variables';
+body:fullscreen::backdrop {
+  background: $accent-light;
+}
+.fullscreen-btn {
+  font-family: $accent-light;
+  font-size: 24px;
+  font-weight: 900;
+  color: $text-dark;
+  cursor: pointer;
+}
