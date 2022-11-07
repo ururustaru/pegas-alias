@@ -1,7 +1,7 @@
 import React, { JSXElementConstructor, ReactElement } from 'react';
 import { render, fireEvent, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { SignUp } from '../pages/sign-up';
+import { SignUp } from '../pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 describe('Register', () => {
@@ -30,7 +30,7 @@ describe('Register', () => {
         </BrowserRouter>);
         
         screen.debug();
-            /* проверять появляется предупреждение о пустых полях */
+            // проверять появляется предупреждение о пустых полях
         screen.findAllByText('Заполните поле');
     }); 
 

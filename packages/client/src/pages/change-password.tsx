@@ -9,9 +9,10 @@ import { errorToString, pattern } from '../utils'
 
 import './../scss/form/form.scss'
 import { changePasswordAPI } from '../services/http/profile'
+import { RootState } from '../services/store/reducer'
 
 export const ChangePassword: React.FC = (): JSX.Element => {
-  const user = useSelector((state: any) => state.user.user)
+  const user = useSelector((state: RootState) => state.user.user)
   const { password } = pattern()
 
   const {

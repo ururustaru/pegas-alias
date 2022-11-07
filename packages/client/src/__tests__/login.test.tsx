@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, act, Matcher, SelectorMatcherOptions } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { Login } from '../pages/login';
+import { Login } from '../pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
@@ -32,10 +32,7 @@ describe('Login', () => {
             </BrowserRouter>);
         getByText = renderOut.getByText;
         });
-        expect(getByText('Pegas Alias')).toBeInTheDocument();
         expect(getByText('Вход в систему')).toBeInTheDocument();
-        expect(getByText('Авторизоваться')).toBeInTheDocument();
-        expect(getByText('Ещё нет аккаунта ?')).toBeInTheDocument();
     });
 
     it('click Login', async () => {

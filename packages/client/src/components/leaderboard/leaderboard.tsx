@@ -6,12 +6,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeFilter } from '../../services/store/leadersSlice'
 import { selectLeadersByFilter } from '../../services/store/selectors'
 import { Leader } from '../../types/leader-types'
+import { RootState } from '../../services/store/reducer'
 
 
 export function Leaderboard() {
   const dispatch = useDispatch()
   const leaders: Array<Leader> = useSelector(selectLeadersByFilter)
-  const activeFilter: string = useSelector((state: any) => state.leaders.activeFilter)
+  const activeFilter: string = useSelector((state: RootState) => state.leaders.activeFilter)
   
   const isActiveButton = (filterName: string) => {
     return filterName === activeFilter ? 'button--active' : ''
