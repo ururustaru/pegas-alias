@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, act, Matcher, SelectorMatcherOptions } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { Login } from '../pages';
+import { Login } from '../pages/login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';

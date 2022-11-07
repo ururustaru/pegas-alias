@@ -1,7 +1,7 @@
 import React, { JSXElementConstructor, ReactElement } from 'react';
 import { render, fireEvent, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { SignUp } from '../pages';
+import { SignUp } from '../pages/sign-up';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 describe('Register', () => {
