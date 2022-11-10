@@ -1,4 +1,4 @@
-export type Leader = {
+export type Team = {
   name: string,
   games: number,
   victories: number,

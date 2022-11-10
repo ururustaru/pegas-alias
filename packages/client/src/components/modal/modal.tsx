@@ -2,8 +2,8 @@ import { ReactNode } from 'react'
 
 import './modal.scss'
 
-interface IModal {
-  children: ReactNode
+export interface IModal {
+  children?: ReactNode
   isOpen: boolean
   close: () => void
 }

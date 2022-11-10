@@ -1,4 +1,5 @@
 @import './../../scss/base/variables';
+@import './../../scss/base/mixins';
 
 .modal {
   position: fixed;
@@ -42,6 +43,7 @@
 .modal__body {
   width: 90%;
   max-width: 420px;
+  max-height: 90vh;
   padding: 40px;
   background: $accent-background;
   display: flex;
@@ -53,10 +55,13 @@
   opacity: 0;
   visibility: hidden;
   transition: 0.3s;
+  overflow: auto;
+  @include scrollbar;
 }
 
 .modal__title {
   margin-bottom: 25px;
+  text-align: center;
 }
 
 .modal__close {

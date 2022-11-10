@@ -3,7 +3,6 @@ import { Button, Timer } from '../components'
 import { CanvasComponent } from '../components/canvas/canvas'
 import './../scss/form/form.scss'
 import './../components/round/round.scss'
-import { FullscreenBtn } from '../components/fullscreen-btn/fullscreen-btn'
 
 export class RoundProcess extends React.Component {
   state = {
@@ -46,7 +45,6 @@ export class RoundProcess extends React.Component {
     return (
       <>
         <header key={this.state.timer}>
-          <FullscreenBtn />
           <Timer count={this.state.timer} limit={this.state.timerLimit} />
         </header>
         <main key={this.state.counter}>
