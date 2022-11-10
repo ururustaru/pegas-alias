@@ -1,20 +1,40 @@
-import dotenv from 'dotenv'
-import cors from 'cors'
-dotenv.config()
+import dotenv from 'dotenv';
+import cors from 'cors';
+dotenv.config();
 
-import express from 'express'
-import { createClientAndConnect } from './db'
+import { createClientAndConnect } from './db';
 
-const app = express()
-app.use(cors())
-const port = Number(process.env.SERVER_PORT) || 3001
+// import fs from 'fs';
+// import path from 'path';
+// import { fileURLToPath } from 'url';
+import express from 'express';
+import { createServer as createViteServer } from 'vite';
 
-createClientAndConnect()
+// const _dirname = path.dirname(fileURLToPath(import.meta.url));
+const port = Number(process.env.SERVER_PORT) || 3001;
 
-app.get('/', (_, res) => {
-  res.json('👋 Howdy from the server :)')
-})
+async function createServer() {
+  // console.log(_dirname);
+  const app = express();
 
-app.listen(port, () => {
-  console.log(`  ➜ 🎸 Server is listening on port: ${port}`)
-})
+  const vite = await createViteServer({
+    server: {
+      middlewareMode: true
+    },
+    appType: 'custom'
+  });
+  app.use(cors());
+  app.use(vite.middlewares);
+
+  createClientAndConnect();
+
+  app.use('*', async (_, res) => {
+    res.json('👋 Howdy from the server2 :)');
+  })
+
+  app.listen(port, () => {
+    console.log(`  ➜ 🎸 Server is listening on port: http://127.0.0.1:${port}`);
+  });
+}
+
+createServer();

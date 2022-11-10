@@ -21,6 +21,7 @@ export const createClientAndConnect = async (): Promise<Client | null> => {
 
     return client
   } catch (e) {
+    console.error('ERROR')
     console.error(e)
   }
 

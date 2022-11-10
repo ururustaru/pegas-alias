@@ -1,0 +1,13 @@
+0 silly argv {
+0 silly argv   _: [ 'clean' ],
+0 silly argv   lernaVersion: '5.5.4',
+0 silly argv   '$0': 'node_modules\\lerna\\cli.js'
+0 silly argv }
+1 notice cli v5.5.4
+2 verbose rootPath E:\Project\pegas-alias
+3 error TypeError: Cannot read properties of undefined (reading 'version')
+3 error     at E:\Project\pegas-alias\node_modules\@lerna\package-graph\index.js:80:37
+3 error     at Array.forEach (<anonymous>)
+3 error     at E:\Project\pegas-alias\node_modules\@lerna\package-graph\index.js:60:38
+3 error     at Map.forEach (<anonymous>)
+3 error     at new PackageGraph (E:\Project\pegas-alias\node_modules\@lerna\package-graph\index.js:49:10)
