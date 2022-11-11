@@ -1,59 +1,90 @@
-import React from 'react'
-import { Button, RangeLine } from '../../components'
-import './leaderboard.scss'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useQueryParams } from '../../services/hooks/useQueryParams'
+import { useAppDispatch } from '../../services/hooks/useState'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { changeFilter } from '../../services/store/leadersSlice'
-import { selectLeadersByFilter } from '../../services/store/selectors'
-import { Leader } from '../../types/leader-types'
+import { Button, RangeLine } from '../../components'
+import { getLeadersApi } from '../../services/store/leaders/leadersThunk'
+import { FilterState } from '../../services/store/leaders/type'
 import { RootState } from '../../services/store/reducer'
+import { Leader } from '../../types/leader-types'
+import './leaderboard.scss'
 
 
 export function Leaderboard() {
-  const dispatch = useDispatch()
-  const leaders: Array<Leader> = useSelector(selectLeadersByFilter)
-  const activeFilter: string = useSelector((state: RootState) => state.leaders.activeFilter)
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const query = useQueryParams()
+  const queryFilter: string = query.get('filter') || 'victories'
+  const queryPage: number = Number(query.get('page')) || 0
+  const initialStateFilter: FilterState = {
+    'ratingFieldName': queryFilter,
+    'cursor': queryPage,
+    'limit': 10
+  }
+  const [filter, setFilter] = useState(initialStateFilter)
+  const leaders: Array<Leader> = useSelector((state: RootState) => state.leaders.leaders)
+
+  const changeFilter= (filterName: string) => {
+    navigate({
+      pathname: '/leaders',
+      search: `?filter=${filterName}`
+    })
+  }
   
   const isActiveButton = (filterName: string) => {
-    return filterName === activeFilter ? 'button--active' : ''
-  } 
-  
+    return filterName === filter.ratingFieldName ? 'button--active' : ''
+  }
+
   const getPercentOfVictories = (victories: number, games: number): number => {
     return (victories / games) * 100
   }
-  
+
+  useEffect(() => {
+    setFilter({
+      ...filter,
+      'ratingFieldName': queryFilter,
+      'cursor': queryPage,
+    })
+  }, [queryFilter, queryPage])
+
+  useEffect(() => {
+    dispatch(getLeadersApi(filter))
+  }, [filter])  
+
   return (
-    <div className="leaderboard">
-      <div className="leaderboard__sort">
-        <span className="leaderboard__sort-title">Сортировать:</span>
-        <div className="leaderboard__options">
+    <div className='leaderboard'>
+      <div className='leaderboard__sort'>
+        <span className='leaderboard__sort-title'>Сортировать:</span>
+        <div className='leaderboard__options'>
           <Button
-            events={{onClick: () => dispatch(changeFilter("По количеству побед")) }}
-            text="По количеству побед"
-            classes={'button--light button--small ' + isActiveButton("По количеству побед")} 
+            events={{ onClick: () => changeFilter('victories') }}
+            text='По количеству побед'
+            classes={'button--light button--small ' + isActiveButton('victories')}
           />
           <Button
-            events={{onClick: () => dispatch(changeFilter("По количеству игр")) }}
-            text="По количеству игр"
-            classes={'button--light button--small ' + isActiveButton("По количеству игр")}
+            events={{ onClick: () => changeFilter('games') }}
+            text='По количеству игр'
+            classes={'button--light button--small ' + isActiveButton('games')}
           />
           <Button
-            events={{onClick: () => dispatch(changeFilter("По количеству отгаданных слов")) }}
-            text="По количеству отгаданных слов"
-            classes={'button--light button--small ' + isActiveButton("По количеству отгаданных слов")}
+            events={{ onClick: () => changeFilter('words') }}
+            text='По количеству отгаданных слов'
+            classes={'button--light button--small ' + isActiveButton('words')}
           />
         </div>
       </div>
-      <div className="leaderboard__results">
+      <div className='leaderboard__results'>
         {leaders && leaders.map(team => {
           return (
-            <div className="leaderboard__result-item" key={team.name}>
-              <span className="leaderboard__result-title">{team.name}:</span>
-              <div className="leaderboard__result-info">
-                <span className="leaderboard__result-value">
+            <div className='leaderboard__result-item' key={team.teamName}>
+              <span className='leaderboard__result-title'>{team.teamName}:</span>
+              <div className='leaderboard__result-info'>
+                <span className='leaderboard__result-value'>
                   {team.games} игр, {team.victories} побед
                 </span>
-                <span className="leaderboard__result-value">
+                <span className='leaderboard__result-value'>
                   {team.words} слов
                 </span>
               </div>

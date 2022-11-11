@@ -1,5 +1,5 @@
 export type Leader = {
-  name: string,
+  teamName: string,
   games: number,
   victories: number,
   words: number

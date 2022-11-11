@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './user/userSlice';
-import leadersReducer from './leadersSlice';
+import leadersReducer from './leaders/leadersSlice';
 
 const store = configureStore({
     reducer: {
