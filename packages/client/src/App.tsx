@@ -1,3 +1,4 @@
+import React, { ReactElement } from 'react';
 import { useAppDispatch } from './services/hooks/useState';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
@@ -19,14 +20,14 @@ import {
   NotFoundPage,
   RoundEnd,
 } from './pages'
-
+import { hot } from "react-hot-loader";
 import { PageNavigation } from './components'
 
 import './scss/style.scss';
 import { useEffect } from 'react';
 import { getUserApi } from './services/store/user';
 
-export function App() {
+export const App: React.FC<ReactElement> = hot(() => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getUserApi());
@@ -60,4 +61,4 @@ export function App() {
       </Router>
     </div>
   )
-}
+});
