@@ -5,13 +5,13 @@ import './leaderboard.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeFilter } from '../../services/store/leadersSlice'
 import { selectLeadersByFilter } from '../../services/store/selectors'
-import { Leader } from '../../types/leader-types'
+import { Team } from '../../types/leaders'
 import { RootState } from '../../services/store/reducer'
 
 
 export function Leaderboard() {
   const dispatch = useDispatch()
-  const leaders: Array<Leader> = useSelector(selectLeadersByFilter)
+  const leaders: Array<Team> = useSelector(selectLeadersByFilter)
   const activeFilter: string = useSelector((state: RootState) => state.leaders.activeFilter)
   
   const isActiveButton = (filterName: string) => {

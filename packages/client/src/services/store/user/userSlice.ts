@@ -18,7 +18,7 @@ const initialState: UserState = {
   status: ''
 }
 
-const userSilce = createSlice({
+const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
@@ -42,5 +42,5 @@ const userSilce = createSlice({
   },
 })
 
-export const { getUser } = userSilce.actions
-export default userSilce.reducer
+export const { getUser } = userSlice.actions
+export default userSlice.reducer

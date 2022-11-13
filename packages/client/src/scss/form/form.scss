@@ -1,4 +1,5 @@
 @import './../../scss/base/variables';
+@import './../../scss/base/mixins';
 
 .form {
   min-width: 420px;
@@ -31,7 +32,7 @@
 }
 
 .form__attention {
-  font-size: 23px;
+  font-size: 26px;
   font-weight: 700;
 }
 
@@ -59,4 +60,45 @@
 
 .form__fields--center {
   align-items: center;
+}
+
+.form__cancel-field {
+  border-radius: 16px;
+  box-shadow: $field-shadow;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: 2px solid $accent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form__cancel-field-text {
+  text-align: left;
+  line-height: 1.2;
+}
+
+.form__cancel-btn {
+  box-shadow: $icon-shadow;
+  background: $icon-bg;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.3);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  
+  &:hover {
+    background: rgba(255,255,255,0.3);
+  }
+}
+
+@include down($mobile) {
+  .form {
+    min-width: 100%;
+    max-width: 100%;
+  }
 }
