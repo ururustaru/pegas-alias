@@ -11,9 +11,9 @@ process.env.MY_CUSTOM_SECRET = 'API_KEY_qwertyuiop'
 const port = Number(process.env.SERVER_PORT) || 3001
 
 export async function createServer(
-  _root = process.cwd(),
+  //root = process.cwd(),
   isProd = process.env.NODE_ENV === 'production',
-  hmrPort: undefined = void 0
+  hmrPort= void 0
  ) {
   const app = express();
   app.use(cors())
@@ -62,21 +62,30 @@ export async function createServer(
 
       let template, render
       if (!isProd) {
-        // always read fresh template in dev
+        // Проблема - ругается на sass если пути идут от корня и без двойного слеша //
+        // Проблема - при попытки react.render элемента не видит переменную window, domjs не помогает
+        // решено через ReactDomServer
+        // Проблема - не рендерит стили.. - проверить как происходит рендер 
+        // Проблема - не видит could react-redux context - поэксперементировать с переменной контекст 
+        // и функцией hydrate
+        // Основное начинается тут. Берем из файла шаблон html
         template = fs.readFileSync(resolve('../client/index.html'), 'utf-8')
         template = await vite.transformIndexHtml(url, template)
+        // Загружаем модуль React (возможны варинты что надо грузить постранично)
         render  = await vite.ssrLoadModule('../client/src/pages/index.tsx')
         } else {
         template = indexProd
       }
 
       const context = { url: '' }
+      // Рендерим через серверДом в строку React Element
       const appHtml = ReactDOMServer.renderToString(render.Rules()) + '(url, context)';
 
       if (context.url) {
         // Somewhere a `<Redirect>` was rendered
         return res.redirect(301, context.url)
       }
+      // Ну и далее как простой шаблонизатор запихиваем это через реплейс, чтобы не менять клиентскую часть ловлю весь блок <div 'root>..
       const html = template.replace(`<div id="root"></div>`,`<div id="root">${appHtml}</div>`)
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e:any) {
