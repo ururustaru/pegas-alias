@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+  
     "composite": true,
     "target": "es2019",
-    "module": "CommonJS",
+    "module": "ES2022",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "sourceMap": true,
@@ -17,8 +18,9 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
     "importsNotUsedAsValues": "error",
-    "lib": ["es2019", "esnext.asynciterable"],
+    "lib": ["es2019", "esnext.asynciterable","DOM", "DOM.Iterable", "ESNext"],
     "types": ["node", "jest"],
     "baseUrl": ".",
     "paths": {
