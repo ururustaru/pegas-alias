@@ -34,18 +34,16 @@ async function createServer() {
 
   app.use('*', async (req, res) => {
     const url = req.originalUrl
-    let template = fs.readFileSync(
-      path.resolve(__dirname, 'index.html'),
-      'utf-8'
-    )
 
-    template = await vite.transformIndexHtml(url, template)
-    const { render } = await vite.ssrLoadModule('/src/entry-server.tsx')
+    let template = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
+    template = await vite.transformIndexHtml(url, template);
+
+    const render = (await vite.ssrLoadModule('/src/entry-server.tsx')).render;
 
     const appHtml = await render(url);
-    
-    const html = template.replace(`<!--ssr-outlet-->`, appHtml)
-    res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
+
+    const html = template.replace(`<!--app-html-->`, appHtml);
+    res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     // res.json('👋 Howdy from the server2 :)');
   })
 
@@ -53,10 +51,14 @@ async function createServer() {
 
 
 
-
-  app.listen(port, () => {
-    console.log(`  ➜ 🎸 Server is listening on port: http://127.0.0.1:${port}`);
-  });
+  return { app, vite }
+  // app.listen(port, () => {
+  //   console.log(`  ➜ 🎸 Server is listening on port: http://127.0.0.1:${port}`);
+  // });
 }
 
-createServer();
+createServer().then(({ app }) =>
+  app.listen(3001, () => {
+    console.log('http://localhost:3001')
+  })
+)
