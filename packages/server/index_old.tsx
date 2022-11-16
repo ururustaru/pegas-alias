@@ -1,10 +1,14 @@
+/*
 import fs from 'node:fs'
 import path from 'node:path'
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import { createClientAndConnect } from './db'
-import * as ReactDOMServer from 'react-dom/server';
+//import * as ReactDOMServer from 'react-dom/server'
+//import ReactDOM from 'react-dom/client'
+//import React from 'react'
+//import {JSDOM} from 'jsdom'
 
 dotenv.config()
 process.env.MY_CUSTOM_SECRET = 'API_KEY_qwertyuiop'
@@ -24,6 +28,9 @@ export async function createServer(
   /**
    * @type {import('vite').ViteDevServer}
    */
+
+  
+ /*
   let vite:any
 
   if (!isProd) {
@@ -56,31 +63,46 @@ export async function createServer(
     )
   }
 
-  app.use('*', async (req, res) => {
+  let template:any;
+  let Rend:Function;
+//  const Page = require('../client/src/components/not-found/not-found');
+
+  app.use('*', async (req, res) => { 
     try {
       const url = req.originalUrl
-
-      let template, render
+      console.log(url);
       if (!isProd) {
         // Проблема - ругается на sass если пути идут от корня и без двойного слеша //
         // Проблема - при попытки react.render элемента не видит переменную window, domjs не помогает
         // решено через ReactDomServer
         // Проблема - не рендерит стили.. - проверить как происходит рендер 
-        // Проблема - не видит could react-redux context - поэксперементировать с переменной контекст 
+        // Проблема - не видит react-redux context - поэксперементировать с переменной контекст 
         // и функцией hydrate
         // Основное начинается тут. Берем из файла шаблон html
         template = fs.readFileSync(resolve('../client/index.html'), 'utf-8')
         template = await vite.transformIndexHtml(url, template)
         // Загружаем модуль React (возможны варинты что надо грузить постранично)
-        render  = await vite.ssrLoadModule('../client/src/pages/index.tsx')
+
+        let renderReact = require('./entery-server.tsx');
+        console.log("renderReact", renderReact);
+
+//        Rend = async function render() {  //url:any, context:any
+            // <StaticRouter location={url} context={context}>
+            // </StaticRouter>
+//          }
         } else {
         template = indexProd
       }
+ //     console.log( Rend() );
+ //     let window = new JSDOM().window;
+//      const reactDiv = React.createElement('div', {}, '');
+// console.log(window)
+//      ReactDOM.hydrateRoot( window.document, Rend() )
 
       const context = { url: '' }
       // Рендерим через серверДом в строку React Element
-      const appHtml = ReactDOMServer.renderToString(render.Rules()) + '(url, context)';
-
+      //const appHtml = ReactDOMServer.renderToString(render.Rules()) + '(url, context)';
+      const appHtml = `Rend()`;
       if (context.url) {
         // Somewhere a `<Redirect>` was rendered
         return res.redirect(301, context.url)
@@ -107,24 +129,4 @@ createServer().then( () => {
   
   createClientAndConnect()
 })
-
-/* содержимое переменной render после импорта index.tsx
-  Main: [Getter],
-  Login: [Getter],
-  SignUp: [Getter],
-  NewGame: [Getter],
-  Profile: [Getter],
-  Rules: [Getter],
-  Leaders: [Getter],
-  ForumPage: [Getter],
-  ChangePassword: [Getter],
-  ForumDetail: [Getter],
-  NotFoundPage: [Getter],
-  ServerErrorPage: [Getter],
-  WinnerPage: [Getter],
-  RoundStart: [Getter],
-  RoundProcess: [Getter],
-  RoundEnd: [Getter],
-  ScoreInRoundPage: [Getter],
-  [Symbol(Symbol.toS
-    */
+*/
