@@ -41,7 +41,9 @@ async function createServer() {
 
     template = await vite.transformIndexHtml(url, template)
     const { render } = await vite.ssrLoadModule('/src/entry-server.tsx')
+
     const appHtml = await render(url);
+    
     const html = template.replace(`<!--ssr-outlet-->`, appHtml)
     res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     // res.json('👋 Howdy from the server2 :)');
