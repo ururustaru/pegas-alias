@@ -26,8 +26,8 @@ export const RoundProcess: React.FC = (): JSX.Element => {
     }, 1000)
   }, [timer]);
 
-  useEffect(() => {},[counter]);
-  useEffect(() => {},[score]);
+  useEffect( () => { counter },[counter]);
+  useEffect( () => { score },[score]);
 
   const handler = {
     onClick: (e: Event) => {

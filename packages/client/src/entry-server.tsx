@@ -29,7 +29,7 @@ import {
   import './scss/style.scss';
 
 export const render = (url:string) => {
-    let Page:React.FC<{}> = Main;
+    let Page:React.FC = Main;
     switch (url) {
         case '/': Page = Main; break;
         case '/app': Page = App; break;
