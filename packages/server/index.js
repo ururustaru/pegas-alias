@@ -34,11 +34,12 @@ async function createServer() {
 
   app.use('*', async (req, res) => {
     const url = req.originalUrl
+    console.log('url',url)
 
     let template = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
     template = await vite.transformIndexHtml(url, template);
 
-    const render = (await vite.ssrLoadModule('/src/entry-server.tsx')).render;
+    const render = (await vite.ssrLoadModule('../client/src/entry-server.tsx')).render;
 
     const appHtml = await render(url);
 

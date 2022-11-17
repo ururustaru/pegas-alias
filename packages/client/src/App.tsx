@@ -21,7 +21,6 @@ export function App() {
 
   return (
     <div className="app">
-      <Router>
         <PageNavigation />
         <Routes>
           <Route path="/" element={<Main />} />
@@ -44,7 +43,6 @@ export function App() {
           <Route path="/round-process" element={<RoundProcess />} />
           <Route path="/round-end" element={<RoundEnd />} />
         </Routes>
-      </Router>
     </div>
   )
 }
