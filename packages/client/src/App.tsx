@@ -51,15 +51,13 @@ export const App: React.FC = () => {
             <Route path="/leaders" element={<Leaders />} />
             <Route path="/forum" element={<ForumPage />} />
             <Route path="/score-in-round" element={<ScoreInRoundPage />} />
-            <Route path="/round-start" element={<RoundStart />} />
             <Route path="/forum-detail" element={<ForumDetail />} />
-            <Route path="/500" element={<ServerErrorPage />} />
-            <Route path="/round-process" element={<RoundProcess />} />
             <Route path="/winner" element={<WinnerPage />} />
-            <Route path="/*" element={<NotFoundPage />} />
             <Route path="/round-start" element={<RoundStart />} />
             <Route path="/round-process" element={<RoundProcess />} />
             <Route path="/round-end" element={<RoundEnd />} />
+            <Route path="/500" element={<ServerErrorPage />} />
+            <Route path="/*" element={<NotFoundPage />} />
           </Routes>
         </Router>
         </Provider>

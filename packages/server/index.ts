@@ -1,29 +1,68 @@
+import fs from 'node:fs'
+import path from 'node:path'
+
 import dotenv from 'dotenv'
 import cors from 'cors'
-import { renderToString } from 'react-dom/server'
-dotenv.config()
-
-// @ts-ignore
-import { render } from '../client/dist/ssr/entry-server.cjs'
 
 import express from 'express'
 import { createClientAndConnect } from './db'
 
-const app = express()
-app.use(cors())
-const port = Number(process.env.SERVER_PORT) || 3001
+// @ts-ignore
+import { render } from '../client/dist/ssr/entry-server.cjs'
 
-createClientAndConnect()
+dotenv.config()
 
-app.get('/', (_, res) => {
-  res.json('it works!')
-})
+export async function createServer(
+  hmrPort = void 0
+){
+  const app = express()
+  app.use(cors())
+  const port = Number(process.env.SERVER_PORT) || 3001
+  const resolve = (p: string) => path.resolve(__dirname, p)
 
-app.get('/ssr-example', (req, res) => {
-  const result = render(req.originalUrl)
-  res.send(result)
-})
+  //createClientAndConnect()
+  let template:string;
 
-app.listen(port, () => {
-  console.log(`Server is listening on port: ${port}`)
+  const vite = await ( await import('vite') ).createServer({
+    root : void 0,
+    server: {
+      middlewareMode: true,
+      watch: {
+        usePolling: true,
+        interval: 100
+      },
+      hmr: {
+        port: hmrPort
+      }
+    },
+    appType: 'custom'
+  })
+  
+  // use vite's connect instance as middleware
+  app.use(vite.middlewares)
+  app.use('/assets', express.static('../client/dist/client/assets/'))
+
+  app.get('/test', (_, res) => {
+    res.json('it works!')
+  })
+
+  app.get('/*', async (req, res) => {
+
+    const result = render(req.originalUrl)
+    template = fs.readFileSync(resolve('../client/dist/client/index.html'), 'utf-8')
+    template = await vite.transformIndexHtml(req.originalUrl, template)
+      const html = template.replace(`<div id="root"></div>`,`<div id="root">${result}</div>`)
+    res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
+  //  res.send(result)
+  })
+
+  app.listen(port, () => {
+    console.log(`Server is listening on port: ${port}`)
+  })
+
+  return { app, vite };
+}
+
+createServer().then( () => {
+  createClientAndConnect()
 })
