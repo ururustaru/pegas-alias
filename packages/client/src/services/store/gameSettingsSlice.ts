@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { Team } from '../../types/leaders';
+import { GameSettings } from '../../types/game';
 
 const deleteByValue = (givenArray: Team[], prop: string, value: string | number | boolean): Team[] => {
   return givenArray.filter((item: any) => {
@@ -8,7 +9,7 @@ const deleteByValue = (givenArray: Team[], prop: string, value: string | number 
 }
 
 // TODO: В playedTeams подставить игравшие команды из реальной статистики
-const initialState = {
+const initialState: GameSettings = {
   activeTeams: [],
   playedTeams: [
     {
@@ -48,13 +49,14 @@ const initialState = {
   dictionary: null
 }
 
-const gameSlice = createSlice({
+const gameSettingsSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
     addTeam(state, action) {
       state.activeTeams.push({
-        name: action.payload
+        name: action.payload,
+        score: 0
       });
     },
 
@@ -71,7 +73,13 @@ const gameSlice = createSlice({
     },
 
     changeDictionary(state, action) {
-      state.dictionary = action.payload
+      state.dictionary = action.payload;
+    },
+
+    getDictionaryWords(state, action) {
+      if (state.dictionary) {
+        state.dictionary.words = action.payload;
+      }
     },
 
     changeRoundDuration(state, action) {
@@ -100,6 +108,7 @@ export const {
   changeDictionary,
   changeRoundDuration,
   changeWordsToWin,
-  toggleLastWordForAll
-} = gameSlice.actions
-export default gameSlice.reducer
+  toggleLastWordForAll,
+  getDictionaryWords
+} = gameSettingsSlice.actions
+export default gameSettingsSlice.reducer

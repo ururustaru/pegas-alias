@@ -31,7 +31,14 @@ export function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getUserApi());
-  }, [dispatch])
+  }, [dispatch]);
+
+  // Set correct app min-height on mobile for existing browser address bar
+  const appHeight = () => {
+    const doc = document.documentElement;
+    doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+  }
+  appHeight();
 
   return (
     <div className="app">

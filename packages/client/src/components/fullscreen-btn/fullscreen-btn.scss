@@ -1,6 +1,11 @@
 @import './../../scss/base/variables';
 @import './../../scss/base/mixins';
 
+body:fullscreen {
+  overflow-y: auto;
+  
+}
+
 body:fullscreen::backdrop {
   background: url('@/assets/images/app-bg.png') center / 100% 103% no-repeat;
 

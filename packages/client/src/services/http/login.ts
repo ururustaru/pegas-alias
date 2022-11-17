@@ -1,7 +1,7 @@
-import { instanse } from './axios'
+import { apiInstance } from './axios'
 
 export const registerUser = (data: any) => {
-  instanse
+  apiInstance
     .post('/auth/signup', data)
     .then(response => {
       console.log(response)
@@ -12,7 +12,7 @@ export const registerUser = (data: any) => {
 }
 
 export const loginUser = (data: any) => {
-  instanse
+  apiInstance
     .post('/auth/signin', data)
     .then(response => {
       console.log(response)
@@ -23,5 +23,5 @@ export const loginUser = (data: any) => {
 }
 
 export const logoutUser = () => {
-  instanse.post('/auth/logout')
+  apiInstance.post('/auth/logout')
 }

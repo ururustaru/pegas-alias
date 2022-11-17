@@ -8,7 +8,10 @@ interface IModal {
   close: () => void
   onAddTeam: (name: string) => void
   onRemovePlayedTeam: (name: string) => void
-  activeTeams: Team[],
+  activeTeams: {
+    name?: string,
+    score?: 0
+  }[],
   playedTeams: Team[]
 }
 

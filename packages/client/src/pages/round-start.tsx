@@ -1,11 +1,12 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { addTeam, removeTeam, removeTeamFromPlayed, changeDictionary, changeRoundDuration,
-  changeWordsToWin, toggleLastWordForAll } from '../services/store/gameSlice';
+  changeWordsToWin, toggleLastWordForAll } from '../services/store/gameSettingsSlice';
 
 import { Button, BackLink, CheckBox, AddTeamModal, SelectDictModal} from '../components'
 import { useToggle } from '../services/hooks';
 import { useAppSelector } from '../services/hooks/useState';
+import { useNavigate } from 'react-router-dom';
 import { GameSettings } from '../types/game';
 import { DICTIONARIES, IDictionary } from '../dictionaries';
 
@@ -19,7 +20,8 @@ export const RoundStart: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const [isDictsModalOpen, toggleDictsModal] = useToggle();
   const [isAddTeamModalOpen, toggleAddTeamModal] = useToggle();
-  const game: GameSettings = useAppSelector(state => state.game);
+  const game: GameSettings = useAppSelector(state => state.gameSettings);
+  const navigate = useNavigate()
   
   return (
     <>
@@ -122,7 +124,18 @@ export const RoundStart: React.FC = (): JSX.Element => {
               isChecked={game.lastWordForAll} 
               onToggle={() => dispatch(toggleLastWordForAll(!game.lastWordForAll))}
             />
-            <Button classes="button--wide" text="Начать игру" type="submit" />
+            <Button
+              classes="button--wide"
+              text="Начать игру" 
+              type="submit"
+              events={{
+                onClick: (e) => {
+                  e.preventDefault();
+                  navigate('/score-in-round')
+                }
+              }}
+              disabled={!game.dictionary || game.activeTeams.length < 2}
+            />
           </div>
         </form>
       </main>
