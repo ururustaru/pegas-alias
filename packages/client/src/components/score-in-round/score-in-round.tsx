@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { getWords } from '../../services/http/game';
+import { getPublicData } from '../../services/http/game';
 import { Button } from '../'
 import './score-in-round.scss'
 import { GameProcess, GameSettings } from '../../types/game';
@@ -17,7 +17,7 @@ export const ScoreInRound: React.FC = () => {
   
   useEffect(() => {
     if (game.dictionary?.url && !game.dictionary?.words) {
-      getWords(game.dictionary?.url).then((result) => {
+      getPublicData(game.dictionary?.url).then((result) => {
         if (result) {
           dispatch(getDictionaryWords(result.words));
         }

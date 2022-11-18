@@ -19,7 +19,7 @@ export function PageNavigation(): JSX.Element {
     { link: '/leaders', text: 'Лидеры' },
     { link: '/forum', text: 'Форум' },
     { link: '/forum-detail', text: 'Форум детально' },
-    { link: '/round-start', text: 'Начало игры' },
+    { link: '/game-start', text: 'Начало игры' },
     { link: '/round-process', text: 'Раунд: Процесс' },
     { link: '/round-end', text: 'Раунд: Итог' },
     { link: '/score-in-round', text: 'Таблица между раундами' },

@@ -28,5 +28,6 @@ export type GameProcess = {
   roundWords: {
     word: string,
     wordScore: -1 | 0 | 1
-  }[] | null
+  }[] | null,
+  stopwatch: number | null
 }

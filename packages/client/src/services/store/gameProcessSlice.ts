@@ -6,7 +6,8 @@ const initialState: GameProcess = {
   activeTeamIndex: 0,
   activeWordIndex: 0,
   roundScore: 0,
-  roundWords: null
+  roundWords: null,
+  stopwatch: null
 }
 
 const gameProcessSlice = createSlice({

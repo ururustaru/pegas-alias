@@ -16,7 +16,7 @@ import bookIcon from '../assets/images/book-accent.svg';
 import './../scss/form/form.scss'
 
 
-export const RoundStart: React.FC = (): JSX.Element => {
+export const GameStart: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const [isDictsModalOpen, toggleDictsModal] = useToggle();
   const [isAddTeamModalOpen, toggleAddTeamModal] = useToggle();

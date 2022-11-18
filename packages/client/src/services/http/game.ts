@@ -1,6 +1,6 @@
-import { serverInstance } from './axios'
+import { serverInstance } from './axios';
 
-export const getWords = async (url: string) => {
+export const getPublicData = async (url: string) => {
   return await serverInstance
     .get(url)
     .then(response => response.data)

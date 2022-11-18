@@ -87,6 +87,10 @@
   }
 }
 
+.round__sound {
+  display: none;
+}
+
 @include down($mobile) {
   .round {
   }
