@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Intro } from '../components'
 import { ButtonsNavigation } from '../components/buttons-navigation/buttons-navigation'
 import { LOCAL_URL } from '../constants'
@@ -12,11 +13,13 @@ export const Main: React.FC = (): JSX.Element => {
   const params = new URLSearchParams(location.search)
   const code = params.get('code')
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   useEffect(() => {
     if (code) {
       signInYaOAuth({ code, redirect_uri: LOCAL_URL })
         .then(response => {
           dispatch(getUserApi())
+          navigate('/')
         })
         .catch(e => console.log(e))
     }
