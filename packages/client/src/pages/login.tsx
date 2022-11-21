@@ -1,9 +1,11 @@
-import React from 'react'
+import { AnyAction } from '@reduxjs/toolkit'
+import React, { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useNavigation } from 'react-router-dom'
 
 import { FormField, Button, Intro } from '../components'
-import { loginUser } from '../services/http/login'
+import { LOCAL_URL } from '../constants'
+import { loginUser, signUpYaOAuth } from '../services/http/login'
 import { errorToString, pattern } from '../utils'
 
 import './../scss/form/form.scss'
@@ -23,6 +25,14 @@ export const Login: React.FC = (): JSX.Element => {
     loginUser(data)
   }
 
+  const handleClick = () => {
+    signUpYaOAuth().then(result => {
+      const clientId = result.service_id
+      window.location.replace(
+        `https://oauth.yandex.ru/authorize?response_type=code&client_id=${clientId}&redirect_uri=${LOCAL_URL}`
+      )
+    })
+  }
   return (
     <main>
       <Intro />
@@ -68,6 +78,15 @@ export const Login: React.FC = (): JSX.Element => {
 
         <div className="form__buttons">
           <Button text="Авторизоваться" type="submit" />
+          <Button
+            text="Авторизироваться через Яндекс"
+            type="button"
+            events={{
+              onClick: () => {
+                handleClick()
+              },
+            }}
+          />
           <Button
             classes="button--light"
             type="button"
