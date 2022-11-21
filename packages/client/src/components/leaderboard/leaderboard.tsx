@@ -8,7 +8,7 @@ import { Button, RangeLine } from '../../components'
 import { getLeadersApi } from '../../services/store/leaders/leadersThunk'
 import { FilterState } from '../../services/store/leaders/type'
 import { RootState } from '../../services/store/reducer'
-import { Leader } from '../../types/leader-types'
+import { Team } from '../../types/leaders'
 import './leaderboard.scss'
 
 
@@ -24,7 +24,7 @@ export function Leaderboard() {
     'limit': 10
   }
   const [filter, setFilter] = useState(initialStateFilter)
-  const leaders: Array<Leader> = useSelector((state: RootState) => state.leaders.leaders)
+  const leaders: Array<Team> = useSelector((state: RootState) => state.leaders.leaders)
 
   const changeFilter= (filterName: string) => {
     navigate({

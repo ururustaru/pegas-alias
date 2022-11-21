@@ -1,11 +1,32 @@
 @import './../../scss/base/variables';
+@import './../../scss/base/mixins';
+
 body:fullscreen::backdrop {
-  background: $accent-light;
+  background: url('@/assets/images/app-bg.png') center / 100% 103% no-repeat;
+
+  @include down(768px) {
+    background-image: url('@/assets/images/app-bg-mobile.png');
+  }
 }
+
 .fullscreen-btn {
   font-family: $accent-light;
   font-size: 24px;
   font-weight: 900;
   color: $text-dark;
   cursor: pointer;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 2;
+  
+  path {
+    transition: 0.3s;
+  }
+  
+  &:hover {
+    path {
+      fill: $text-secondary;
+    }
+  }
 }

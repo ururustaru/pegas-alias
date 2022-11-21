@@ -1,9 +1,26 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { addTeam, removeTeam, removeTeamFromPlayed, changeDictionary, changeRoundDuration,
+  changeWordsToWin, toggleLastWordForAll } from '../services/store/gameSlice';
 
-import { Button, BackLink, CheckBox } from '../components'
+import { Button, BackLink, CheckBox, AddTeamModal, SelectDictModal} from '../components'
+import { useToggle } from '../services/hooks';
+import { useAppSelector } from '../services/hooks/useState';
+import { GameSettings } from '../types/game';
+import { DICTIONARIES, IDictionary } from '../dictionaries';
+
+import crossIcon from '../assets/images/cross-red.svg';
+import plusIcon from '../assets/images/plus-accent.svg';
+import bookIcon from '../assets/images/book-accent.svg';
 import './../scss/form/form.scss'
 
+
 export const RoundStart: React.FC = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const [isDictsModalOpen, toggleDictsModal] = useToggle();
+  const [isAddTeamModalOpen, toggleAddTeamModal] = useToggle();
+  const game: GameSettings = useAppSelector(state => state.game);
+  
   return (
     <>
       <header>
@@ -14,84 +31,121 @@ export const RoundStart: React.FC = (): JSX.Element => {
           <div className="form__fields">
             <Button
               classes="button--light button--icon-l button--select"
-              text="Выберите словарь"
+              text={game.dictionary && game.dictionary.name ? game.dictionary.name : 'Выберите словарь'}
+              events={{
+                onClick: (e) => {
+                  e.preventDefault();
+                  toggleDictsModal()
+                },
+              }}
               icon={
-                <svg
-                  width="16"
-                  height="22"
-                  viewBox="0 0 16 22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M14 4C15.1046 4 16 4.89543 16 6V20C16 21.1046 15.1046 22 14 22H2C0.895431 22 0 21.1046 0 20V2.5C0 1.39543 0.89543 0.5 2 0.5H14C14.5523 0.5 15 0.947715 15 1.5C15 2.05228 14.5523 2.5 14 2.5H3.25C2.83579 2.5 2.5 2.83579 2.5 3.25C2.5 3.66421 2.83579 4 3.25 4H6C6.55228 4 7 4.44772 7 5V13.7929C7 14.2383 7.53857 14.4614 7.85355 14.1464L9.64645 12.3536C9.84171 12.1583 10.1583 12.1583 10.3536 12.3536L12.1464 14.1464C12.4614 14.4614 13 14.2383 13 13.7929V5C13 4.44772 13.4477 4 14 4Z"
-                    fill="#3B4F7D"
-                  />
-                </svg>
+                <img src={bookIcon} alt="Изменить словарь" />
               }
             />
             <h2 className="form__section-title">Команды</h2>
-            <Button
-              classes="button--light button--with-cancel"
-              disabled
-              text="Цари зверей"
-              icon={
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M1.75 1.75L7 7M7 7L12.25 12.25M7 7L12.25 1.75M7 7L1.75 12.25"
-                    stroke="#E83A3A"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              }
-            />
+            {game.activeTeams && game.activeTeams.map(team => {
+              return (
+                <div className="form__cancel-field" key={team.name}>
+                  <span className="form__cancel-field-text">{team.name}</span>
+                  <button className="form__cancel-btn"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(removeTeam(team.name))
+                    }}
+                  >
+                    <img src={crossIcon} alt="Удалить словарь" />
+                  </button>
+                </div>
+              )
+            })}
             <Button
               classes="button--light button--icon-l"
               text="Добавить команду"
-              icon={
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7 1V7M7 7H13M7 7H1M7 7V13"
-                    stroke="#3B4F7D"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              }
+              events={{
+                onClick: (e) => {
+                  e.preventDefault();
+                  toggleAddTeamModal()
+                },
+              }}
+              icon={<img src={plusIcon} alt="Добавить команду" />}
             />
             <h2 className="form__section-title">Правила</h2>
           </div>
+          
           <div className="form__fields form__fields--center">
             <p className="form__section-subtitle">Длина раунда</p>
-            <h2 className="form__attention">1 минута</h2>
+            <h2 className="form__attention">{game.roundDuration} секунд</h2>
             <div className="form__buttons-row">
-              <Button classes="button--light button--square" text="+10 сек" />
-              <Button classes="button--light button--square" text="-10 сек" />
+              <Button classes="button--light button--square" 
+                text="-10 сек"
+                events={{
+                  onClick: (e) => {
+                    e.preventDefault();
+                    dispatch(changeRoundDuration(game.roundDuration - 10))
+                  }
+                }}
+              />
+              <Button classes="button--light button--square"
+                text="+10 сек"
+                events={{
+                  onClick: (e) => {
+                    e.preventDefault();
+                    dispatch(changeRoundDuration(game.roundDuration + 10))
+                  }
+                }}
+              />
             </div>
 
             <p className="form__section-subtitle">Количество слов для победы</p>
-            <h2 className="form__attention">100</h2>
+            <h2 className="form__attention">{game.wordsToWin}</h2>
             <div className="form__buttons-row">
-              <Button classes="button--light button--square" text="+10 слов" />
-              <Button classes="button--light button--square" text="-10 слов" />
+              <Button classes="button--light button--square"
+                text="-10 слов"
+                events={{
+                  onClick: (e) => {
+                    e.preventDefault();
+                    dispatch(changeWordsToWin(game.wordsToWin - 10))
+                  }
+                }}
+              />
+              <Button classes="button--light button--square"
+                text="+10 слов"
+                events={{
+                  onClick: (e) => {
+                    e.preventDefault();
+                    dispatch(changeWordsToWin(game.wordsToWin + 10)) 
+                  }
+                }}
+              />
             </div>
-            <CheckBox text="Последнее слово для всех" />
+            <CheckBox text="Последнее слово для всех" 
+              isChecked={game.lastWordForAll} 
+              onToggle={() => dispatch(toggleLastWordForAll(!game.lastWordForAll))}
+            />
             <Button classes="button--wide" text="Начать игру" type="submit" />
           </div>
         </form>
       </main>
+      <SelectDictModal isOpen={isDictsModalOpen} 
+        close={toggleDictsModal} 
+        dictionaries={DICTIONARIES}
+        onSelect={(dict: IDictionary) => {
+          dispatch(changeDictionary(dict));
+          toggleDictsModal();
+        }}
+      />
+      <AddTeamModal isOpen={isAddTeamModalOpen}
+        close={toggleAddTeamModal}
+        playedTeams={game.playedTeams}
+        activeTeams={game.activeTeams}
+        onAddTeam={(name: string) => {
+          dispatch(addTeam(name));
+          toggleAddTeamModal();
+        }}
+        onRemovePlayedTeam={(name: string) => {
+          dispatch(removeTeamFromPlayed(name));
+        }}
+      />
     </>
   )
 }

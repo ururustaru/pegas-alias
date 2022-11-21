@@ -25,6 +25,7 @@ import { PageNavigation } from './components'
 import './scss/style.scss';
 import { useEffect } from 'react';
 import { getUserApi } from './services/store/user';
+import { FullscreenBtn } from './components/fullscreen-btn/fullscreen-btn';
 
 export function App() {
   const dispatch = useAppDispatch();
@@ -35,6 +36,7 @@ export function App() {
   return (
     <div className="app">
       <Router>
+        <FullscreenBtn />
         <PageNavigation />
         <Routes>
           <Route path="/" element={<Main />} />

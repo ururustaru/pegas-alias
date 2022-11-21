@@ -9,13 +9,14 @@ interface IFormField {
   errorText?: string
   type?: string
   value?: string
+  onInput?: (param: string) => void
 }
 
 export function FormField(props: IFormField) {
   return (
     <div
       className={'form-field ' + (props.errorText ? 'form-field--error' : '')}>
-      <Field {...props} />
+      <Field {...props} onInput={props.onInput}/>
       <span className="form-field__info">{props.errorText}</span>
     </div>
   )
