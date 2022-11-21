@@ -97,7 +97,6 @@ export const Profile: React.FC = (): JSX.Element => {
                 value: user?.display_name
               })}
               placeholder="Имя в чате"
-
               errorText={errorToString(errors?.display_name)}
             />
 
@@ -149,7 +148,7 @@ export const Profile: React.FC = (): JSX.Element => {
             />
             <Button
               classes="button--light"
-              type='button'
+              type="button"
               text="Изменить пароль"
               events={{
                 onClick: () => navigate('/change-password')
@@ -157,7 +156,7 @@ export const Profile: React.FC = (): JSX.Element => {
             />
             <Button
               classes="button--alert"
-              type='button'
+              type="button"
               text="Выйти из аккаунта"
               events={{
                 onClick: () => navigate('/login')

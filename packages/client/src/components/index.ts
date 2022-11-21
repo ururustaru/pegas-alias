@@ -24,3 +24,5 @@ export * from './canvas/canvas'
 // Modals
 export * from './modal/add-forum-modal'
 export * from './modal/edit-avatar-modal'
+export * from './modal/add-team-modal'
+export * from './modal/select-dict-modal'

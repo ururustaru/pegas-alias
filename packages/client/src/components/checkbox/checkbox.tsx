@@ -4,6 +4,8 @@ import './checkbox.scss'
 interface ICheckBox {
   classes?: string
   text?: string
+  isChecked: boolean
+  onToggle: any
 }
 
 export function CheckBox(props: ICheckBox) {
@@ -16,6 +18,8 @@ export function CheckBox(props: ICheckBox) {
       <input
         type="checkbox"
         className="checkbox__input"
+        defaultChecked={props.isChecked}
+        onChange={props.onToggle}
         id="last-word"
         name="last-word"
       />

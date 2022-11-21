@@ -1,0 +1,59 @@
+@import './../../scss/base/variables';
+
+.dictionary-cards {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% + 80px);
+  margin: 10px -40px -40px;
+}
+
+.dictionary-cards__item {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 10px;
+  border-top: 1px solid $accent;
+  transition: 0.3s;
+  cursor: pointer;
+  line-height: 1.2;
+  
+  &:hover {
+    box-shadow: $card-hover-shadow;
+  }
+}
+
+.dictionary-cards__item-title {
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.dictionary-cards__item-desc {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.dictionary-cards__item-labels {
+  display: flex;
+  gap: 5px;
+}
+
+.dictionary-cards__item-label {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 5px;
+  background: $disabled;
+  color: $light;
+  
+  &--easy {
+    background: $easy;
+  }
+
+  &--medium {
+    background: $medium;
+  }
+
+  &--hard {
+    background: $hard;
+  }
+}
