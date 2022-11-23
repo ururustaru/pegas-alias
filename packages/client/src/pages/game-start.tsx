@@ -1,11 +1,12 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { addTeam, removeTeam, removeTeamFromPlayed, changeDictionary, changeRoundDuration,
-  changeWordsToWin, toggleLastWordForAll } from '../services/store/gameSlice';
+  changeWordsToWin, toggleLastWordForAll } from '../services/store/game';
 
 import { Button, BackLink, CheckBox, AddTeamModal, SelectDictModal} from '../components'
 import { useToggle } from '../services/hooks';
 import { useAppSelector } from '../services/hooks/useState';
+import { useNavigate } from 'react-router-dom';
 import { GameSettings } from '../types/game';
 import { DICTIONARIES, IDictionary } from '../dictionaries';
 
@@ -15,11 +16,12 @@ import bookIcon from '../assets/images/book-accent.svg';
 import './../scss/form/form.scss'
 
 
-export const RoundStart: React.FC = (): JSX.Element => {
+export const GameStart: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const [isDictsModalOpen, toggleDictsModal] = useToggle();
   const [isAddTeamModalOpen, toggleAddTeamModal] = useToggle();
-  const game: GameSettings = useAppSelector(state => state.game);
+  const game: GameSettings = useAppSelector(state => state.gameSettings);
+  const navigate = useNavigate()
   
   return (
     <>
@@ -45,12 +47,12 @@ export const RoundStart: React.FC = (): JSX.Element => {
             <h2 className="form__section-title">Команды</h2>
             {game.activeTeams && game.activeTeams.map(team => {
               return (
-                <div className="form__cancel-field" key={team.teamName}>
-                  <span className="form__cancel-field-text">{team.teamName}</span>
+                <div className="form__cancel-field" key={team.name}>
+                  <span className="form__cancel-field-text">{team.name}</span>
                   <button className="form__cancel-btn"
                     onClick={(e) => {
                       e.preventDefault();
-                      dispatch(removeTeam(team.teamName))
+                      dispatch(removeTeam(team.name))
                     }}
                   >
                     <img src={crossIcon} alt="Удалить словарь" />
@@ -122,7 +124,18 @@ export const RoundStart: React.FC = (): JSX.Element => {
               isChecked={game.lastWordForAll} 
               onToggle={() => dispatch(toggleLastWordForAll(!game.lastWordForAll))}
             />
-            <Button classes="button--wide" text="Начать игру" type="submit" />
+            <Button
+              classes="button--wide"
+              text="Начать игру" 
+              type="submit"
+              events={{
+                onClick: (e) => {
+                  e.preventDefault();
+                  navigate('/score-in-round')
+                }
+              }}
+              disabled={!game.dictionary || game.activeTeams.length < 2}
+            />
           </div>
         </form>
       </main>

@@ -1,42 +1,54 @@
-import React from 'react'
-import { Button } from '../button/button'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { getPublicData } from '../../services/http/game';
+import { Button } from '../'
 import './score-in-round.scss'
+import { GameProcess, GameSettings } from '../../types/game';
+import { useAppSelector } from '../../services/hooks/useState';
+import { useDispatch } from 'react-redux';
+import { getDictionaryWords } from '../../services/store/game';
+import { arrayShuffle } from '../../utils';
 
-interface IScoreCommnad {
-  nameTeam: string
-  scoreTeam: number
-  id: string
-}
-interface IScoreInRound {
-  arrayScoreTeams: IScoreCommnad[]
-  nextNameTeam: string
-}
-export const ScoreInRound: React.FC<IScoreInRound> = ({
-  nextNameTeam,
-  arrayScoreTeams,
-}) => {
-  function handleCLick() {
-    //здесь должен после нажатия начинаться следующий раунд
-  }
+
+export const ScoreInRound: React.FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const game: GameSettings = useAppSelector(state => state.gameSettings);
+  const process: GameProcess = useAppSelector(state => state.gameProcess);
+  
+  useEffect(() => {
+    if (game.dictionary?.url && !game.dictionary?.words) {
+      getPublicData(game.dictionary?.url).then((result) => {
+        if (result) {
+          const shuffleDict = arrayShuffle(result.words);
+          dispatch(getDictionaryWords(shuffleDict));
+        }
+      });
+    }
+  }, [dispatch])
+  
   return (
     <div className="score-in-round">
       <div className="score-in-round__commands">
-        {arrayScoreTeams.map(command => (
-          <div key={command.id} className="score-in-round__command">
-            <p className="score-in-round__command_text">{command.nameTeam}</p>
-            <p className="score-in-round__command_text">{command.scoreTeam}</p>
+        {game.activeTeams.length && game.activeTeams.map(team => (
+          <div key={team.name} className="score-in-round__command">
+            <p className="score-in-round__command_text">{team.name}</p>
+            <p className="score-in-round__command_text">{team.score}</p>
           </div>
         ))}
       </div>
-      <p className="score-in-round__info">Игра ведётся до 100 очков</p>
+      <p className="score-in-round__info">Игра ведётся до {game.wordsToWin} очков</p>
       <p className="score-in-round__text">следующими играют</p>
-      <p className="score-in-round__next-team">{nextNameTeam}</p>
+      <p className="score-in-round__next-team">{game.activeTeams.length && game.activeTeams[process.activeTeamIndex].name}</p>
       <Button
         text="Начать раунд"
         type="button"
         classes="button--score"
         events={{
-          onClick: () => handleCLick,
+          onClick: (e) => {
+            e.preventDefault();
+            navigate('/round-process');
+          }
         }}
       />
     </div>

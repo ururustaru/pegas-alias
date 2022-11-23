@@ -35,6 +35,53 @@
   align-items: center;
   padding: 18px;
   position: relative;
+  
+  .round-board__check-button {
+    box-shadow: none;
+
+    &::before {
+      opacity: 1;
+      box-shadow: $button-pressed-shadow;
+    }
+  }
+
+  &--minus {
+    .round-board__check-button {
+      box-shadow: $card-shadow;
+
+      &::before {
+        opacity: 0;
+      }
+    }
+    
+    .round-board__delete-button {
+      box-shadow: none;
+
+      &::before {
+        opacity: 1;
+        box-shadow: $button-pressed-shadow;
+      }
+    }
+  }
+
+  &--zero {
+    .round-board__check-button {
+      box-shadow: $card-shadow;
+
+      &::before {
+        opacity: 0;
+      }
+    }
+
+    .round-board__trash-button {
+      box-shadow: none;
+
+      &::before {
+        opacity: 1;
+        box-shadow: $button-pressed-shadow;
+      }
+    }
+  }
 }
 
 .round-board__word-value {
@@ -51,11 +98,11 @@
   color: $text-dark;
   min-width: 40px;
 
-  &--minus {
+  .round-board__word--minus & {
     color: $alert;
   }
 
-  &--zero {
+  .round-board__word--zero & {
     color: $text-secondary;
   }
 }
@@ -111,12 +158,19 @@
   }
   .round-board__word-actions {
     flex-wrap: wrap;
-    max-width: 72px;
+    max-width: 76px;
+    gap: 16px;
+    
+    .button {
+      min-width: 30px;
+    }
   }
   .round-board__word {
     padding: 10px 12px;
   }
   .round-board__question-button {
-    position: static;
+    position: relative;
+    left: 0;
+    top: 0;
   }
 }
