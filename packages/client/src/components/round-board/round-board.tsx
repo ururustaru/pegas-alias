@@ -62,23 +62,32 @@ export function RoundBoard(): JSX.Element {
       name: activeTeam.name,
       score: process.roundScore
     }))
-    dispatch(clearTeamProcess());
     
     // Если есть не игравшая команда в раунде, продолжаем раунд
     if (game.activeTeams[process.activeTeamIndex + 1]) {
       dispatch(changeActiveTeam(process.activeTeamIndex + 1));
       navigate('/score-in-round');
     } else {
-      const maxScoreTeam = game.activeTeams.reduce(function(prev, current) {
-        return (current.score > prev.score) ? current : prev
+      const maxScoreTeam = game.activeTeams.reduce((prev, current, index) => {
+        const currentTeam = { 
+          name: current.name,
+          score: current.score
+        };
+        if (index === process.activeTeamIndex) {
+          currentTeam.score += process.roundScore;
+        }
+        return (currentTeam.score > prev.score) ? currentTeam : prev
       });
-      console.log(maxScoreTeam);
 
       // Конец раунда. Если победа достигнута, показать победителя, записать результаты команд в игравшие
       if (maxScoreTeam.score >= game.wordsToWin) {
         let endGameScore = '';
-        game.activeTeams.forEach(team => {
-          endGameScore += team.score + ' : '
+        game.activeTeams.forEach((team, index) => {
+          let score = team.score;
+          if (index === process.activeTeamIndex) {
+            score += process.roundScore;
+          }
+          endGameScore += score + ' : '
         })
         
         dispatch(setWinner(maxScoreTeam.name));
@@ -96,6 +105,8 @@ export function RoundBoard(): JSX.Element {
         navigate('/score-in-round');
       }
     }
+
+    dispatch(clearTeamProcess());
   }
 
   process.roundWords.forEach(item => {
@@ -134,7 +145,7 @@ export function RoundBoard(): JSX.Element {
     )
   })
 
-  return (
+  return (activeTeam && process &&
     <form className="round-board">
       <div className="round-board__header">
         <h2 className="round-board__title">{activeTeam.name}</h2>
