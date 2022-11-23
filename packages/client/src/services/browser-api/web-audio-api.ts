@@ -1,8 +1,7 @@
 let playStartSound;
-//if (typeof window == 'undefined') {
-//  playStartSound  = function() { console.log('server rendering') };
-//}else{
-// }
+if (typeof window == 'undefined') {
+  playStartSound  = function() { console.log('server rendering') };
+}else{
   const context = new AudioContext()
   const osc1 = context.createOscillator(),
     osc2 = context.createOscillator()
@@ -62,8 +61,9 @@ let playStartSound;
     osc2.stop(startTime + duration)
   }
 
-const playStartSound = function() {
+playStartSound = function() {
   playNote(550, context.currentTime, 0.1)
+}
 }
 
 export default playStartSound;
