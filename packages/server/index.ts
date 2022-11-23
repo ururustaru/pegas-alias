@@ -40,20 +40,15 @@ export async function createServer(
   
   // use vite's connect instance as middleware
   app.use(vite.middlewares)
-  app.use('/assets', express.static('../client/dist/client/assets/'))
-
-  app.get('/test', (_, res) => {
-    res.json('it works!')
-  })
+  app.use('/', express.static('../client/dist/client/'))
 
   app.get('/*', async (req, res) => {
 
     const result = render(req.originalUrl)
     template = fs.readFileSync(resolve('../client/dist/client/index.html'), 'utf-8')
     template = await vite.transformIndexHtml(req.originalUrl, template)
-      const html = template.replace(`<div id="root"></div>`,`<div id="root">${result}</div>`)
+    const html = template.replace(`<div id="root"></div>`,`<div id="root">${result}</div>`)
     res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
-  //  res.send(result)
   })
 
   app.listen(port, () => {

@@ -1,8 +1,7 @@
-let playStartSound;
-if (typeof window == 'undefined') {
-  playStartSound  = function() { console.log('server rendering') };
-}else{
-  const context = new AudioContext()
+let playNote:Function;
+let context:AudioContext;
+if (typeof window !== 'undefined') {
+  context = new AudioContext()
   const osc1 = context.createOscillator(),
     osc2 = context.createOscillator()
 
@@ -34,7 +33,7 @@ if (typeof window == 'undefined') {
   volume.gain.setValueAtTime(0.1, startTime + duration - 0.05)
   volume.gain.linearRampToValueAtTime(0, startTime + duration)
 
-  const playNote = function(frequency: number, startTime: number, duration: number) {
+  playNote = function(frequency: number, startTime: number, duration: number) {
     const osc1 = context.createOscillator(),
       osc2 = context.createOscillator(),
       volume = context.createGain()
@@ -60,10 +59,12 @@ if (typeof window == 'undefined') {
     osc1.stop(startTime + duration)
     osc2.stop(startTime + duration)
   }
-
-playStartSound = function() {
-  playNote(550, context.currentTime, 0.1)
-}
 }
 
-export default playStartSound;
+const playStartSound = function() {
+  if (typeof window !== 'undefined') {
+    playNote(550, context.currentTime, 0.1)
+  }
+}
+
+export default playStartSound

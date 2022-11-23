@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import store from './services/store/reducer'
 import { StaticRouter } from "react-router-dom/server";
-
-import  { App }  from './App'
 import {
     Main,
+    GameStart,
     Login,
     SignUp,
     NewGame,
@@ -16,7 +15,6 @@ import {
     ChangePassword,
     ForumPage,
     ScoreInRoundPage,
-    RoundStart,
     ForumDetail,
     ServerErrorPage,
     RoundProcess,
@@ -24,7 +22,7 @@ import {
     NotFoundPage,
     RoundEnd,
   } from './pages'
-  import { PageNavigation } from './components'
+  import { PageNavigation, FullscreenBtn } from './components'
 
   import './scss/style.scss';
 
@@ -32,7 +30,6 @@ export const render = (url:string) => {
     let Page:React.FC = Main;
     switch (url) {
         case '/': Page = Main; break;
-        case '/app': Page = App; break;
         case '/login': Page = Login; break;
         case '/sign-up': Page = SignUp;  break;
         case '/new-game': Page = NewGame; break;
@@ -42,22 +39,26 @@ export const render = (url:string) => {
         case '/leaders': Page = Leaders; break;
         case '/forum': Page = ForumPage; break;
         case '/score-in-round': Page = ScoreInRoundPage; break;
+        case '/game-start': Page = GameStart; break;
         case '/forum-detail': Page = ForumDetail; break;
         case '/500': Page = ServerErrorPage; break;
-        case '/winner': Page = WinnerPage;break;
-        case '/round-start': Page = RoundStart;break;
         case '/round-process': Page = RoundProcess;break;
         case '/round-end': Page = RoundEnd;break;
+        case '/winner': Page = WinnerPage;break;
         default: Page = NotFoundPage; break;
     }
     
     return renderToString (
-    <React.StrictMode>
+        <React.StrictMode>
+        <div className="app">
+        <Provider store= {store}>
         <StaticRouter location={url}>
-            <Provider store= {store}>
+            <FullscreenBtn />
             <PageNavigation/>
-                <Page/>
-            </Provider>
+            <Page/>
         </StaticRouter>
-    </React.StrictMode>
+        </Provider>
+        </div>
+        </React.StrictMode>
+
 )}
