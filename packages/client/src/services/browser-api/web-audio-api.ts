@@ -1,6 +1,6 @@
 let playStartSound;
 if (typeof window == 'undefined') {
-  playStartSound  = function() {};
+  playStartSound  = function() { console.log('server rendering') };
 }else{
 
   const context = new AudioContext()
