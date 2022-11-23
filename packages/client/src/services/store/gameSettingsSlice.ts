@@ -7,31 +7,31 @@ const initialState: GameSettings = {
   activeTeams: [],
   playedTeams: [
     {
-      name: 'Девочки',
+      teamName: 'Девочки',
       games: 15,
       victories: 15,
       words: 9605,
     },
     {
-      name: 'Мудрые черепахи',
+      teamName: 'Мудрые черепахи',
       games: 120,
       victories: 10,
       words: 1,
     },
     {
-      name: 'Веселые бизончики',
+      teamName: 'Веселые бизончики',
       games: 6,
       victories: 5,
       words: 15,
     },
     {
-      name: 'Настольные монстры',
+      teamName: 'Настольные монстры',
       games: 3000,
       victories: 200,
       words: 56,
     },
     {
-      name: 'Киноманы',
+      teamName: 'Киноманы',
       games: 2,
       victories: 0,
       words: 2,

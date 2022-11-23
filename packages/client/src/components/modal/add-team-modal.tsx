@@ -22,7 +22,7 @@ export function AddTeamModal(props: IModal) {
   let teamName = '';
   const playedTeams: Team[] = props.playedTeams.filter((playedTeam) => {
     return !props.activeTeams.some((activeTeam) => {
-      return activeTeam.name === playedTeam.name
+      return activeTeam.teamName === playedTeam.teamName
     })
   })
   
@@ -54,10 +54,10 @@ export function AddTeamModal(props: IModal) {
         {playedTeams && playedTeams.map(team => {
           return (            
             <div className="team-cards__item"
-              key={team.name}
-              onClick={() => {props.onAddTeam(team.name)}}
+              key={team.teamName}
+              onClick={() => {props.onAddTeam(team.teamName)}}
             >
-              <span className="team-cards__item-title">{team.name}</span>
+              <span className="team-cards__item-title">{team.teamName}</span>
               <div className="team-cards__item-labels">
                 <span className="team-cards__item-label team-cards__item-label--victories">
                   {team.victories} {wordsDeclention(team.victories, ['победа', 'победы', 'побед'])}
@@ -72,7 +72,7 @@ export function AddTeamModal(props: IModal) {
                   onClick: (e) => {
                     e.stopPropagation();
                     e.preventDefault();
-                    props.onRemovePlayedTeam(team.name)
+                    props.onRemovePlayedTeam(team.teamName)
                   }
                 }}
                 icon={

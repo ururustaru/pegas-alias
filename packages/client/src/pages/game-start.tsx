@@ -47,12 +47,12 @@ export const GameStart: React.FC = (): JSX.Element => {
             <h2 className="form__section-title">Команды</h2>
             {game.activeTeams && game.activeTeams.map(team => {
               return (
-                <div className="form__cancel-field" key={team.name}>
-                  <span className="form__cancel-field-text">{team.name}</span>
+                <div className="form__cancel-field" key={team.teamName}>
+                  <span className="form__cancel-field-text">{team.teamName}</span>
                   <button className="form__cancel-btn"
                     onClick={(e) => {
                       e.preventDefault();
-                      dispatch(removeTeam(team.name))
+                      dispatch(removeTeam(team.teamName))
                     }}
                   >
                     <img src={crossIcon} alt="Удалить словарь" />

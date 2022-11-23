@@ -22,6 +22,24 @@ export const loginUser = (data: any) => {
     })
 }
 
+export const signUpYaOAuth = () => {
+  const result = instanse
+    .get('/oauth/yandex/service-id')
+    .then(response => response.data)
+    .catch(error => {
+      console.log(error)
+    })
+  return result
+}
+export const signInYaOAuth = (data: any) => {
+  const result = instanse
+    .post('/oauth/yandex', data)
+    .then(response => response)
+    .catch(error => {
+      console.log(error)
+    })
+  return result
+}
 export const logoutUser = () => {
   apiInstance.post('/auth/logout')
 }
