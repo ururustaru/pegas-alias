@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import store from './services/store/reducer'

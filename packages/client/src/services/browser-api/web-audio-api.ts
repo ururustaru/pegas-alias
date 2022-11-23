@@ -1,4 +1,3 @@
-let playNote:Function;
 let context:AudioContext;
 if (typeof window !== 'undefined') {
   context = new AudioContext()
@@ -24,7 +23,7 @@ if (typeof window !== 'undefined') {
   osc2.start(startTime)
 
   osc1.stop(startTime + duration)
-  osc1.stop(startTime + duration)
+  osc2.stop(startTime + duration)
   const frequency = 493.883
 
   osc1.frequency.value = frequency + 1
@@ -33,32 +32,32 @@ if (typeof window !== 'undefined') {
   volume.gain.setValueAtTime(0.1, startTime + duration - 0.05)
   volume.gain.linearRampToValueAtTime(0, startTime + duration)
 
-  playNote = function(frequency: number, startTime: number, duration: number) {
-    const osc1 = context.createOscillator(),
-      osc2 = context.createOscillator(),
-      volume = context.createGain()
+}
+function playNote(frequency: number, startTime: number, duration: number) {
+  const osc1 = context.createOscillator(),
+        osc2 = context.createOscillator(),
+        volume = context.createGain()
 
-    osc1.type = 'triangle'
-    osc2.type = 'triangle'
+  osc1.type = 'triangle'
+  osc2.type = 'triangle'
 
-    volume.gain.value = 0.1
+  volume.gain.value = 0.1
 
-    osc1.connect(volume)
-    osc2.connect(volume)
-    volume.connect(context.destination)
+  osc1.connect(volume)
+  osc2.connect(volume)
+  volume.connect(context.destination)
 
-    osc1.frequency.value = frequency + 1
-    osc2.frequency.value = frequency - 2
+  osc1.frequency.value = frequency + 1
+  osc2.frequency.value = frequency - 2
 
-    volume.gain.setValueAtTime(0.1, startTime + duration - 0.05)
-    volume.gain.linearRampToValueAtTime(0, startTime + duration)
+  volume.gain.setValueAtTime(0.1, startTime + duration - 0.05)
+  volume.gain.linearRampToValueAtTime(0, startTime + duration)
 
-    osc1.start(startTime)
-    osc2.start(startTime)
+  osc1.start(startTime)
+  osc2.start(startTime)
 
-    osc1.stop(startTime + duration)
-    osc2.stop(startTime + duration)
-  }
+  osc1.stop(startTime + duration)
+  osc2.stop(startTime + duration)
 }
 
 const playStartSound = function() {
