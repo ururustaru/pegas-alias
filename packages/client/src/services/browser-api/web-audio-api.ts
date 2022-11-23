@@ -28,7 +28,7 @@ const playNote = function(frequency: number, startTime: number, duration: number
 }
 
 const playStartSound = function() {
-  playNote(300, context.currentTime, 0.4)
+  playNote(550, context.currentTime, 0.1)
 }
 
 export default playStartSound;

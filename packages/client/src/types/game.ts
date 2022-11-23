@@ -9,10 +9,7 @@ export type Dictionary = {
 }
 
 export type GameSettings = {
-  activeTeams: {
-    name?: string,
-    score?: 0
-  }[],
+  activeTeams: ActiveTeam[],
   playedTeams: Team[],
   roundDuration: number,
   wordsToWin: number,
@@ -20,14 +17,23 @@ export type GameSettings = {
   dictionary: IDictionary | null
 }
 
+export type ActiveTeam = {
+  name: string,
+  score: 0
+}
+
 export type GameProcess = {
   roundCount: number,
   activeTeamIndex: number,
   activeWordIndex: number,
-  roundScore: 0,
-  roundWords: {
-    word: string,
-    wordScore: -1 | 0 | 1
-  }[] | null,
-  stopwatch: number | null
+  roundScore: number,
+  winner: string,
+  endGameScore: string,
+  roundWords: RoundWord[]
+}
+
+
+export type RoundWord = {
+  word: string,
+  wordScore: -1 | 0 | 1
 }

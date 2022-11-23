@@ -15,23 +15,17 @@ body:fullscreen::backdrop {
 }
 
 .fullscreen-btn {
-  font-family: $accent-light;
-  font-size: 24px;
-  font-weight: 900;
-  color: $text-dark;
   cursor: pointer;
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 15px;
+  right: 15px;
   z-index: 2;
+  padding: 10px 10px 7px;
+  background: $icon-bg;
+  border-radius: 10px;
+  box-shadow: $card-shadow;
   
   path {
     transition: 0.3s;
-  }
-  
-  &:hover {
-    path {
-      fill: $text-secondary;
-    }
   }
 }

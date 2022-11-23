@@ -7,6 +7,7 @@ import { GameProcess, GameSettings } from '../../types/game';
 import { useAppSelector } from '../../services/hooks/useState';
 import { useDispatch } from 'react-redux';
 import { getDictionaryWords } from '../../services/store/gameSettingsSlice';
+import { arrayShuffle } from '../../utils';
 
 
 export const ScoreInRound: React.FC = () => {
@@ -19,7 +20,8 @@ export const ScoreInRound: React.FC = () => {
     if (game.dictionary?.url && !game.dictionary?.words) {
       getPublicData(game.dictionary?.url).then((result) => {
         if (result) {
-          dispatch(getDictionaryWords(result.words));
+          const shuffleDict = arrayShuffle(result.words);
+          dispatch(getDictionaryWords(shuffleDict));
         }
       });
     }
