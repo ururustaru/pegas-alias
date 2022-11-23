@@ -20,8 +20,8 @@ import {
   clearGameProcess,
   setNextRound, 
   changeWord
-} from '../../services/store/gameProcessSlice';
-import { changeTeamScore, clearGameSettings } from '../../services/store/gameSettingsSlice';
+} from '../../services/store/game';
+import { changeTeamScore, clearGameSettings } from '../../services/store/game';
 
 export function RoundBoard(): JSX.Element {
   const dispatch = useDispatch();

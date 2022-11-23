@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { GameProcess, RoundWord } from '../../types/game';
+import { GameProcess, RoundWord } from '../../../types/game';
 
 const initialState: GameProcess = {
   roundCount: 1,

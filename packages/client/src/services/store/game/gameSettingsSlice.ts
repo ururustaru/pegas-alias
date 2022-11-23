@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ActiveTeam, GameSettings} from '../../types/game';
-import { deleteByValue } from '../../utils/deleteFromArrayByValue';
+import { ActiveTeam, GameSettings} from '../../../types/game';
+import { deleteByValue } from '../../../utils/deleteFromArrayByValue';
 
 // TODO: В playedTeams подставить игравшие команды из реальной статистики
 const initialState: GameSettings = {

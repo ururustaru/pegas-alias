@@ -23,7 +23,7 @@ export const loginUser = (data: any) => {
 }
 
 export const signUpYaOAuth = () => {
-  const result = instanse
+  const result = apiInstance
     .get('/oauth/yandex/service-id')
     .then(response => response.data)
     .catch(error => {
@@ -32,7 +32,7 @@ export const signUpYaOAuth = () => {
   return result
 }
 export const signInYaOAuth = (data: any) => {
-  const result = instanse
+  const result = apiInstance
     .post('/oauth/yandex', data)
     .then(response => response)
     .catch(error => {

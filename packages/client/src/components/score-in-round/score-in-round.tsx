@@ -6,7 +6,7 @@ import './score-in-round.scss'
 import { GameProcess, GameSettings } from '../../types/game';
 import { useAppSelector } from '../../services/hooks/useState';
 import { useDispatch } from 'react-redux';
-import { getDictionaryWords } from '../../services/store/gameSettingsSlice';
+import { getDictionaryWords } from '../../services/store/game';
 import { arrayShuffle } from '../../utils';
 
 

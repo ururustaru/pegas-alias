@@ -11,7 +11,7 @@ import {
   changeRoundScore,
   changeWord,
   addRoundWord,
-} from '../services/store/gameProcessSlice';
+} from '../services/store/game';
 
 
 export const RoundProcess: React.FC = () => {

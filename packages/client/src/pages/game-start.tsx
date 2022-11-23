@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { addTeam, removeTeam, removeTeamFromPlayed, changeDictionary, changeRoundDuration,
-  changeWordsToWin, toggleLastWordForAll } from '../services/store/gameSettingsSlice';
+  changeWordsToWin, toggleLastWordForAll } from '../services/store/game';
 
 import { Button, BackLink, CheckBox, AddTeamModal, SelectDictModal} from '../components'
 import { useToggle } from '../services/hooks';
@@ -47,12 +47,12 @@ export const GameStart: React.FC = (): JSX.Element => {
             <h2 className="form__section-title">Команды</h2>
             {game.activeTeams && game.activeTeams.map(team => {
               return (
-                <div className="form__cancel-field" key={team.teamName}>
-                  <span className="form__cancel-field-text">{team.teamName}</span>
+                <div className="form__cancel-field" key={team.name}>
+                  <span className="form__cancel-field-text">{team.name}</span>
                   <button className="form__cancel-btn"
                     onClick={(e) => {
                       e.preventDefault();
-                      dispatch(removeTeam(team.teamName))
+                      dispatch(removeTeam(team.name))
                     }}
                   >
                     <img src={crossIcon} alt="Удалить словарь" />

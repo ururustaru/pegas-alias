@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './user/userSlice';
 import leadersReducer from './leaders/leadersSlice';
-import gameSettingsReducer from './gameSettingsSlice';
-import gameProcessReducer from './gameProcessSlice';
+import gameSettingsReducer from './game/gameSettingsSlice';
+import gameProcessReducer from './game/gameProcessSlice';
 
 const store = configureStore({
   reducer: {
