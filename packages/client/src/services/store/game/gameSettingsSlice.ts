@@ -1,14 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Team } from '../../types/leaders';
-
-const deleteByValue = (givenArray: Team[], prop: string, value: string | number | boolean): Team[] => {
-  return givenArray.filter((item: any) => {
-    return item[prop] !== value;
-  });
-}
+import { ActiveTeam, GameSettings} from '../../../types/game';
+import { deleteByValue } from '../../../utils/deleteFromArrayByValue';
 
 // TODO: В playedTeams подставить игравшие команды из реальной статистики
-const initialState = {
+const initialState: GameSettings = {
   activeTeams: [],
   playedTeams: [
     {
@@ -48,18 +43,30 @@ const initialState = {
   dictionary: null
 }
 
-const gameSlice = createSlice({
+const gameSettingsSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
     addTeam(state, action) {
       state.activeTeams.push({
-        name: action.payload
+        name: action.payload,
+        score: 0
       });
     },
 
     removeTeam(state, action) {
       state.activeTeams = deleteByValue(state.activeTeams, 'name', action.payload);
+    },
+    
+    changeTeamScore(state, action) {
+      const foundIndex = state.activeTeams.findIndex((team: ActiveTeam) => team.name === action.payload.name);
+      const teams = state.activeTeams.slice();
+      const currentTeamScore = teams[foundIndex].score
+      teams[foundIndex] = {
+        name: action.payload.name,
+        score: currentTeamScore + action.payload.score
+      };
+      state.activeTeams = teams;
     },
 
     addTeamToPlayed(state, action) {
@@ -71,11 +78,17 @@ const gameSlice = createSlice({
     },
 
     changeDictionary(state, action) {
-      state.dictionary = action.payload
+      state.dictionary = action.payload;
+    },
+
+    getDictionaryWords(state, action) {
+      if (state.dictionary) {
+        state.dictionary.words = action.payload;
+      }
     },
 
     changeRoundDuration(state, action) {
-      if (action.payload >= 30 && action.payload <= 360) {
+      if (action.payload >= 10 && action.payload <= 360) {
         state.roundDuration = action.payload
       }
     },
@@ -88,6 +101,11 @@ const gameSlice = createSlice({
 
     toggleLastWordForAll(state, action) {
       state.lastWordForAll = action.payload
+    },
+
+    clearGameSettings(state) {
+      state.activeTeams = [];
+      state.dictionary = null;
     }
   },
 })
@@ -100,6 +118,9 @@ export const {
   changeDictionary,
   changeRoundDuration,
   changeWordsToWin,
-  toggleLastWordForAll
-} = gameSlice.actions
-export default gameSlice.reducer
+  toggleLastWordForAll,
+  getDictionaryWords,
+  changeTeamScore,
+  clearGameSettings
+} = gameSettingsSlice.actions
+export default gameSettingsSlice.reducer

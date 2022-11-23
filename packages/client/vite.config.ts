@@ -9,6 +9,7 @@ dotenv.config()
 export default defineConfig({
   server: {
     port: Number(process.env.CLIENT_PORT) || 3000,
+    host: true
   },
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT,
@@ -23,7 +24,7 @@ export default defineConfig({
       registerType: 'prompt',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf,eot,woff,woff2,json}']
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,ttf,eot,woff,woff2,json,mp3}']
       },
       manifest: {
         name: 'Pegas Alias',

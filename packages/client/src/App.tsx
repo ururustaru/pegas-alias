@@ -14,7 +14,7 @@ import {
   ChangePassword,
   ForumPage,
   ScoreInRoundPage,
-  RoundStart,
+  GameStart,
   ForumDetail,
   ServerErrorPage,
   RoundProcess,
@@ -33,7 +33,14 @@ export const App: React.FC = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getUserApi());
-  }, [dispatch])
+  }, [dispatch]);
+
+  // Set correct app min-height on mobile for existing browser address bar
+  const calcAppHeight = () => {
+    const doc = document.documentElement;
+    doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+  }
+  calcAppHeight();
 
   return (
     <div className="app">
@@ -52,13 +59,12 @@ export const App: React.FC = () => {
           <Route path="/leaders" element={<Leaders />} />
           <Route path="/forum" element={<ForumPage />} />
           <Route path="/score-in-round" element={<ScoreInRoundPage />} />
-          <Route path="/round-start" element={<RoundStart />} />
+          <Route path="/game-start" element={<GameStart />} />
           <Route path="/forum-detail" element={<ForumDetail />} />
           <Route path="/500" element={<ServerErrorPage />} />
           <Route path="/round-process" element={<RoundProcess />} />
           <Route path="/winner" element={<WinnerPage />} />
           <Route path="/*" element={<NotFoundPage />} />
-          <Route path="/round-start" element={<RoundStart />} />
           <Route path="/round-process" element={<RoundProcess />} />
           <Route path="/round-end" element={<RoundEnd />} />
         </Routes>

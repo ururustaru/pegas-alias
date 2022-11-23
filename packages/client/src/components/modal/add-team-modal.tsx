@@ -8,7 +8,10 @@ interface IModal {
   close: () => void
   onAddTeam: (name: string) => void
   onRemovePlayedTeam: (name: string) => void
-  activeTeams: Team[],
+  activeTeams: {
+    name?: string,
+    score?: 0
+  }[],
   playedTeams: Team[]
 }
 
@@ -19,7 +22,7 @@ export function AddTeamModal(props: IModal) {
   let teamName = '';
   const playedTeams: Team[] = props.playedTeams.filter((playedTeam) => {
     return !props.activeTeams.some((activeTeam) => {
-      return activeTeam.teamName === playedTeam.teamName
+      return activeTeam.name === playedTeam.teamName
     })
   })
   

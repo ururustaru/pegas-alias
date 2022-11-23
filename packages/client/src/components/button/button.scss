@@ -34,7 +34,6 @@
   }
 
   &:hover,
-  &:active,
   &--active {
     box-shadow: none;
 
@@ -141,5 +140,12 @@
     &::before {
       display: none;
     }
+  }
+}
+
+@include down(359px) {
+  .button {
+    padding: 10px 20px;
+    border-radius: 12px;
   }
 }

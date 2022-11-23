@@ -31,7 +31,7 @@ export function SelectDictModal(props: IModal) {
                   {levelsMap[dict.level]}
                 </span>
                 <span className="dictionary-cards__item-label">
-                  {dict.words} {wordsDeclention(dict.words, ['слово', 'слова', 'слов'])}
+                  {dict.wordsCount} {wordsDeclention(dict.wordsCount, ['слово', 'слова', 'слов'])}
                 </span>
               </div>
             </div>

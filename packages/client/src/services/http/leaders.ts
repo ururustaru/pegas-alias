@@ -1,8 +1,8 @@
-import { instanse } from './axios'
+import { apiInstance } from './axios'
 import { FilterState } from '../store/leaders/type'
 
 export const getLeadersAPI = (filter: FilterState) => {
-  return instanse
+  return apiInstance
     .post('/leaderboard/all', filter)
     .then(response => response.data)
     .catch(error => {
@@ -11,7 +11,7 @@ export const getLeadersAPI = (filter: FilterState) => {
 }
 
 export const postAddLeaderAPI = (data: any) => {
-  return instanse
+  return apiInstance
     .post('/leaderboard', data)
     .then(response => response.data)
     .catch(error => {
