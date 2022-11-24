@@ -1,3 +1,6 @@
+import React, { useEffect } from 'react';
+import { Provider } from 'react-redux'
+import store from './services/store/reducer'
 import { useAppDispatch } from './services/hooks/useState';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
@@ -19,15 +22,14 @@ import {
   NotFoundPage,
   RoundEnd,
 } from './pages'
-
 import { PageNavigation } from './components'
 
 import './scss/style.scss';
-import { useEffect } from 'react';
 import { getUserApi } from './services/store/user';
 import { FullscreenBtn } from './components/fullscreen-btn/fullscreen-btn';
 
-export function App() {
+export const App: React.FC = () => {
+//  export default function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getUserApi());
@@ -42,6 +44,7 @@ export function App() {
 
   return (
     <div className="app">
+      <Provider store={store}>
       <Router>
         <FullscreenBtn />
         <PageNavigation />
@@ -66,6 +69,7 @@ export function App() {
           <Route path="/round-end" element={<RoundEnd />} />
         </Routes>
       </Router>
-    </div>
+      </Provider>
+      </div>
   )
 }

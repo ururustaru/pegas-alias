@@ -11,6 +11,11 @@ export const CanvasComponent: FC<CanvasProps> = ({
   height,
   word,
 }: CanvasProps) => {
+  if (typeof window == "undefined") {
+    const canvasRef = useRef(null)
+    return <canvas ref={canvasRef} id="round-game" height={height} width={width} />
+  }
+  
   const canvasRef = useRef(null)
   const card = new Image()
   let counter = 1
