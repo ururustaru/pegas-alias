@@ -9,7 +9,7 @@ export function ButtonsNavigation() {
         <li className="buttons-navigation__item buttons-navigation__item--big">
           <Link
             className="buttons-navigation__link buttons-navigation__link--rocket"
-            to="/round-start">
+            to="/game-start">
             Новая игра
           </Link>
         </li>

@@ -11,9 +11,14 @@ export const CanvasComponent: FC<CanvasProps> = ({
   height,
   word,
 }: CanvasProps) => {
+  if (typeof window == "undefined") {
+    const canvasRef = useRef(null)
+    return <canvas ref={canvasRef} id="round-game" height={height} width={width} />
+  }
+  
   const canvasRef = useRef(null)
   const card = new Image()
-  let counter = 0.5
+  let counter = 1
   let prev = 0
   let now = 0
   let animationFrameId: number
@@ -31,7 +36,7 @@ export const CanvasComponent: FC<CanvasProps> = ({
     const render = () => {
       frameCount++
       draw(ctx, frameCount)
-      if (frameCount < 24) {
+      if (frameCount < 12) {
         animationFrameId = window.requestAnimationFrame(render)
       } else {
         cancelAnimationFrame(animationFrameId)
@@ -41,11 +46,11 @@ export const CanvasComponent: FC<CanvasProps> = ({
   }, [])
 
   const draw = (ctx: CanvasRenderingContext2D, frameCount: number) => {
-    const speed = 1000
+    const speed = 500
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     ctx.globalCompositeOperation = 'destination-over'
     if (now === 0) now = frameCount
-    const delta = frameCount < 24 ? frameCount / speed : 0
+    const delta = frameCount < 12 ? frameCount / speed : 0
 
     if (prev !== frameCount) {
       counter = counter + delta
@@ -56,7 +61,6 @@ export const CanvasComponent: FC<CanvasProps> = ({
       if (alpha < 0) alpha = 0
 
       ctx.globalAlpha = alpha
-      drawCard(ctx, card, 1.2 * counter)
 
       ctx.font = 24 * counter + 'px Gilroy'
       ctx.textAlign = 'center'

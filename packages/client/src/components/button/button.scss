@@ -1,11 +1,11 @@
 @import './../../scss/base/variables';
+@import './../../scss/base/mixins';
 
 .button {
   padding: 15px 30px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  line-height: 1;
   color: $light;
   background: $accent-gradient;
   box-shadow: $button-shadow;
@@ -19,6 +19,7 @@
   border: 0;
   font-family: $main-font;
   font-size: 16px;
+  line-height: 1.2;
 
   &::before {
     content: '';
@@ -33,7 +34,6 @@
   }
 
   &:hover,
-  &:active,
   &--active {
     box-shadow: none;
 
@@ -71,7 +71,7 @@
   img,
   svg,
   .button--icon {
-    margin-left: 10px;
+    margin-left: 12px;
   }
 }
 
@@ -81,7 +81,7 @@
   img,
   svg,
   .button--icon {
-    margin-right: 10px;
+    margin-right: 12px;
   }
 }
 
@@ -92,49 +92,22 @@
 
 .button--select {
   justify-content: flex-end;
-  padding-right: 16px;
+  padding-right: 38px;
 
   &:after {
     content: url("data:image/svg+xml,%3Csvg width='16' height='9' viewBox='0 0 16 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 1L8 8L1 1' stroke='%233B4F7D' strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round'/%3E%3C/svg%3E");
     display: block;
     position: absolute;
-    width: 14px;
-    height: 7px;
-    top: 22px;
+    width: 20px;
+    height: 20px;
+    top: 18px;
     right: 18px;
   }
-}
 
-.button--with-cancel {
-  height: 50px;
-  justify-content: space-between;
-  background: $secondary-gradient;
-  border: 2px solid $accent;
-  border-radius: 16px;
-  padding-right: 8px;
-  box-shadow: none;
-  cursor: default;
-
-  svg {
-    display: flex;
-    width: 30px;
-    height: 30px;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    background: $delete-bg;
-    box-shadow: $checkbox-shadow;
-    border-radius: 12px;
-    cursor: pointer;
+  @include down($mobile) {
+    padding-left: 10px;
+    font-size: 14px;
   }
-
-  &:hover::before {
-    opacity: 0;
-  }
-}
-
-.button--with-cancel[disabled] {
-  background: $secondary-gradient;
 }
 
 .button--square {
@@ -167,5 +140,12 @@
     &::before {
       display: none;
     }
+  }
+}
+
+@include down(359px) {
+  .button {
+    padding: 10px 20px;
+    border-radius: 12px;
   }
 }

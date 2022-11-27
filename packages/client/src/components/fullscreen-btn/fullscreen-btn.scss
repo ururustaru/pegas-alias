@@ -1,11 +1,31 @@
 @import './../../scss/base/variables';
-body:fullscreen::backdrop {
-  background: $accent-light;
+@import './../../scss/base/mixins';
+
+body:fullscreen {
+  overflow-y: auto;
+  
 }
+
+body:fullscreen::backdrop {
+  background: url('@/assets/images/app-bg.png') center / 100% 103% no-repeat;
+
+  @include down(768px) {
+    background-image: url('@/assets/images/app-bg-mobile.png');
+  }
+}
+
 .fullscreen-btn {
-  font-family: $accent-light;
-  font-size: 24px;
-  font-weight: 900;
-  color: $text-dark;
   cursor: pointer;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 2;
+  padding: 10px 10px 7px;
+  background: $icon-bg;
+  border-radius: 10px;
+  box-shadow: $card-shadow;
+  
+  path {
+    transition: 0.3s;
+  }
 }

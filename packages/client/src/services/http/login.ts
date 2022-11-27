@@ -1,7 +1,7 @@
-import { instanse } from './axios'
+import { apiInstance } from './axios'
 
 export const registerUser = (data: any) => {
-  instanse
+  apiInstance
     .post('/auth/signup', data)
     .then(response => {
       console.log(response)
@@ -12,7 +12,7 @@ export const registerUser = (data: any) => {
 }
 
 export const loginUser = (data: any) => {
-  instanse
+  apiInstance
     .post('/auth/signin', data)
     .then(response => {
       console.log(response)
@@ -22,6 +22,24 @@ export const loginUser = (data: any) => {
     })
 }
 
+export const signUpYaOAuth = () => {
+  const result = apiInstance
+    .get('/oauth/yandex/service-id')
+    .then(response => response.data)
+    .catch(error => {
+      console.log(error)
+    })
+  return result
+}
+export const signInYaOAuth = (data: any) => {
+  const result = apiInstance
+    .post('/oauth/yandex', data)
+    .then(response => response)
+    .catch(error => {
+      console.log(error)
+    })
+  return result
+}
 export const logoutUser = () => {
-  instanse.post('/auth/logout')
+  apiInstance.post('/auth/logout')
 }

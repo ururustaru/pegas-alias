@@ -2,7 +2,7 @@ import React from 'react'
 import './timer.scss'
 
 interface ITimer {
-  count?: number
+  count?: number | null
   limit?: number
 }
 

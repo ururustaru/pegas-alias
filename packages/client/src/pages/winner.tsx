@@ -1,14 +1,19 @@
 import React from 'react'
 import { BackLink, Winner } from '../components'
+import { GameProcess } from '../types/game';
+import { useAppSelector } from '../services/hooks/useState';
+
 
 export const WinnerPage: React.FC = (): JSX.Element => {
+  const process: GameProcess = useAppSelector(state => state.gameProcess);
+  
   return (
     <>
       <header>
-        <BackLink text="Есть победитель!" />
+        <BackLink text="Есть победитель!"/>
       </header>
       <main>
-        <Winner nameWinnerTeam="Мудрые черепахи" score="100:91:56" />
+        <Winner nameWinnerTeam={ process.winner } score={ process.endGameScore }/>
       </main>
     </>
   )
