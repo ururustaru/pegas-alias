@@ -6,9 +6,13 @@ import cors from 'cors'
 
 import express from 'express'
 import { createClientAndConnect } from './db'
-
 // @ts-ignore
 import { render } from '../client/dist/ssr/entry-server.cjs'
+// import topicsRouter from './app/routers/topicsRouter'
+// import commentsRouter from './app/routers/commentsRouter'
+import { startApp } from './app/config/db.config'
+
+
 
 dotenv.config()
 
@@ -41,6 +45,9 @@ export async function createServer(
   // use vite's connect instance as middleware
   app.use(vite.middlewares)
   app.use('/', express.static('../client/dist/client/'))
+    
+  // app.use('/api/topics', topicsRouter)
+  // app.use('/api/comments', commentsRouter)
 
   app.get('/*', async (req, res) => {
 
@@ -50,7 +57,7 @@ export async function createServer(
     const html = template.replace(`<div id="root"></div>`,`<div id="root">${result}</div>`)
     res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
   })
-
+  
   app.listen(port, () => {
     console.log(`Server is listening on port: ${port}`)
   })
@@ -59,5 +66,5 @@ export async function createServer(
 }
 
 createServer().then( () => {
-  createClientAndConnect()
+  createClientAndConnect().then(() => startApp())
 })

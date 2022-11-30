@@ -6,13 +6,13 @@ const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT } =
 export const createClientAndConnect = async (): Promise<Client | null> => {
   try {
     const client = new Client({
-      user: POSTGRES_USER,
+      user: POSTGRES_USER || 'postgres',
       host: 'localhost',
-      database: POSTGRES_DB,
-      password: POSTGRES_PASSWORD,
+      database: POSTGRES_DB || 'postgres',
+      password: POSTGRES_PASSWORD || 'postgres',
       port: Number(POSTGRES_PORT),
     })
-
+    
     await client.connect()
 
     const res = await client.query('SELECT NOW()')
