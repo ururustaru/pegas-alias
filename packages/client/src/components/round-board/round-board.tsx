@@ -1,16 +1,11 @@
-import React, { useEffect } from 'react'
-import { Button } from '../../components/'
+import React, { useEffect, useState } from 'react'
+import { Button, SelectTeamModal } from '../../components/'
 import './round-board.scss'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { GameProcess, GameSettings, RoundWord } from '../../types/game';
-import { useAppSelector } from '../../services/hooks/useState';
+import { useAppSelector, useToggle } from '../../services/hooks';
 import { wordsDeclention } from '../../utils';
-
-import checkIcon from './../../assets/images/check.svg'
-import questionIcon from './../../assets/images/question.svg';
-import crossIcon from './../../assets/images/cross-red.svg';
-import deleteIcon from './../../assets/images/trash-gray.svg';
 import {
   changeRoundWordScore,
   changeActiveTeam,
@@ -18,10 +13,20 @@ import {
   changeEndGameScore,
   setWinner,
   clearGameProcess,
-  setNextRound, 
-  changeWord
+  setNextRound,
+  changeWord, 
+  changeTeamScore, 
+  clearGameSettings, 
+  changeRoundScore
 } from '../../services/store/game';
-import { changeTeamScore, clearGameSettings } from '../../services/store/game';
+
+import checkIcon from './../../assets/images/check.svg'
+import questionIcon from './../../assets/images/question.svg';
+import crossIcon from './../../assets/images/cross-red.svg';
+import deleteIcon from './../../assets/images/trash-gray.svg';
+import { WordDescriptionModal } from '../modal/word-description-modal';
+
+const nullTeamValue = 'Никто';
 
 export function RoundBoard(): JSX.Element {
   const dispatch = useDispatch();
@@ -30,14 +35,41 @@ export function RoundBoard(): JSX.Element {
   const process: GameProcess = useAppSelector(state => state.gameProcess);
   const wordList: JSX.Element[] | null | undefined = []
   const activeTeam = game.activeTeams[process.activeTeamIndex];
+  const [isSelectTeamModalOpen, toggleSelectTeamModal] = useToggle();
+  const [isWordDescModalOpen, toggleWordDescModal] = useToggle();
+  const wordForAllOptions = game.activeTeams.slice();
+  const wordForAllInitial: RoundWord = {
+    word: '',
+    wordScore: 0,
+    isForAllWordWinner: ''
+  };
+  const wordDescriptionInitial = {
+    title: 'вакханалия',
+    description: `<div><b>ВАКХАН<span class="accent">А</span>ЛИЯ,</b> -и; <b><i>ж.</i></b> [лат. bacchanalia] <b>1.</b> <b><i>обычно мн.:</i></b> вакхан<span class="accent">а</span>лии, -ий. В Древнем Риме: празднества в честь бога вина и веселья Вакха. <b>2.</b> <i>чего</i> <i>или с опр.</i> <i>Книжн.</i> Неистовое, безудержное проявление чего-л.; буйство, разгул. <i>В. звуков, красок.</i> <i>В. злобы, ненависти, насилия.</i> <i>Нескончаемая в.</i> <b>&lt;</b><b>Вакхан<span class="accent">а</span>льный,</b> -ая, -ое <i>(2 зн.)</i> <br><br></div>`
+  }
+  
+  wordForAllOptions.push({
+    name: nullTeamValue,
+    score: 0
+  });
+  const [wordForAll, setLastWordWinner] = useState(wordForAllInitial);
+
+  useEffect(() => {
+    if (game.lastWordForAll) {
+      const wordForAll = process.roundWords.filter(word => {
+        return word.isForAllWordWinner
+      })[0];
+      setLastWordWinner(wordForAll);
+    }
+  }, [])
 
   useEffect(() => {
     dispatch(changeWord());
   }, [])
 
   // Возвращает css-класс состояния очков [http://joxi.ru/KAxQy8wCw1ongr]
-  const getWordClass = (score: number): string => {
-    let result = 'round-board__word'
+  const getWordClass = (score: number, isForAll?: boolean): string => {
+    let result = isForAll ? 'round-board__word round-board__word--for-all' : 'round-board__word'
     if (score === -1) {
       result += ' round-board__word--minus'
     } else if (score === 0) {
@@ -48,7 +80,7 @@ export function RoundBoard(): JSX.Element {
     return result
   }
 
-  function changeWordScore(e: Event, item: RoundWord, score: 1 | 0 | -1): void {
+  function changeWordScore(e: Event | React.MouseEvent, item: RoundWord, score: 1 | 0 | -1): void {
     e.preventDefault();
     dispatch(changeRoundWordScore({
       word: item.word,
@@ -110,39 +142,47 @@ export function RoundBoard(): JSX.Element {
   }
 
   process.roundWords.forEach(item => {
-    wordList.push(
-      <div className={getWordClass(item.wordScore)} key={item.word}>
-        <div className="round-board__word-value">{item.word}</div>
-        <div className="round-board__word-score">{item.wordScore}</div>
-        <div className="round-board__word-actions">
-          <Button
-            classes="button--icon button--white round-board__check-button"
-            icon={<img src={checkIcon} alt="+1" />}
-            events={{
-              onClick: (e) => changeWordScore(e, item, 1)
-            }}
-          />
-          <Button
-            classes="button--icon button--white round-board__delete-button"
-            icon={<img src={crossIcon} alt="-1" />}
-            events={{
-              onClick: (e) => changeWordScore(e, item, -1)
-            }}
-          />
-          <Button
-            classes="button--icon button--white round-board__trash-button"
-            icon={<img src={deleteIcon} alt="0" />}
-            events={{
-              onClick: (e) => changeWordScore(e, item, 0)
-            }}
-          />
-          <Button
-            classes="button--icon button--white round-board__question-button"
-            icon={<img src={questionIcon} alt="Узнать значение" />}
-          />
+    if (!item.isForAllWordWinner) {
+      wordList.push(
+        <div className={getWordClass(item.wordScore)} key={item.word}>
+          <div className="round-board__word-value">{item.word}</div>
+          <div className="round-board__word-score">{item.wordScore}</div>
+          <div className="round-board__word-actions">
+            <Button
+              classes="button--icon button--white round-board__check-button"
+              icon={<img src={checkIcon} alt="+1" />}
+              events={{
+                onClick: (e) => changeWordScore(e, item, 1)
+              }}
+            />
+            <Button
+              classes="button--icon button--white round-board__delete-button"
+              icon={<img src={crossIcon} alt="-1" />}
+              events={{
+                onClick: (e) => changeWordScore(e, item, -1)
+              }}
+            />
+            <Button
+              classes="button--icon button--white round-board__trash-button"
+              icon={<img src={deleteIcon} alt="0" />}
+              events={{
+                onClick: (e) => changeWordScore(e, item, 0)
+              }}
+            />
+            <Button
+              classes="button--icon button--white round-board__question-button"
+              icon={<img src={questionIcon} alt="Узнать значение" />}
+              events={{
+                onClick: (e) => {
+                  e.preventDefault();
+                  toggleWordDescModal();
+                }
+              }}
+            />
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   })
 
   return (activeTeam && process &&
@@ -151,7 +191,36 @@ export function RoundBoard(): JSX.Element {
         <h2 className="round-board__title">{activeTeam.name}</h2>
         <span className="round-board__subtitle">{process.roundCount} раунд</span>
       </div>
-      <div className="round-board__words">{wordList}</div>
+      <div className="round-board__words">
+        {wordList}
+        
+        {wordForAll.wordScore ? <div className={getWordClass(wordForAll.wordScore, true)}
+          key={wordForAll.word + '_forAll'}
+          onClick={(e) => {
+              e.preventDefault();
+              toggleSelectTeamModal();
+            }
+          }
+        >
+          <div className="round-board__word-value">{wordForAll.word}</div>
+          <div className="round-board__word-team">
+            {wordForAll.isForAllWordWinner !== nullTeamValue ? 'Отгадали ' + wordForAll.isForAllWordWinner : 'Никто не отгадал'}
+          </div>
+          <div className="round-board__word-actions">
+            <Button
+              classes="button--icon button--white round-board__question-button"
+              icon={<img src={questionIcon} alt="Узнать значение" />}
+              events={{
+                onClick: (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  toggleWordDescModal();
+                }
+              }}
+            />
+          </div>
+        </div> : ''}
+      </div>
       <p className="round-board__summary">
         {activeTeam.name} заработали {process.roundScore} {wordsDeclention(process.roundScore, ['очко', 'очка', 'очков'])}
       </p>
@@ -161,6 +230,68 @@ export function RoundBoard(): JSX.Element {
         events={{
           onClick: onFinishRound
         }}
+      />
+
+      <SelectTeamModal
+        isOpen={isSelectTeamModalOpen}
+        close={() => false}
+        title={`Кто отгадал слово "${wordForAll.word}"`}
+        activeTeams={wordForAllOptions}
+        onSelectTeam={(name: string) => {
+          const newWordWinner = {
+            word: wordForAll.word,
+            wordScore: wordForAll.wordScore,
+            isForAllWordWinner: name
+          }
+          // Если клик по ранее выбранной команде, закрываем окно
+          if (wordForAll.isForAllWordWinner === name) {
+            toggleSelectTeamModal();
+          } 
+          
+          // Если изменяем отгадавшую команду, это команда текущего круга
+          else if (name === activeTeam.name) {
+            if (wordForAll.isForAllWordWinner !== nullTeamValue) {
+              dispatch(changeTeamScore({
+                name: wordForAll.isForAllWordWinner,
+                score: -1
+              }));
+            }
+
+            setLastWordWinner(newWordWinner)
+            dispatch(changeRoundScore(process.roundScore + 1));
+            toggleSelectTeamModal();
+          } 
+          else {
+            // Если изменяем на команду НЕ текущего круга, ранее была выбрана команда текущего круга
+            if (wordForAll.isForAllWordWinner === activeTeam.name) {
+              dispatch(changeRoundScore(process.roundScore - 1));
+              setLastWordWinner(newWordWinner)
+            }
+
+            // Если изменяем на команду НЕ текущего круга, ранее была выбрана команда НЕ текущего круга
+            else if (wordForAll.isForAllWordWinner !== nullTeamValue) {
+              dispatch(changeTeamScore({
+                name: wordForAll.isForAllWordWinner,
+                score: -1
+              }));
+            }
+            setLastWordWinner(newWordWinner)
+            if (name !== nullTeamValue) {
+              dispatch(changeTeamScore({
+                name: name,
+                score: 1
+              }));
+            }
+            toggleSelectTeamModal();
+          }
+        }}
+      />
+      
+      <WordDescriptionModal
+        isOpen={isWordDescModalOpen}
+        close={() => toggleWordDescModal()}
+        title={`Значение слова "${wordDescriptionInitial.title}"`}
+        description={wordDescriptionInitial.description}
       />
     </form>
   )

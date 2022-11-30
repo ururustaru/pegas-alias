@@ -1,26 +1,32 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Button, Timer, CanvasComponent } from '../components'
+import { Button, Timer, CanvasComponent, SelectTeamModal } from '../components'
 import './../scss/form/form.scss'
 import './../components/round/round.scss'
 import { GameProcess, GameSettings } from '../types/game';
-import { useAppSelector } from '../services/hooks/useState';
+import { useAppSelector, useToggle } from '../services/hooks';
 import playStartSound from '../services/browser-api/web-audio-api'
 import {
   changeRoundScore,
   changeWord,
-  addRoundWord,
+  addRoundWord, changeTeamScore,
 } from '../services/store/game';
 
 
 export const RoundProcess: React.FC = () => {
+  const [isSelectTeamModalOpen, toggleSelectTeamModal] = useToggle();
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const game: GameSettings = useAppSelector(state => state.gameSettings);
   const process: GameProcess = useAppSelector(state => state.gameProcess);
   const endSound = useRef(null);
   const [timer, setTimer] = useState(game.roundDuration);
+  const wordForAllOptions = game.activeTeams.slice();
+  wordForAllOptions.push({
+    name: 'Никто',
+    score: 0
+  });
   
   function playEndSound(): void {
     if (endSound.current) {
@@ -53,7 +59,11 @@ export const RoundProcess: React.FC = () => {
       if (timer > 0) {
         setTimer(timer - 1)
       } else {
-        navigate('/round-end');
+        if (game.lastWordForAll) {
+          toggleSelectTeamModal();
+        } else {
+          navigate('/round-end');
+        }
       }
     }, 1000);
   }, [timer])
@@ -103,6 +113,36 @@ export const RoundProcess: React.FC = () => {
               }}
             />
           </div>
+
+          <SelectTeamModal 
+            isOpen={isSelectTeamModalOpen}
+            close={() => false}
+            title={`Кто отгадал слово "${game.dictionary && game.dictionary.words
+              ? game.dictionary.words[process.activeWordIndex]
+              : ''}" ?`}
+            activeTeams={wordForAllOptions}
+            onSelectTeam={(name: string) => {
+              if (game.dictionary && game.dictionary.words) {
+                const word = game.dictionary.words[process.activeWordIndex];
+                // Если отгадавшая команда - текущая, добавляем слово к раунду команды
+                if (game.activeTeams[process.activeTeamIndex].name === name) {
+                  dispatch(changeRoundScore(process.roundScore + 1));
+                  navigate('/round-end');
+                } else {
+                  dispatch(changeTeamScore({
+                    name: name,
+                    score: 1
+                  }));
+                }
+                dispatch(addRoundWord({
+                  word: word,
+                  wordScore: 1,
+                  isForAllWordWinner: name
+                }));
+                navigate('/round-end');
+              }
+            }}
+          />
 
           <audio className="round__sound"
             hidden

@@ -5,7 +5,7 @@ import { addTeam, removeTeam, removeTeamFromPlayed, changeDictionary, changeRoun
 
 import { Button, BackLink, CheckBox, AddTeamModal, SelectDictModal} from '../components'
 import { useToggle } from '../services/hooks';
-import { useAppSelector } from '../services/hooks/useState';
+import { useAppSelector } from '../services/hooks';
 import { useNavigate } from 'react-router-dom';
 import { GameSettings } from '../types/game';
 import { DICTIONARIES, IDictionary } from '../dictionaries';

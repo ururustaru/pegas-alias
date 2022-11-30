@@ -32,8 +32,8 @@ export const ForumDetail: React.FC = (): JSX.Element => {
       <header>
         <BackLink text="Помогите разобраться с правилами" />
       </header>
-      <main>
-        <div className="forum">
+      <main className="forum">
+        <div className="forum__body">
           <ForumBody {...FORUM_STUB.subject} />
           <div className="forum__comments">
             {FORUM_STUB.comments &&

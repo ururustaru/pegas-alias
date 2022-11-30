@@ -1,0 +1,16 @@
+@import 'src/scss/base/variables';
+@import 'src/scss/base/mixins';
+
+.word-description {
+  font-size: 16px;
+  line-height: 1.3;
+  text-align: left;
+  
+  br {
+    display: none;
+  }
+  
+  .accent {
+    color: $note;
+  }
+}

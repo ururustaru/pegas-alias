@@ -8,7 +8,6 @@ import {
     GameStart,
     Login,
     SignUp,
-    NewGame,
     Profile,
     Rules,
     Leaders,
@@ -27,12 +26,11 @@ import {
   import './scss/style.scss';
 
 export const render = (url:string) => {
-    let Page:React.FC = Main;
+    let Page:React.FC;
     switch (url) {
         case '/': Page = Main; break;
         case '/login': Page = Login; break;
         case '/sign-up': Page = SignUp;  break;
-        case '/new-game': Page = NewGame; break;
         case '/profile': Page = Profile; break;
         case '/change-password': Page = ChangePassword; break;
         case '/rules': Page = Rules; break;
