@@ -21,7 +21,7 @@ export * from './comment/comment'
 export * from './comment-field/comment-field'
 export * from './canvas/canvas'
 export * from './fullscreen-btn/fullscreen-btn'
-
+export * from './descriptions/descriptions'
 // Modals
 export * from './modal/add-forum-modal'
 export * from './modal/edit-avatar-modal'
