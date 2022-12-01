@@ -6,10 +6,15 @@ import { Link } from 'react-router-dom'
 import { useToggle } from '../../services/hooks'
 import './page-navigation.scss'
 
+type Links = {
+  link: string,
+  text: string
+}
+
 export function PageNavigation(): JSX.Element {
   const [value, valueToggle] = useToggle(true)
 
-  const links = [
+  const links: Links[] = [
     { link: '/', text: 'Главная' },
     { link: '/login', text: 'Авторизация' },
     { link: '/sign-up', text: 'Регистрация' },
@@ -55,11 +60,11 @@ export function PageNavigation(): JSX.Element {
   )
 }
 
-const Links = ({ list }: any) => {
+const Links = ({ list }: { list: Links[] }) => {
   return (
     <ul>
       {list &&
-        list.map((x: any) => {
+        list.map((x: Links) => {
           return (
             <li key={x.link} className="page-navigation__item">
               <Link className="page-navigation__link" to={x.link}>

@@ -18,7 +18,7 @@ export const Main: React.FC = (): JSX.Element => {
     useEffect(() => {
       if (code) {
         signInYaOAuth({ code, redirect_uri: LOCAL_URL })
-        .then(response => {
+        .then(() => {
           dispatch(getUserApi())
           navigate('/')
         })

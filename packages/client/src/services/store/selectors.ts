@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect'
 import { Team } from '../../types/leaders'
+import { RootState } from './reducer'
 
-export const selectLeaders = (state: any) => state.leaders.leaders
-export const selectActiveFilter = (state: any) => state.leaders.activeFilter
+export const selectLeaders = (state:RootState) => state.leaders.leaders
+export const selectActiveFilter = (state: RootState) => state.leaders.activeFilter
 
 export const selectLeadersByFilter = createSelector(
   [selectLeaders, selectActiveFilter],
