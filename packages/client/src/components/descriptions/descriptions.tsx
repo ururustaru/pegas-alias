@@ -29,7 +29,7 @@ export const Descriptions: React.FC<string> = (word:string): JSX.Element => {
     <>
       <div className="descriptions">
         <div className="description">
-          DESCRIPTIONS {desc}
+          DESCRIPTIONS 
         </div>
       </div>
     </>

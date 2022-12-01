@@ -1,12 +1,12 @@
 import fs from 'node:fs'
 import path from 'node:path'
-
 import cors from 'cors'
-
 import express from 'express'
 import { createClientAndConnect } from './db'
+// импортируем работу с запросами для сервера
 import * as http from 'http'
-const iconv  = require('iconv-lite');
+// импортируем конвертер для кодировок т.к. удаленный сайт в window-1251
+import iconv from 'iconv-lite'
 // @ts-ignore
 import { render } from '../client/dist/ssr/entry-server.cjs'
 
@@ -37,32 +37,39 @@ export async function createServer(
   
   app.use(vite.middlewares)
   
+  // слушаем апи по этому адресу, заносим все что после слеша в переменную word
   app.use('/api/v1/desc/:word', async (req, res) => {
-    let word = req.params.word;
-
+    const word = req.params.word;
+    // делаем запос к сайту с описанием
     http.get('http://gramota.ru/slovari/dic/?bts=x&word=' + word, response => {
-      let data: any[] = [];
-      let teststring = '';
-
+      const data: Buffer[] = [];
+      // ответ приходит кусками, записываем куски (Buffer) в массив чтобы потом преобразовать разом
       response.on('data', chunk => {
         data.push(chunk);
-        teststring = teststring + chunk;
       });
 
       response.on('end', () => {
+        // Когда всё что можно нам пришло, конвертируем из кодировки window-1251 и превращаем Буфер в строку
         const dataHTML = iconv.decode(Buffer.concat(data),"cp1251").toString();
+        // Парсим (выбираем) нужные нам блок по фиксированным (на удаленном сайте) тегам
         const regex = new RegExp(/<div style="padding-left:50px">(.*)<br><br><\/div>/, 'gi')
+        // Здесь описываем разделители вариантов объяснение вида <b>1.</b> (заменим их на @@ или любой другой разделить)
         const regexDelimer = new RegExp(/<b>\d.<\/b>/, 'gi')
+        // Здесь описаны все теги, будем их вычищать
         const regexTag = new RegExp(/(<.*?>)/,'gi');
+        // exec - возвращает соответсвие регулярному выражению (нужным нам блок на странице с которым будем работать дальше)
         const results = regex.exec(dataHTML);
+        // убедимся что нам хоть что-то вернули)
         if (!results || !results[0]) {
           return;
         }
-        
+        // готовим поделить на блоки описаний, очищаем от тегов и загоняем разные варианты описания в массив
         let descs = results![0].replace(regexDelimer,'@@');
         descs = descs.replace(regexTag,'')
-        let array: string[] = descs.split('@@');
+        const array: string[] = descs.split('@@');
+        // первый элемент массива отбрасываем - там нет описания
         array.shift();
+        // формируем и возрващаем строку json
         const json = '{"word":"' + word + '","descriptions":' + JSON.stringify(array) + '}';
         res.status(200).set({ 'Content-Type': 'text/html; charset=utf-8' }).end(json)
       });
