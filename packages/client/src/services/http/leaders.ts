@@ -10,7 +10,7 @@ export const getLeadersAPI = (filter: FilterState) => {
     })
 }
 
-export const postAddLeaderAPI = (data: any) => {
+export const postAddLeaderAPI = (data: unknown) => {
   return apiInstance
     .post('/leaderboard', data)
     .then(response => response.data)

@@ -1,4 +1,4 @@
-export const arrayShuffle = (array: any[]) : any[] => {
+export const arrayShuffle = (array: unknown[]) : unknown[] => {
   let currentIndex = array.length,  randomIndex;
   while (currentIndex != 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
