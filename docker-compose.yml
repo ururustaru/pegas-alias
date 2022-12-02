@@ -1,5 +1,10 @@
 version: "3.9"
 
+# Создаем конейнер для обмена межу нашими контейнерами 
+volumes:
+  client-store:
+    external: true
+
 services:
     client:
         container_name: prakticum-client
@@ -15,6 +20,10 @@ services:
         environment:
           - CLIENT_PORT=${CLIENT_PORT}
           - SERVER_PORT=${SERVER_PORT}
+        volumes:
+          # подключаем контейнер обмена как папку ssr-store
+          - client-store:/app/client/dist/ssr-store
+
     server:
         container_name: prakticum-server
         image: prackicum-server
@@ -28,6 +37,15 @@ services:
             - "${SERVER_PORT}:${SERVER_PORT}"
         environment:
           SERVER_PORT: ${SERVER_PORT}
+        volumes:
+          # подключается папка из нашего репозитория, если пуста то будет пусто
+          - ./packages/client/dist/:/app/client_local/dist/
+          # подключаем контейнер обмена как папку /client
+          - client-store:/client
+        # добавляем зависимость от клиента, чтобы не собрался раньше него
+        depends_on:
+        - client
+        - postgres
 
     postgres:
       image: postgres:14     

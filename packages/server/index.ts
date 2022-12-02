@@ -8,7 +8,7 @@ import express from 'express'
 import { createClientAndConnect } from './db'
 
 // @ts-ignore
-import { render } from '../client/dist/ssr/entry-server.cjs'
+//import { render } from '../client/dist/ssr/entry-server.cjs'
 
 dotenv.config()
 
@@ -22,7 +22,7 @@ export async function createServer(
 
   //createClientAndConnect()
   let template:string;
-
+/*
   const vite = await ( await import('vite') ).createServer({
     root : void 0,
     server: {
@@ -37,16 +37,16 @@ export async function createServer(
     },
     appType: 'custom'
   })
-  
+  */
   // use vite's connect instance as middleware
-  app.use(vite.middlewares)
+//  app.use(vite.middlewares)
   app.use('/', express.static('../client/dist/client/'))
 
   app.get('/*', async (req, res) => {
 
-    const result = render(req.originalUrl)
+    const result = 'render(req.originalUrl)'
     template = fs.readFileSync(resolve('../client/dist/client/index.html'), 'utf-8')
-    template = await vite.transformIndexHtml(req.originalUrl, template)
+//    template = await vite.transformIndexHtml(req.originalUrl, template)
     const html = template.replace(`<div id="root"></div>`,`<div id="root">${result}</div>`)
     res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
   })
@@ -55,7 +55,8 @@ export async function createServer(
     console.log(`Server is listening on port: ${port}`)
   })
 
-  return { app, vite };
+//  return { app, vite };
+  return { app };
 }
 
 createServer().then( () => {
