@@ -136,7 +136,7 @@ export async function createServer(
   app.get('/*', async (req, res) => {
     const result = render(req.originalUrl)
     template = fs.readFileSync(resolve('../client/dist/client/index.html'), 'utf-8')
-    template = await vite.transformIndexHtml(req.originalUrl, template)
+//    template = await vite.transformIndexHtml(req.originalUrl, template)
     const html = template.replace(`<div id="root"></div>`,`<div id="root">${result}</div>`)
     res.status(200).set({ 'Content-Type': 'text/html' }).send(html)
   })
@@ -145,7 +145,8 @@ export async function createServer(
     console.log(`Server is listening on port: ${port}`)
   })
 
-  return { app, vite };
+//  return { app, vite };
+  return { app };
 }
 
 createServer().then( () => {
