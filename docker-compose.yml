@@ -22,7 +22,7 @@ services:
           - SERVER_PORT=${SERVER_PORT}
         volumes:
           # подключаем контейнер обмена как папку ssr-store
-          - client-store:/app/client/dist/ssr-store
+          - client-store:/app/client/dist/ssr
 
     server:
         container_name: prakticum-server
@@ -39,9 +39,9 @@ services:
           SERVER_PORT: ${SERVER_PORT}
         volumes:
           # подключается папка из нашего репозитория, если пуста то будет пусто
-          - ./packages/client/dist/:/app/client_local/dist/
+          - ./packages/client/dist/:/client/dist/
           # подключаем контейнер обмена как папку /client
-          - client-store:/client
+          - client-store:/client/dist/ssr2
         # добавляем зависимость от клиента, чтобы не собрался раньше него
         depends_on:
         - client
