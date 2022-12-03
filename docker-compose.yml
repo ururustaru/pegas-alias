@@ -22,7 +22,7 @@ services:
           - SERVER_PORT=${SERVER_PORT}
         volumes:
           # подключаем контейнер обмена как папку ssr-store
-          - client-store:/app/client/dist/ssr-store
+          - client-store:/app/client/dist/ssr
 
     server:
         container_name: prakticum-server
