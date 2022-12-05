@@ -10,6 +10,15 @@ import iconv from 'iconv-lite'
 // @ts-ignore
 import { render } from '../client/dist/ssr/entry-server.cjs'
 
+function escapeHtml(string: string): string {
+  return string
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&#039;")
+    .replace(/'/g, "&#039;");
+}
+
 export async function createServer(
   hmrPort = void 0
 ){
@@ -40,7 +49,7 @@ export async function createServer(
   // слушаем апи по этому адресу, заносим все что после слеша в переменную word
   app.use('/api/v1/desc/:word', async (req, res) => {
     const word = req.params.word;
-    // делаем запос к сайту с описанием
+    // делаем запрос к сайту с описанием
     http.get('http://gramota.ru/slovari/dic/?bts=x&word=' + word, response => {
       const data: Buffer[] = [];
       // ответ приходит кусками, записываем куски (Buffer) в массив чтобы потом преобразовать разом
@@ -53,24 +62,28 @@ export async function createServer(
         const dataHTML = iconv.decode(Buffer.concat(data),"cp1251").toString();
         // Парсим (выбираем) нужные нам блок по фиксированным (на удаленном сайте) тегам
         const regex = new RegExp(/<div style="padding-left:50px">(.*)<br><br><\/div>/, 'gi')
-        // Здесь описываем разделители вариантов объяснение вида <b>1.</b> (заменим их на @@ или любой другой разделить)
-        const regexDelimer = new RegExp(/<b>\d.<\/b>/, 'gi')
-        // Здесь описаны все теги, будем их вычищать
-        const regexTag = new RegExp(/(<.*?>)/,'gi');
-        // exec - возвращает соответсвие регулярному выражению (нужным нам блок на странице с которым будем работать дальше)
+        // exec - возвращает соответствие регулярному выражению (нужным нам блок на странице с которым будем
+        // работать дальше)
         const results = regex.exec(dataHTML);
         // убедимся что нам хоть что-то вернули)
         if (!results || !results[0]) {
           return;
         }
+        
+        // TODO: Согласовать, нужна ли нам зачистка тегов 
+        // Здесь описаны все теги, будем их вычищать
+        // const regexTag = new RegExp(/(<.*?>)/,'gi');
+        // Здесь описываем разделители вариантов объяснение вида <b>1.</b> (заменим их на @@ или любой другой разделить)
+        // const regexDelimer = new RegExp(/<b>\d.<\/b>/, 'gi')
         // готовим поделить на блоки описаний, очищаем от тегов и загоняем разные варианты описания в массив
-        let descs = results![0].replace(regexDelimer,'@@');
-        descs = descs.replace(regexTag,'')
-        const array: string[] = descs.split('@@');
+        // let descs = results?.[0].replace(regexDelimer,'@@');
+        // descs = descs.replace(regexTag,'')
+        // const array: string[] = descs.split('@@');
         // первый элемент массива отбрасываем - там нет описания
-        array.shift();
-        // формируем и возрващаем строку json
-        const json = '{"word":"' + word + '","descriptions":' + JSON.stringify(array) + '}';
+        // array.shift();
+        // формируем и возвращаем строку json
+        
+        const json = '{"word":"' + word + '","description": "' + escapeHtml(results[0]) + '"}';
         res.status(200).set({ 'Content-Type': 'text/html; charset=utf-8' }).end(json)
       });
     }).on('error', err => {
@@ -81,7 +94,6 @@ export async function createServer(
   app.use('/', express.static('../client/dist/client/'))
 
   app.get('/*', async (req, res) => {
-
     const result = render(req.originalUrl)
     template = fs.readFileSync(resolve('../client/dist/client/index.html'), 'utf-8')
     template = await vite.transformIndexHtml(req.originalUrl, template)

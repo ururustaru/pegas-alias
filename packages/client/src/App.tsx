@@ -21,7 +21,7 @@ import {
   NotFoundPage,
   RoundEnd,
 } from './pages'
-import { PageNavigation, Descriptions } from './components'
+import { PageNavigation } from './components'
 
 import './scss/style.scss';
 import { getUserApi } from './services/store/user';
@@ -45,7 +45,6 @@ export const App: React.FC = () => {
     <div className="app">
       <Provider store={store}>
       <Router>
-        <Descriptions word="машина" />
         <PageNavigation />
         <Routes>
           <Route path="/" element={<Main />} />

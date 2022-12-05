@@ -18,10 +18,7 @@ export function WordDescriptionModal(props: IModal) {
   return (
     <Modal isOpen={ props.isOpen } close={ props.close }>
       <h2 className="modal__title">{ props.title }</h2>
-
-      <div className="word-description">
-        <div dangerouslySetInnerHTML={{ __html: cleanDescription }} />
-      </div>
+      <div className="word-description" dangerouslySetInnerHTML={{ __html: cleanDescription }} />
     </Modal>
   )
 }

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { GameProcess, GameSettings, RoundWord } from '../../types/game';
 import { useAppSelector, useToggle } from '../../services/hooks';
-import { wordsDeclention } from '../../utils';
+import { wordsDeclention, decodeHtml } from '../../utils';
 import {
   changeRoundWordScore,
   changeActiveTeam,
@@ -14,9 +14,9 @@ import {
   setWinner,
   clearGameProcess,
   setNextRound,
-  changeWord, 
-  changeTeamScore, 
-  clearGameSettings, 
+  changeWord,
+  changeTeamScore,
+  clearGameSettings,
   changeRoundScore
 } from '../../services/store/game';
 
@@ -25,10 +25,13 @@ import questionIcon from './../../assets/images/question.svg';
 import crossIcon from './../../assets/images/cross-red.svg';
 import deleteIcon from './../../assets/images/trash-gray.svg';
 import { WordDescriptionModal } from '../modal/word-description-modal';
+import { getPublicData } from '../../services/http/game';
 
 const nullTeamValue = 'Никто';
+const HOST_ADDRESS = 'http://localhost:3001';
+const DESC_API_PATH = '/api/v1/desc/';
 
-export function RoundBoard(): JSX.Element {
+export const RoundBoard: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const game: GameSettings = useAppSelector(state => state.gameSettings);
@@ -37,6 +40,7 @@ export function RoundBoard(): JSX.Element {
   const activeTeam = game.activeTeams[process.activeTeamIndex];
   const [isSelectTeamModalOpen, toggleSelectTeamModal] = useToggle();
   const [isWordDescModalOpen, toggleWordDescModal] = useToggle();
+  
   const wordForAllOptions = game.activeTeams.slice();
   const wordForAllInitial: RoundWord = {
     word: '',
@@ -44,8 +48,9 @@ export function RoundBoard(): JSX.Element {
     isForAllWordWinner: ''
   };
   const wordDescriptionInitial = {
-    title: 'вакханалия',
-    description: `<div><b>ВАКХАН<span class="accent">А</span>ЛИЯ,</b> -и; <b><i>ж.</i></b> [лат. bacchanalia] <b>1.</b> <b><i>обычно мн.:</i></b> вакхан<span class="accent">а</span>лии, -ий. В Древнем Риме: празднества в честь бога вина и веселья Вакха. <b>2.</b> <i>чего</i> <i>или с опр.</i> <i>Книжн.</i> Неистовое, безудержное проявление чего-л.; буйство, разгул. <i>В. звуков, красок.</i> <i>В. злобы, ненависти, насилия.</i> <i>Нескончаемая в.</i> <b>&lt;</b><b>Вакхан<span class="accent">а</span>льный,</b> -ая, -ое <i>(2 зн.)</i> <br><br></div>`
+    word: '',
+    description: '',
+    descriptionError: false
   }
   
   wordForAllOptions.push({
@@ -53,6 +58,7 @@ export function RoundBoard(): JSX.Element {
     score: 0
   });
   const [wordForAll, setLastWordWinner] = useState(wordForAllInitial);
+  const [wordDesc, setWordDesc] = useState(wordDescriptionInitial);
 
   useEffect(() => {
     if (game.lastWordForAll) {
@@ -175,7 +181,17 @@ export function RoundBoard(): JSX.Element {
               events={{
                 onClick: (e) => {
                   e.preventDefault();
-                  toggleWordDescModal();
+                  getPublicData(HOST_ADDRESS + DESC_API_PATH + item.word)
+                    .then((result: {word: string, description: string}) => {
+                      if (result && result.description) {
+                        setWordDesc({
+                          word: result.word,
+                          description: decodeHtml(result.description),
+                          descriptionError: false
+                        })
+                        toggleWordDescModal();
+                      }
+                    })
                 }
               }}
             />
@@ -214,7 +230,17 @@ export function RoundBoard(): JSX.Element {
                 onClick: (e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  toggleWordDescModal();
+                  getPublicData(HOST_ADDRESS + DESC_API_PATH + wordForAll.word)
+                    .then((result: {word: string, description: string}) => {
+                      if (result && result.description) {
+                        setWordDesc({
+                          word: result.word,
+                          description: decodeHtml(result.description),
+                          descriptionError: false
+                        })
+                        toggleWordDescModal();
+                      }
+                    })
                 }
               }}
             />
@@ -290,8 +316,8 @@ export function RoundBoard(): JSX.Element {
       <WordDescriptionModal
         isOpen={isWordDescModalOpen}
         close={() => toggleWordDescModal()}
-        title={`Значение слова "${wordDescriptionInitial.title}"`}
-        description={wordDescriptionInitial.description}
+        title={`Значение слова "${wordDesc.word}"`}
+        description={wordDesc.description}
       />
     </form>
   )
