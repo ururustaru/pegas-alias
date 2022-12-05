@@ -22,11 +22,11 @@ import {
   NotFoundPage,
   RoundEnd,
 } from './pages'
-import { PageNavigation } from './components'
+import { PageNavigation, FullscreenBtn } from './components'
 
 import './scss/style.scss';
 import { getUserApi } from './services/store/user';
-import { FullscreenBtn } from './components/fullscreen-btn/fullscreen-btn';
+import { Descriptions } from './components';
 
 export const App: React.FC = () => {
 //  export default function App() {
@@ -41,12 +41,12 @@ export const App: React.FC = () => {
     doc.style.setProperty('--app-height', `${window.innerHeight}px`)
   }
   calcAppHeight();
-
   return (
     <div className="app">
       <Provider store={store}>
       <Router>
         <FullscreenBtn />
+        <Descriptions />
         <PageNavigation />
         <Routes>
           <Route path="/" element={<Main />} />
