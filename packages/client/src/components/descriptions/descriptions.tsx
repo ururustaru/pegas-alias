@@ -1,17 +1,20 @@
 import React, { useEffect }  from 'react'
 import { useDispatch } from 'react-redux';
 
-export const Descriptions: React.FC<string> = (word:string): JSX.Element => {
+interface IDesc {
+  word: string
+}
+
+export const Descriptions: React.FC<any> = (word: IDesc): JSX.Element => {
   const dispatch = useDispatch();
   const SITE_ADDRESS = 'http://localhost'
-  const url = SITE_ADDRESS + ':3001' + '/api/v1/desc/' + word;
+  const url = SITE_ADDRESS + ':3001' + '/api/v1/desc/' + word.word;
 
-/* вынести в события и хранилища */
-
-  
+  /* вынести в события и хранилища */
   const UPD_DESC = "updDescription";
 
-  function description(desc:any) {
+  function description(desc: Promise<any>) {
+    console.log(desc)
     return { 
         type: UPD_DESC,
         desc

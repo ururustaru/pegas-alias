@@ -45,7 +45,7 @@ export const App: React.FC = () => {
     <div className="app">
       <Provider store={store}>
       <Router>
-        <Descriptions />
+        <Descriptions word="машина" />
         <PageNavigation />
         <Routes>
           <Route path="/" element={<Main />} />
