@@ -3,7 +3,8 @@ import { getLeadersApi } from './leadersThunk'
 
 const initialState = {
   leaders: [],
-  status: ''
+  status: '',
+  activeFilter:''
 }
 
 const leadersSlice = createSlice({
@@ -17,7 +18,7 @@ const leadersSlice = createSlice({
       })
       .addCase(getLeadersApi.fulfilled, (state, action) => {
         state.status = 'resolved'
-        state.leaders = action.payload.map((item: any) => item.data)
+        state.leaders = action.payload.map((item: Record<string, unknown>) => item.data)
       })
   }
 })

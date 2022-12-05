@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Intro, FormField, Button } from '../components'
 import { registerUser } from '../services/http/login'
-import { errorToString, pattern } from '../utils'
+import { ErrorMessage, errorToString, pattern } from '../utils'
 
 import './../scss/form/form.scss'
 
@@ -41,7 +41,7 @@ export const SignUp: React.FC = (): JSX.Element => {
                 message: 'Некорректно введена почта',
               },
             })}
-            errorText={errorToString(errors?.email)}
+            errorText={errorToString(errors?.email as ErrorMessage)}
             placeholder="Электронная почта"
           />
           <FormField
@@ -61,7 +61,7 @@ export const SignUp: React.FC = (): JSX.Element => {
               },
             })}
             placeholder="Логин"
-            errorText={errorToString(errors?.login)}
+            errorText={errorToString(errors?.login as ErrorMessage)}
           />
           <FormField
             register={register('first_name', {
@@ -72,7 +72,7 @@ export const SignUp: React.FC = (): JSX.Element => {
               },
             })}
             placeholder="Имя"
-            errorText={errorToString(errors?.first_name)}
+            errorText={errorToString(errors?.first_name as ErrorMessage)}
           />
           <FormField
             register={register<'second_name'>('second_name', {
@@ -83,7 +83,7 @@ export const SignUp: React.FC = (): JSX.Element => {
               },
             })}
             placeholder="Фамилия"
-            errorText={errorToString(errors?.second_name)}
+            errorText={errorToString(errors?.second_name as ErrorMessage)}
           />
           <FormField
             register={register('phone', {
@@ -94,7 +94,7 @@ export const SignUp: React.FC = (): JSX.Element => {
               },
             })}
             placeholder="Телефон"
-            errorText={errorToString(errors?.phone)}
+            errorText={errorToString(errors?.phone as ErrorMessage)}
           />
           <FormField
             register={register('password', {
@@ -106,7 +106,7 @@ export const SignUp: React.FC = (): JSX.Element => {
             })}
             type="password"
             placeholder="Пароль"
-            errorText={errorToString(errors?.password)}
+            errorText={errorToString(errors?.password as ErrorMessage)}
           />
           <FormField
             register={register('confirm_password', {
@@ -120,7 +120,7 @@ export const SignUp: React.FC = (): JSX.Element => {
             })}
             type="password"
             placeholder="Пароль ещё раз"
-            errorText={errorToString(errors?.confirm_password)}
+            errorText={errorToString(errors?.confirm_password as ErrorMessage)}
           />
         </div>
 

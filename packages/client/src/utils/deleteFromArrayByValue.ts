@@ -1,5 +1,5 @@
-export const deleteByValue = (givenArray: any[], prop: string, value: string | number | boolean): any[] => {
-  return givenArray.filter((item: any) => {
+export const deleteByValue = <T>(givenArray: T[], prop: keyof T, value: string | number | boolean): T[] => {
+  return givenArray.filter((item: T) => {
     return item[prop] !== value;
   });
 }

@@ -1,12 +1,11 @@
-import { AnyAction } from '@reduxjs/toolkit'
-import React, { useCallback } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate, useNavigation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { FormField, Button, Intro } from '../components'
 import { LOCAL_URL } from '../constants'
 import { loginUser, signUpYaOAuth } from '../services/http/login'
-import { errorToString, pattern } from '../utils'
+import { ErrorMessage, errorToString, pattern } from '../utils'
 
 import './../scss/form/form.scss'
 
@@ -58,7 +57,7 @@ export const Login: React.FC = (): JSX.Element => {
             })}
             placeholder="Логин"
             value="nini2"
-            errorText={errorToString(errors?.login)}
+            errorText={errorToString(errors?.login as ErrorMessage)}
           />
 
           <FormField
@@ -72,7 +71,7 @@ export const Login: React.FC = (): JSX.Element => {
             type="password"
             placeholder="Пароль"
             value="Qwerty!23456"
-            errorText={errorToString(errors?.password)}
+            errorText={errorToString(errors?.password as ErrorMessage)}
           />
         </div>
 

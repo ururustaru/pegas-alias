@@ -5,7 +5,7 @@ interface ICheckBox {
   classes?: string
   text?: string
   isChecked: boolean
-  onToggle: any
+  onToggle: () => void
 }
 
 export function CheckBox(props: ICheckBox) {
