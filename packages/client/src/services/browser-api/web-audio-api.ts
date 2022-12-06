@@ -1,4 +1,8 @@
-const context = new AudioContext()
+let context: AudioContext;
+
+if (typeof window !== 'undefined') {
+  context = new AudioContext()
+}
 
 const playNote = (frequency: number, startTime: number, duration: number) => {
   const osc1 = context.createOscillator(),
@@ -28,7 +32,9 @@ const playNote = (frequency: number, startTime: number, duration: number) => {
 }
 
 const playStartSound = () => {
-  playNote(550, context.currentTime, 0.1)
+  if (typeof window !== 'undefined') {
+    playNote(550, context.currentTime, 0.1)
+  }
 }
 
 export default playStartSound;
