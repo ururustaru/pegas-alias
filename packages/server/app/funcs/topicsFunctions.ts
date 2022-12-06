@@ -17,7 +17,7 @@ export async function getTopicById(id: number) {
         model: Comments,
         attributes: ['message', 'author_name', 'author_id', 'createdAt', 'updatedAt', 'topic_id'],
       }
-    ],
+    ]
   })
 }
 
@@ -27,9 +27,8 @@ type pager = {
 }
 
 // Получить все топики форума и связанные комменты, для определения последнего
-
 export async function getAllTopics(props: pager) {
-  const { offset, limit } = props;
+  const { offset, limit } = props
   return Topics.findAndCountAll({
     offset: offset || 0,
     limit: limit || 10,
@@ -38,6 +37,6 @@ export async function getAllTopics(props: pager) {
         model: Comments,
         attributes: ['message', 'author_name', 'author_id', 'createdAt', 'updatedAt', 'topic_id'],
       }
-    ],
+    ]
   })
 }

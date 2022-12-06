@@ -41,16 +41,7 @@ export function Leaderboard() {
   const getPercentOfVictories = (victories: number, games: number): number => {
     return (victories / games) * 100
   }
-// .get('/api/topics', { params: { id: 100003 } })
-
-  const chichi = () => {
-    serverInstance
-      .get('/api/topics')
-      .then(response => response.data)
-      .catch(error => {
-        console.log(error)
-      })
-  }
+  
   useEffect(() => {
     setFilter({
       ...filter,
@@ -68,7 +59,6 @@ export function Leaderboard() {
       <div className='leaderboard__sort'>
         <span className='leaderboard__sort-title'>Сортировать:</span>
         <div className='leaderboard__options'>
-          <button onClick={()=>chichi()}>chop</button> 
           <Button
             events={{ onClick: () => changeFilter('victories') }}
             text='По количеству побед'

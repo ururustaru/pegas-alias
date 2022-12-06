@@ -20,9 +20,28 @@ export const sequelizeOptions: SequelizeOptions = {
 
 export const sequelize = new Sequelize(sequelizeOptions)
 
-export const Topics = sequelize.define('Topics', topicModel, {})
-export const Comments = sequelize.define('Comments', commentModel, {})
-export const Like = sequelize.define('Like', likeModel, {})
+export const Topics = sequelize.define(
+  'Topics', 
+  topicModel, 
+  {
+    tableName: 'topics', 
+    initialAutoIncrement: '100'
+  })
+
+export const Comments = sequelize.define(
+  'Comments', 
+  commentModel, 
+  {
+    tableName: 'comments',
+    initialAutoIncrement: '1000'
+  })
+export const Like = sequelize.define(
+  'Like',
+  likeModel, 
+  {
+    tableName: 'like',
+    initialAutoIncrement: '100000'
+  })
 
 Topics.hasMany(Comments, {foreignKey: 'topic_id'})
 
@@ -53,10 +72,10 @@ export function startApp() {
       })
       Topics.create({
         topic_id: 100002,
-        title: 'Жылды оха ганкай',
-        question: 'Артынге казы  же зе!?',
+        title: 'Спасибо авторам игры',
+        question: 'Это же самый топ оф зе топ оф зе топ из всех игр',
         author_id: 1002,
-        author_name: 'Микоглай'
+        author_name: 'Рикардо'
       })
       Topics.create({
         topic_id: 100003,
@@ -92,16 +111,19 @@ export function startApp() {
         like_id: 1000000001,
         author_id: 1002,
         comment_id: 100000001,
+        topic_id: 100003
       })      
       Like.create({
         like_id: 1000000002,
         author_id: 1005,
         comment_id: 100000001,
+        topic_id: 100003
       })      
       Like.create({
         like_id: 1000000003,
         author_id: 1006,
         comment_id: 100000001,
+        topic_id: 100003
       })
     }
   )

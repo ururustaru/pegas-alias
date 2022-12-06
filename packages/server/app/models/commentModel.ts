@@ -15,6 +15,7 @@ export const commentModel: ModelAttributes<Model, IComment> = {
     type: DataType.INTEGER,
     allowNull: false,
     primaryKey: true,
+    autoIncrement: true
   },
   message: {
     type: DataType.STRING,

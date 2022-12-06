@@ -8,10 +8,10 @@ import express from 'express'
 import { createClientAndConnect } from './db'
 // @ts-ignore
 import { render } from '../client/dist/ssr/entry-server.cjs'
-// import topicsRouter from './app/routers/topicsRouter'
-// import commentsRouter from './app/routers/commentsRouter'
+import topicsRouter from './app/routers/topicsRouter'
+import commentsRouter from './app/routers/commentsRouter'
 import { startApp } from './app/config/db.config'
-
+import bodyParser from 'body-parser'
 
 
 dotenv.config()
@@ -20,10 +20,17 @@ export async function createServer(
   hmrPort = void 0
 ){
   const app = express()
+  app.use(bodyParser.json())
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }))
   app.use(cors())
   const port = Number(process.env.SERVER_PORT) || 3001
   const resolve = (p: string) => path.resolve(__dirname, p)
 
+  app.use('/api/topics', topicsRouter)
+  app.use('/api/comments', commentsRouter)
+  
   //createClientAndConnect()
   let template:string;
 
@@ -45,10 +52,7 @@ export async function createServer(
   // use vite's connect instance as middleware
   app.use(vite.middlewares)
   app.use('/', express.static('../client/dist/client/'))
-    
-  // app.use('/api/topics', topicsRouter)
-  // app.use('/api/comments', commentsRouter)
-
+  
   app.get('/*', async (req, res) => {
 
     const result = render(req.originalUrl)

@@ -12,8 +12,9 @@ export interface ITopic {
 export const topicModel: ModelAttributes<Model, ITopic> = {
   topic_id: {
     type: DataType.INTEGER,
-    allowNull: false,
     primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
   },
   title: {
     type: DataType.STRING,
@@ -30,5 +31,5 @@ export const topicModel: ModelAttributes<Model, ITopic> = {
   author_id: {
     type: DataType.INTEGER,
     allowNull: false
-  }
+  },
 }

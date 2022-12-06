@@ -17,6 +17,7 @@ export const createNewComment = async (req: Request, res: Response) => {
 }
 
 // Удалить комментарий
+
 export const deleteCommentById = async (req: Request, res: Response) => {
   const { id } = req.params
   await processResult(() => {
