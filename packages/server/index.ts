@@ -47,7 +47,7 @@ export async function createServer(
   app.use(vite.middlewares)
   
   // слушаем апи по этому адресу, заносим все что после слеша в переменную word
-  app.use('/api/v1/desc/:word', async (req, res) => {
+  app.get('/api/v1/desc/:word', async (req, res) => {
     const word = req.params.word;
     // делаем запрос к сайту с описанием
     http.get('http://gramota.ru/slovari/dic/?bts=x&word=' + word, response => {
@@ -67,6 +67,8 @@ export async function createServer(
         const results = regex.exec(dataHTML);
         // убедимся что нам хоть что-то вернули)
         if (!results || !results[0]) {
+          // возвращаем ошибку 404
+          res.status(404).set({ 'Content-Type': 'text/html; charset=utf-8' }).send('сами не знаем что это')
           return;
         }
         
@@ -79,12 +81,15 @@ export async function createServer(
         // let descs = results?.[0].replace(regexDelimer,'@@');
         // descs = descs.replace(regexTag,'')
         // const array: string[] = descs.split('@@');
+        // если элементов описания больше одного
+        //if (array.length > 1) {
         // первый элемент массива отбрасываем - там нет описания
-        // array.shift();
+        //  array.shift();
+        //}
         // формируем и возвращаем строку json
         
         const json = '{"word":"' + word + '","description": "' + escapeHtml(results[0]) + '"}';
-        res.status(200).set({ 'Content-Type': 'text/html; charset=utf-8' }).end(json)
+        res.status(200).set({ 'Content-Type': 'text/html; charset=utf-8' }).send(json)
       });
     }).on('error', err => {
       console.log('Error: ', err.message);
@@ -98,7 +103,7 @@ export async function createServer(
     template = fs.readFileSync(resolve('../client/dist/client/index.html'), 'utf-8')
     template = await vite.transformIndexHtml(req.originalUrl, template)
     const html = template.replace(`<div id="root"></div>`,`<div id="root">${result}</div>`)
-    res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
+    res.status(200).set({ 'Content-Type': 'text/html' }).send(html)
   })
 
   app.listen(port, () => {
