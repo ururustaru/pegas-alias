@@ -5,6 +5,7 @@ import express from 'express'
 import { createClientAndConnect } from './db'
 // импортируем работу с запросами для сервера
 import * as http from 'http'
+import * as https from 'https'
 // импортируем конвертер для кодировок т.к. удаленный сайт в window-1251
 import iconv from 'iconv-lite'
 // @ts-ignore
@@ -49,51 +50,71 @@ export async function createServer(
   // слушаем апи по этому адресу, заносим все что после слеша в переменную word
   app.get('/api/v1/desc/:word', async (req, res) => {
     const word = req.params.word;
-    // делаем запрос к сайту с описанием
-    http.get('http://gramota.ru/slovari/dic/?bts=x&word=' + word, response => {
+    let isWiktionaryOrgEmpty = false;
+
+    // делаем запрос к сайту ru.wiktionary.org
+    https.get('https://ru.wiktionary.org/wiki/' + word, response => {
       const data: Buffer[] = [];
       // ответ приходит кусками, записываем куски (Buffer) в массив чтобы потом преобразовать разом
       response.on('data', chunk => {
         data.push(chunk);
       });
-
+      
       response.on('end', () => {
         // Когда всё что можно нам пришло, конвертируем из кодировки window-1251 и превращаем Буфер в строку
-        const dataHTML = iconv.decode(Buffer.concat(data),"cp1251").toString();
+        const dataHTML = iconv.decode(Buffer.concat(data),"utf8").toString();
         // Парсим (выбираем) нужные нам блок по фиксированным (на удаленном сайте) тегам
-        const regex = new RegExp(/<div style="padding-left:50px">(.*)<br><br><\/div>/, 'gi')
+        const regex = new RegExp(/<ol>(.*?)<\/ol>/, 'g')
         // exec - возвращает соответствие регулярному выражению (нужным нам блок на странице с которым будем
         // работать дальше)
-        const results = regex.exec(dataHTML);
-        // убедимся что нам хоть что-то вернули)
+        const results = regex.exec(dataHTML.replace(/\n/g, ''));
+        
+        // выходим, если нет значения
         if (!results || !results[0]) {
-          // возвращаем ошибку 404
-          res.status(404).set({ 'Content-Type': 'text/html; charset=utf-8' }).send('сами не знаем что это')
+          isWiktionaryOrgEmpty = true;
           return;
         }
-        
-        // TODO: Согласовать, нужна ли нам зачистка тегов 
-        // Здесь описаны все теги, будем их вычищать
-        // const regexTag = new RegExp(/(<.*?>)/,'gi');
-        // Здесь описываем разделители вариантов объяснение вида <b>1.</b> (заменим их на @@ или любой другой разделить)
-        // const regexDelimer = new RegExp(/<b>\d.<\/b>/, 'gi')
-        // готовим поделить на блоки описаний, очищаем от тегов и загоняем разные варианты описания в массив
-        // let descs = results?.[0].replace(regexDelimer,'@@');
-        // descs = descs.replace(regexTag,'')
-        // const array: string[] = descs.split('@@');
-        // если элементов описания больше одного
-        //if (array.length > 1) {
-        // первый элемент массива отбрасываем - там нет описания
-        //  array.shift();
-        //}
+
         // формируем и возвращаем строку json
-        
-        const json = '{"word":"' + word + '","description": "' + escapeHtml(results[0]) + '"}';
-        res.status(200).set({ 'Content-Type': 'text/html; charset=utf-8' }).send(json)
+        const json = '{"word":"' + word + '","explanation": "' + escapeHtml(results[0]) + '"}';
+        res.status(200).set({ 'Content-Type': 'text/html; charset=utf-8' }).send(json);
       });
-    }).on('error', err => {
-      console.log('Error: ', err.message);
-    });
+    })
+
+    // Если запрос с словарю wiktionary.org не дал результатов, пробуем словарь gramota.ru
+    if (isWiktionaryOrgEmpty) {
+      http.get('http://gramota.ru/slovari/dic/?bts=x&word=' + word, response => {
+        const data: Buffer[] = [];
+        // ответ приходит кусками, записываем куски (Buffer) в массив чтобы потом преобразовать разом
+        response.on('data', chunk => {
+          data.push(chunk);
+        });
+
+        response.on('end', () => {
+          // Когда всё что можно нам пришло, конвертируем из кодировки window-1251 и превращаем Буфер в строку
+          const dataHTML = iconv.decode(Buffer.concat(data),"cp1251").toString();
+          // Парсим (выбираем) нужные нам блок по фиксированным (на удаленном сайте) тегам
+          const regex = new RegExp(/<div style="padding-left:50px">(.*)<br><br><\/div>/, 'gi')
+          // exec - возвращает соответствие регулярному выражению (нужным нам блок на странице с которым будем
+          // работать дальше)
+          const results = regex.exec(dataHTML);
+          // убедимся что нам хоть что-то вернули)
+          if (!results || !results[0]) {
+            // возвращаем ошибку 404
+            res.status(404).set({ 'Content-Type': 'text/html; charset=utf-8' }).send('сами не знаем что это')
+            return;
+          }
+
+          // Здесь описываем разделители вариантов объяснение вида <b>1.</b>
+          const regexDelimer = new RegExp(/<b>\d.<\/b>/, 'gi')
+          results[0] = results[0].replace(regexDelimer, '</p><p>');
+
+          // формируем и возвращаем строку json
+          const json = '{"word":"' + word + '","explanation": "' + escapeHtml(results[0]) + '"}';
+          res.status(200).set({ 'Content-Type': 'text/html; charset=utf-8' }).send(json)
+        });
+      })
+    }
   });
 
   app.use('/', express.static('../client/dist/client/'))

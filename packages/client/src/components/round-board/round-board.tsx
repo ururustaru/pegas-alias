@@ -24,10 +24,11 @@ import checkIcon from './../../assets/images/check.svg'
 import questionIcon from './../../assets/images/question.svg';
 import crossIcon from './../../assets/images/cross-red.svg';
 import deleteIcon from './../../assets/images/trash-gray.svg';
-import { WordDescriptionModal } from '../modal/word-description-modal';
+import { WordExplanationModal } from '../modal/word-explanation-modal';
 import { getPublicData } from '../../services/http/game';
 
 const nullTeamValue = 'Никто';
+const explanationTestWord = 'машина';
 const HOST_ADDRESS = 'http://localhost:3001';
 const DESC_API_PATH = '/api/v1/desc/';
 
@@ -49,8 +50,8 @@ export const RoundBoard: React.FC = () => {
   };
   const wordDescriptionInitial = {
     word: '',
-    description: '',
-    descriptionError: false
+    explanation: '',
+    explanationError: false
   }
   
   wordForAllOptions.push({
@@ -59,6 +60,7 @@ export const RoundBoard: React.FC = () => {
   });
   const [wordForAll, setLastWordWinner] = useState(wordForAllInitial);
   const [wordDesc, setWordDesc] = useState(wordDescriptionInitial);
+  const [isExplanationConnected, toggleExplanationConnected] = useState(false);
 
   useEffect(() => {
     if (game.lastWordForAll) {
@@ -71,6 +73,17 @@ export const RoundBoard: React.FC = () => {
 
   useEffect(() => {
     dispatch(changeWord());
+  }, [])
+
+  useEffect(() => {
+    getPublicData(HOST_ADDRESS + DESC_API_PATH + explanationTestWord)
+      .then((result: {word: string, explanation: string}) => {
+        if (result && result.explanation) {
+          toggleExplanationConnected(true)
+        } else {
+          toggleExplanationConnected(false)
+        }
+      })
   }, [])
 
   // Возвращает css-класс состояния очков [http://joxi.ru/KAxQy8wCw1ongr]
@@ -175,26 +188,30 @@ export const RoundBoard: React.FC = () => {
                 onClick: (e) => changeWordScore(e, item, 0)
               }}
             />
-            <Button
+            {isExplanationConnected && <Button
               classes="button--icon button--white round-board__question-button"
               icon={<img src={questionIcon} alt="Узнать значение" />}
               events={{
                 onClick: (e) => {
                   e.preventDefault();
                   getPublicData(HOST_ADDRESS + DESC_API_PATH + item.word)
-                    .then((result: {word: string, description: string}) => {
-                      if (result && result.description) {
+                    .then((result: {word: string, explanation: string}) => {
+                      if (result && result.explanation) {
                         setWordDesc({
                           word: result.word,
-                          description: decodeHtml(result.description),
-                          descriptionError: false
+                          explanation: decodeHtml(result.explanation),
+                          explanationError: false
                         })
                         toggleWordDescModal();
+                      } else {
+                        if (e.target) {
+                          (e.target as HTMLElement).classList.add('button--disabled')
+                        }
                       }
                     })
                 }
               }}
-            />
+            />}
           </div>
         </div>
       )
@@ -223,7 +240,7 @@ export const RoundBoard: React.FC = () => {
             {wordForAll.isForAllWordWinner !== nullTeamValue ? 'Отгадали ' + wordForAll.isForAllWordWinner : 'Никто не отгадал'}
           </div>
           <div className="round-board__word-actions">
-            <Button
+            {isExplanationConnected && <Button
               classes="button--icon button--white round-board__question-button"
               icon={<img src={questionIcon} alt="Узнать значение" />}
               events={{
@@ -231,19 +248,23 @@ export const RoundBoard: React.FC = () => {
                   e.preventDefault();
                   e.stopPropagation();
                   getPublicData(HOST_ADDRESS + DESC_API_PATH + wordForAll.word)
-                    .then((result: {word: string, description: string}) => {
-                      if (result && result.description) {
+                    .then((result: {word: string, explanation: string}) => {
+                      if (result && result.explanation) {
                         setWordDesc({
                           word: result.word,
-                          description: decodeHtml(result.description),
-                          descriptionError: false
+                          explanation: decodeHtml(result.explanation),
+                          explanationError: false
                         })
                         toggleWordDescModal();
+                      } else {
+                        if (e.target) {
+                          (e.target as HTMLElement).classList.add('button--disabled')
+                        }
                       }
                     })
                 }
               }}
-            />
+            />}
           </div>
         </div> : ''}
       </div>
@@ -313,11 +334,11 @@ export const RoundBoard: React.FC = () => {
         }}
       />
       
-      <WordDescriptionModal
+      <WordExplanationModal
         isOpen={isWordDescModalOpen}
         close={() => toggleWordDescModal()}
         title={`Значение слова "${wordDesc.word}"`}
-        description={wordDesc.description}
+        explanation={wordDesc.explanation}
       />
     </form>
   )
