@@ -5,6 +5,6 @@ export const getPublicData = async (url: string) => {
     .get(url)
     .then(response => response.data)
     .catch(error => {
-      console.log(error)
+      console.error(error)
     })
 }

@@ -21,9 +21,9 @@ export * from './comment/comment'
 export * from './comment-field/comment-field'
 export * from './canvas/canvas'
 export * from './fullscreen-btn/fullscreen-btn'
-
 // Modals
 export * from './modal/add-forum-modal'
 export * from './modal/edit-avatar-modal'
 export * from './modal/add-team-modal'
+export * from './modal/select-team-modal'
 export * from './modal/select-dict-modal'

@@ -1,4 +1,5 @@
 @import './../../scss/base/variables';
+@import './../../scss/base/mixins';
 
 .team-cards {
   display: flex;
@@ -30,6 +31,14 @@
   &:hover {
     box-shadow: $card-hover-shadow;
   }
+}
+
+.team-cards__item--slim {
+  padding: 16px 10px;
+}
+
+.team-cards__item--slim .team-cards__item-title {
+  margin-bottom: 0;
 }
 
 .team-cards__item-title {
@@ -70,5 +79,25 @@
   &:before {
     border-radius: 12px;
     box-shadow: $button-pressed-shadow-light;
+  }
+}
+
+@include down($mobile) {
+  .team-cards {
+    width: calc(100% + 40px);
+    margin: 0 -20px -20px;
+    
+    .modal__form + & {
+      margin-top: 30px;
+    }
+  }
+  .team-cards__title {
+    margin: 0 10px 10px;
+  }
+  .team-cards__item-title {
+    font-size: 14px;
+  }
+  .team-cards__item-delete {
+    width: 30px;
   }
 }

@@ -9,7 +9,7 @@ export const getUserAPI = async () => {
     })
 }
 
-export const changeProfileAPI = (data: any) => {
+export const changeProfileAPI = (data: Record<string, unknown>) => {
   return apiInstance
     .put('/user/profile', data)
     .then(response => response.data)
@@ -18,7 +18,7 @@ export const changeProfileAPI = (data: any) => {
     })
 }
 
-export const changePasswordAPI = (data: any) => {
+export const changePasswordAPI = (data: Record<string, unknown>) => {
   return apiInstance
     .put('/user/password', data)
     .then(response => response.data)
@@ -27,7 +27,7 @@ export const changePasswordAPI = (data: any) => {
     })
 }
 
-export const changeProfileAvatarAPI = (data: any) => {
+export const changeProfileAvatarAPI = (data: Record<string, unknown>) => {
   return apiInstance
     .put('/user/profile/avatar', data)
     .then(response => response.data)

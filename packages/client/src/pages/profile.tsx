@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../services/hooks/useState';
+import { useAppDispatch, useAppSelector } from '../services/hooks';
 
 import { FormField, Button, Avatar, BackLink } from '../components';
 

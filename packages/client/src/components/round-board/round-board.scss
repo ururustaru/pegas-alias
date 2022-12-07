@@ -35,7 +35,7 @@
   align-items: center;
   padding: 18px;
   position: relative;
-  
+
   .round-board__check-button {
     box-shadow: none;
 
@@ -53,7 +53,7 @@
         opacity: 0;
       }
     }
-    
+
     .round-board__delete-button {
       box-shadow: none;
 
@@ -81,6 +81,11 @@
         box-shadow: $button-pressed-shadow;
       }
     }
+  }
+
+  &--for-all {
+    cursor: pointer;
+    background: 0;
   }
 }
 
@@ -152,6 +157,11 @@
   max-width: 320px;
 }
 
+.round-board__word-team {
+  font-size: 15px;
+  font-style: italic;
+}
+
 @include down($mobile) {
   .round-board__word-value {
     font-size: 14px;
@@ -160,7 +170,7 @@
     flex-wrap: wrap;
     max-width: 76px;
     gap: 16px;
-    
+
     .button {
       min-width: 30px;
     }
@@ -172,5 +182,9 @@
     position: relative;
     left: 0;
     top: 0;
+  }
+  .round-board__word-team {
+    margin-right: 10px;
+    font-size: 12px;
   }
 }

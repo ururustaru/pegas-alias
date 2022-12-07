@@ -1,6 +1,6 @@
 import { apiInstance } from './axios'
 
-export const registerUser = (data: any) => {
+export const registerUser = (data: Record<string, unknown>) => {
   apiInstance
     .post('/auth/signup', data)
     .then(response => {
@@ -11,7 +11,7 @@ export const registerUser = (data: any) => {
     })
 }
 
-export const loginUser = (data: any) => {
+export const loginUser = (data: Record<string, unknown>) => {
   apiInstance
     .post('/auth/signin', data)
     .then(response => {
@@ -31,7 +31,7 @@ export const signUpYaOAuth = () => {
     })
   return result
 }
-export const signInYaOAuth = (data: any) => {
+export const signInYaOAuth = (data: Record<string, unknown>) => {
   const result = apiInstance
     .post('/oauth/yandex', data)
     .then(response => response)
