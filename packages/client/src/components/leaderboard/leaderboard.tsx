@@ -10,8 +10,6 @@ import { FilterState } from '../../services/store/leaders/type'
 import { RootState } from '../../services/store/reducer'
 import { Team } from '../../types/leaders'
 import './leaderboard.scss'
-import { serverInstance } from '../../services/http/axios'
-
 
 export function Leaderboard() {
   const dispatch = useAppDispatch()

@@ -3,15 +3,16 @@ import path from 'node:path'
 
 import dotenv from 'dotenv'
 import cors from 'cors'
+import bodyParser from 'body-parser'
 
 import express from 'express'
+import { startApp } from './app/config/db.config'
 import { createClientAndConnect } from './db'
 // @ts-ignore
 import { render } from '../client/dist/ssr/entry-server.cjs'
 import topicsRouter from './app/routers/topicsRouter'
 import commentsRouter from './app/routers/commentsRouter'
-import { startApp } from './app/config/db.config'
-import bodyParser from 'body-parser'
+import likesRouter from './app/routers/likesRouter'
 
 
 dotenv.config()
@@ -30,6 +31,7 @@ export async function createServer(
 
   app.use('/api/topics', topicsRouter)
   app.use('/api/comments', commentsRouter)
+  app.use('/api/likes', likesRouter)
   
   //createClientAndConnect()
   let template:string;
