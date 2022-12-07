@@ -2,16 +2,14 @@ import { FormField, Button} from '../../components'
 import { Modal } from './modal'
 import { Team } from '../../types/leaders';
 import { wordsDeclention } from '../../utils';
+import { ActiveTeam } from '../../types/game';
 
 interface IModal {
   isOpen: boolean
   close: () => void
   onAddTeam: (name: string) => void
   onRemovePlayedTeam: (name: string) => void
-  activeTeams: {
-    name?: string,
-    score?: 0
-  }[],
+  activeTeams: ActiveTeam[],
   playedTeams: Team[]
 }
 

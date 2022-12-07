@@ -63,12 +63,14 @@ const gameSettingsSlice = createSlice({
     changeTeamScore(state, action) {
       const foundIndex = state.activeTeams.findIndex((team: ActiveTeam) => team.name === action.payload.name);
       const teams = state.activeTeams.slice();
-      const currentTeamScore = teams[foundIndex].score
-      teams[foundIndex] = {
-        name: action.payload.name,
-        score: currentTeamScore + action.payload.score
-      };
-      state.activeTeams = teams;
+      if (teams[foundIndex]) {
+        const currentTeamScore = teams[foundIndex].score;
+        teams[foundIndex] = {
+          name: action.payload.name,
+          score: currentTeamScore + action.payload.score
+        };
+        state.activeTeams = teams;
+      }
     },
 
     addTeamToPlayed(state, action) {

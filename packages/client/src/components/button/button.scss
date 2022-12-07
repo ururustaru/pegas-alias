@@ -65,6 +65,16 @@
 .button--icon {
   font-size: 0;
   padding: 10px;
+  
+  &.button--disabled {
+    box-shadow: none;
+    opacity: .4;
+    background: $card-light;
+    
+    img {
+      background: 0;
+    }
+  }
 }
 
 .button--icon-r {

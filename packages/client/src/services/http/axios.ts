@@ -11,7 +11,8 @@ export const apiInstance = axios.create({
 
 export const serverInstance = axios.create({
   baseURL: '',
-  withCredentials: true,
+  timeout: 2000,
+  withCredentials: false,
   headers: {
     'Content-Type': 'application/json; charset=utf-8',
   },

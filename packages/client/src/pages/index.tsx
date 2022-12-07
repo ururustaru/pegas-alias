@@ -1,7 +1,6 @@
 export * from './main'
 export * from './login'
 export * from './sign-up'
-export * from './new-game'
 export * from './profile'
 export * from './rules'
 export * from './leaders'
