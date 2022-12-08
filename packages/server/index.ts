@@ -146,7 +146,6 @@ export async function createServer(
   })
 
   return { app, vite };
-//  return { app };
 }
 
 createServer().then( () => {

@@ -1,16 +1,16 @@
 import { Client } from 'pg'
 
-const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT } =
+const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT, POSTGRES_1_PORT_5432_TCP_ADDR } =
   process.env
 console.log(POSTGRES_USER)
 export const createClientAndConnect = async (): Promise<Client | null> => {
   try {
     const client = new Client({
       user: POSTGRES_USER || 'postgres',
-      host: 'localhost',
+      host:  POSTGRES_1_PORT_5432_TCP_ADDR || 'localhost',
       database: POSTGRES_DB || 'postgres',
       password: POSTGRES_PASSWORD || 'postgres',
-      port: Number(POSTGRES_PORT),
+      port: Number(POSTGRES_PORT) || 5432,
     })
     
     await client.connect()
