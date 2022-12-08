@@ -28,6 +28,8 @@
     "paths": {
       "*": ["types/*"]
     },
-    "outDir": "dist"
+    "outDir": "dist",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
 }

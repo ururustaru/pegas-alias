@@ -1,7 +1,9 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import cors from 'cors'
+import bodyParser from 'body-parser'
 import express from 'express'
+import { startApp } from './app/config/db.config'
 import { createClientAndConnect } from './db'
 // импортируем работу с запросами для сервера
 import * as http from 'http'
@@ -10,6 +12,10 @@ import * as https from 'https'
 import iconv from 'iconv-lite'
 // @ts-ignore
 import { render } from '../client/dist/ssr/entry-server.cjs'
+import topicsRouter from './app/routers/topicsRouter'
+import commentsRouter from './app/routers/commentsRouter'
+import likesRouter from './app/routers/likesRouter'
+
 
 function escapeHtml(string: string): string {
   return string
@@ -24,9 +30,17 @@ export async function createServer(
   hmrPort = void 0
 ){
   const app = express()
+  app.use(bodyParser.json())
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }))
   app.use(cors())
   const port = Number(process.env.SERVER_PORT) || 3001
   const resolve = (p: string) => path.resolve(__dirname, p)
+
+  app.use('/api/topics', topicsRouter)
+  app.use('/api/comments', commentsRouter)
+  app.use('/api/likes', likesRouter)
 
   let template:string;
 
@@ -118,7 +132,7 @@ export async function createServer(
   });
 
   app.use('/', express.static('../client/dist/client/'))
-
+  
   app.get('/*', async (req, res) => {
     const result = render(req.originalUrl)
     template = fs.readFileSync(resolve('../client/dist/client/index.html'), 'utf-8')
@@ -126,7 +140,7 @@ export async function createServer(
     const html = template.replace(`<div id="root"></div>`,`<div id="root">${result}</div>`)
     res.status(200).set({ 'Content-Type': 'text/html' }).send(html)
   })
-
+  
   app.listen(port, () => {
     console.log(`Server is listening on port: ${port}`)
   })
@@ -135,5 +149,5 @@ export async function createServer(
 }
 
 createServer().then( () => {
-  createClientAndConnect()
+  createClientAndConnect().then(() => startApp())
 })

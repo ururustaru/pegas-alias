@@ -11,7 +11,6 @@ import { RootState } from '../../services/store/reducer'
 import { Team } from '../../types/leaders'
 import './leaderboard.scss'
 
-
 export function Leaderboard() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -40,7 +39,7 @@ export function Leaderboard() {
   const getPercentOfVictories = (victories: number, games: number): number => {
     return (victories / games) * 100
   }
-
+  
   useEffect(() => {
     setFilter({
       ...filter,
