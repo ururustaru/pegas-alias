@@ -27,8 +27,6 @@ FROM node:$NODE_VERSION-buster-slim as production
 WORKDIR /app
 
 COPY --from=builder /app/packages/client/dist/ /client/dist
-#
-#COPY client-store: /client/dist/ssr
 COPY --from=builder /app/packages/server/dist/ /app/
 COPY --from=builder /app/packages/server/package.json /app/package.json
 RUN yarn install --production=true
