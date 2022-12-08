@@ -9,4 +9,4 @@ router.post('/', createNewLike)
 // Удаление лайка
 router.delete('/:id', deleteLikeById)
 
-export default router;
+export default router

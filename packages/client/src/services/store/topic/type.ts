@@ -4,7 +4,7 @@ export type ForumState = {
 }
 
 export interface ITopic {
-  Comments:Array<Comment>,
+  Comments:Array<IComment>,
   author_id: number,
   author_name:string,
   createdAt: string,
@@ -14,11 +14,22 @@ export interface ITopic {
   topic_id: number,
 }
 
-export type Comment = {
+export interface IComment {
+  Comments:Array<IComment>,
+  Likes:Array<Like>,
+  comment_id: number,
   author_id: number,
   author_name: string,
   createdAt: string,
   updatedAt: string,
   message: string,
+  topic_id: number
+  bind_comment_id?: number
+}
+
+export interface Like {
+  like_id: number,
+  comment_id: number,
+  author_id: number,
   topic_id: number
 }

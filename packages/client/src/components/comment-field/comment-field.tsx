@@ -1,10 +1,41 @@
 import React from 'react'
 import { Field } from '../field/field'
 import './comment-field.scss'
+import { useAppDispatch, useAppSelector } from '../../services/hooks'
+import { useForm } from 'react-hook-form'
+import { UserInfo } from '../../types/user'
+import { createCommentApi, getTopicApi } from '../../services/store/topic'
+import { useQueryParams } from '../../services/hooks/useQueryParams'
 
-export function CommentField() {
+type bindComment = {
+  comment_id?: number
+  toggle?: () => void
+}
+export function CommentField(props: bindComment | null) {
+  const dispatch = useAppDispatch()
+  const user: UserInfo = useAppSelector(state => state.user.user)
+  const { register, handleSubmit, reset } = useForm()
+  const query = useQueryParams()
+  const topic_id = query.get('topic_id')
+  const onSubmit = (data: any) => {
+    if(topic_id) {
+      dispatch(createCommentApi({
+        ...data,
+        topic_id: Number(query.get('topic_id')),
+        bind_comment_id: props?.comment_id ? props.comment_id : null,
+        author_id: user.id,
+        author_name: user.login
+      })).then(() => {
+        if (props?.toggle) {
+          props.toggle()
+        }
+        reset()
+        dispatch(getTopicApi(topic_id))
+      })
+    }    
+  }
   return (
-    <div className="comment-field">
+    <form className="comment-field" onSubmit={handleSubmit(onSubmit)} >
       <button className="comment-field__sticker-btn">
         <svg
           width="30"
@@ -22,8 +53,8 @@ export function CommentField() {
           />
         </svg>
       </button>
-      <Field type="text" placeholder="Введите сообщение" />
-      <button className="comment-field__send-btn">
+      <Field type="text" placeholder="Введите сообщение" register={register('message')}/>
+      <button className="comment-field__send-btn" type='submit'>
         <svg
           width="22"
           height="22"
@@ -35,6 +66,6 @@ export function CommentField() {
           />
         </svg>
       </button>
-    </div>
+    </form>
   )
 }

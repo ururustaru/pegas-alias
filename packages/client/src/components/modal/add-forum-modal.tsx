@@ -3,14 +3,9 @@ import { Modal } from './modal'
 
 import './../../scss/form/form.scss'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
-import { createNewTopic } from '../../services/http/forum'
 import { UserInfo } from '../../types/user'
 import { useAppDispatch, useAppSelector } from '../../services/hooks'
-import { useNavigate } from 'react-router-dom'
-import { createTopicApi, getForumApi } from '../../services/store/forum'
-import { Simulate } from 'react-dom/test-utils'
-import error = Simulate.error
+import { createTopicApi } from '../../services/store/forum'
 
 interface IModal {
   isOpen: boolean
@@ -26,8 +21,7 @@ export function AddForumModal(props: IModal) {
       ...data,
       author_id: user.id,
       author_name: user.login
-    })).then(() => props.close())
-    
+    })).then(() => props.close())    
   }
 
   return (
