@@ -1,7 +1,7 @@
 import express from 'express'
 import { createNewComment, deleteCommentById } from '../controllers/commentsController'
 
-const router = express.Router();
+const router = express.Router()
 
 // Создание комментария
 router.post('/', createNewComment)

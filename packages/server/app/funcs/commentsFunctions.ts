@@ -1,6 +1,5 @@
-
 import type { IComment } from '../models/commentModel'
-import { Comments, Like, Topics } from '../config/db.config'
+import { Comments } from '../config/db.config'
 
 // Создание комментария
 export async function createComment(props: IComment) {

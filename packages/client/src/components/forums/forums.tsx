@@ -7,10 +7,10 @@ import { useQueryParams } from '../../services/hooks/useQueryParams'
 import { useSelector } from 'react-redux'
 import { getForumApi } from '../../services/store/forum'
 import { getDate } from '../../utils/getDate'
-import { sklonenie } from '../../utils/sklonenie'
 import { RootState } from '../../services/store/reducer'
 import { Comment, Topic } from '../../types/forum'
 import { ForumState } from '../../services/store/forum/type'
+import { wordsDeclention } from '../../utils'
 
 export const Forums = () => {
   const dispatch = useAppDispatch()
@@ -32,7 +32,7 @@ export const Forums = () => {
   }
   const getComments = (comments:Array<Comment>):string => 
     comments.length 
-      ? `${comments.length} ` + sklonenie(comments.length, ['комментарий', 'комментария', 'комментариев'])
+      ? `${comments.length} ` + wordsDeclention(comments.length, ['комментарий', 'комментария', 'комментариев'])
       : ''
   
   useEffect(() => {

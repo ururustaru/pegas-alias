@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Comment } from '../../../types/forum'
 import { getTopicApi } from './topicThunk'
 
 const initialState = {
@@ -27,7 +26,6 @@ const topicSlice = createSlice({
       })
       .addCase(getTopicApi.fulfilled, (state, action) => {
         state.status = 'resolved'
-        console.log("TOPIC", action.payload)
         state.topic = action.payload
       })
   }
