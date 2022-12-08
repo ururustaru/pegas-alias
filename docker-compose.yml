@@ -1,10 +1,5 @@
 version: "3.9"
 
-# Создаем конейнер для обмена межу нашими контейнерами 
-volumes:
-  client-store:
-    external: true
-
 services:
   app:
     container_name: prakticum-app
