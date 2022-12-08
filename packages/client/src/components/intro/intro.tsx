@@ -1,6 +1,6 @@
 import React from 'react'
 import './intro.scss'
-import logo from './../../assets/images/logo-round-shadow.png'
+import logo from './../../assets/images/logo-round.png'
 
 export interface IIntro {
   small?: boolean

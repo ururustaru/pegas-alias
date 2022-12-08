@@ -1,0 +1,83 @@
+.theme-dark {
+  color: #b5c1db;
+  background: url('@/assets/images/app-bg-dark.png') center / 100% 103% no-repeat;
+
+  @include down(768px) {
+    background-image: url('@/assets/images/app-bg-mobile-dark.png');
+  }
+
+  &:fullscreen::backdrop {
+    background: url('@/assets/images/app-bg-dark.png') center / 100% 103% no-repeat;
+
+    @include down(768px) {
+      background-image: url('@/assets/images/app-bg-mobile-dark.png');
+    }
+  }
+
+  .intro__image-wrap,
+  .winner__image-wrap,
+  .server-error__image-wrap,
+  .not-found__image-wrap {
+    box-shadow: -10px -10px 20px 0px rgba(38, 22, 86, 1),  10px 10px 20px 0px rgba(24, 68, 108, 1);
+  }
+  
+  .modal__body   {
+    filter: invert(1) hue-rotate(175deg);
+    color: #050f40;
+  }
+
+  .button {
+    color: $dark;
+    box-shadow: $button-pressed-shadow;
+    filter: invert(1) hue-rotate(175deg);
+
+    &:hover,
+    &--active {
+      box-shadow: none;
+
+      &::before {
+        opacity: 1;
+        box-shadow: $button-shadow;
+      }
+    }
+
+    &--disabled, &[disabled] {
+      box-shadow: none;
+      background: #9aa9cd;
+    }
+  }
+
+  .score-in-round__info, .score-in-round__text, .score-in-round__next-team {
+    color: #485ba5;
+  }
+
+  .team-cards__item-label, .dictionary-cards__item-label {
+    color: $dark;
+    font-weight: 700;
+  }
+
+  .buttons-navigation__link {
+    background-color: rgba(32, 2, 2, 0.05) !important;
+    box-shadow: 4px 4px 10px 0px rgb(178 193 240 / 70%);
+    filter: invert(1) hue-rotate(175deg);
+    
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: none;
+
+      &::before {
+        opacity: 1;
+        box-shadow: 10px 10px 20px -10px rgb(178 193 240 / 90%) inset;
+      }
+    }
+  }
+
+  .score-in-round__command {
+    box-shadow: 2px 2px 4px rgb(114 142 171 / 10%), -6px -6px 20px #e9ebfb, 4px 4px 20px rgb(111 140 176 / 41%);
+  }
+
+  .dictionary-cards__item-label--hard {
+    background: #ffb100;
+  }
+}

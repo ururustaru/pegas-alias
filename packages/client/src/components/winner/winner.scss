@@ -13,6 +13,8 @@
 .winner__image-wrap {
   max-width: 300px;
   margin-bottom: 50px;
+  border-radius: 50%;
+  box-shadow: $logo-round-shadow;
 }
 
 .winner__subtitle {

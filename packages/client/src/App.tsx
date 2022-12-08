@@ -21,7 +21,7 @@ import {
   NotFoundPage,
   RoundEnd,
 } from './pages'
-import { PageNavigation } from './components'
+import { PageNavigation, FullscreenBtn } from './components'
 
 import './scss/style.scss';
 import { getUserApi } from './services/store/user';
@@ -45,6 +45,7 @@ export const App: React.FC = () => {
     <div className="app">
       <Provider store={store}>
       <Router>
+        <FullscreenBtn />
         <PageNavigation />
         <Routes>
           <Route path="/" element={<Main />} />

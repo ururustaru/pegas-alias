@@ -1,14 +1,7 @@
 html {
   box-sizing: border-box;
-  background: url('@/assets/images/app-bg.png') center / 100% 103% no-repeat;
   overflow-x: hidden;
-
-  @include down(768px) {
-    background-image: url('@/assets/images/app-bg-mobile.png');
-  }
 }
-
-
 
 *,
 *::before,
@@ -31,6 +24,11 @@ body {
   color: $text-dark;
   font-size: 18px;
   line-height: 1;
+  background: url('@/assets/images/app-bg.png') center / 100% 103% no-repeat;
+
+  @include down(768px) {
+    background-image: url('@/assets/images/app-bg-mobile.png');
+  }
 }
 
 a {

@@ -3,7 +3,7 @@ import { useToggle } from '../../services/hooks'
 import { EditAvatarModal } from '../index'
 
 import './avatar.scss'
-import logo from '../../assets/images/logo-round-shadow.png'
+import logo from '../../assets/images/logo-round.png'
 import editIcon from '../../assets/images/edit.svg'
 
 export const Avatar: React.FC = (): JSX.Element => {

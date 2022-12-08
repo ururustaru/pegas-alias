@@ -29,6 +29,9 @@
 
 .intro__image-wrap {
   max-width: 300px;
+  border-radius: 50%;
+  box-shadow: $logo-round-shadow;
+  margin-bottom: 20px;
 }
 
 @include down($mobile) {

@@ -90,6 +90,9 @@ $icon-shadow:
   2px 2px 4px rgba(114, 142, 171, 0.1), -6px -6px 20px #ffffff,
   4px 4px 20px rgba(111, 140, 176, 0.41);
 $avatar-shadow: 10px 10px 20px #bfcae4, -10px -10px 20px #ebebff;
+$logo-round-shadow: 
+  -10px -10px 20px 0px rgba(235, 235, 255, 1),
+  10px 10px 20px 0px rgba(191, 202, 228, 1);
 
 // Screen width
 $mobile: 768px;
