@@ -35,5 +35,6 @@ export type GameProcess = {
 
 export type RoundWord = {
   word: string,
-  wordScore: -1 | 0 | 1
+  wordScore: -1 | 0 | 1,
+  isForAllWordWinner?: string 
 }

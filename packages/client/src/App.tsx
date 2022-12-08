@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux'
 import store from './services/store/reducer'
-import { useAppDispatch } from './services/hooks/useState';
+import { useAppDispatch } from './services/hooks';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   Main,
   Login,
   SignUp,
-  NewGame,
   Profile,
   Rules,
   Leaders,
@@ -26,7 +25,6 @@ import { PageNavigation } from './components'
 
 import './scss/style.scss';
 import { getUserApi } from './services/store/user';
-import { FullscreenBtn } from './components/fullscreen-btn/fullscreen-btn';
 
 export const App: React.FC = () => {
 //  export default function App() {
@@ -40,19 +38,18 @@ export const App: React.FC = () => {
     const doc = document.documentElement;
     doc.style.setProperty('--app-height', `${window.innerHeight}px`)
   }
+  window.addEventListener('resize', calcAppHeight);
   calcAppHeight();
-
+  
   return (
     <div className="app">
       <Provider store={store}>
       <Router>
-        <FullscreenBtn />
         <PageNavigation />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/new-game" element={<NewGame />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/rules" element={<Rules />} />
@@ -70,6 +67,6 @@ export const App: React.FC = () => {
         </Routes>
       </Router>
       </Provider>
-      </div>
+    </div>
   )
 }

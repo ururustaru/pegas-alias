@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ActiveTeam, GameSettings} from '../../../types/game';
+import { Team } from '../../../types/leaders';
 import { deleteByValue } from '../../../utils/deleteFromArrayByValue';
+import { WritableDraft } from "immer/dist/internal";
 
 // TODO: В playedTeams подставить игравшие команды из реальной статистики
 const initialState: GameSettings = {
@@ -55,18 +57,20 @@ const gameSettingsSlice = createSlice({
     },
 
     removeTeam(state, action) {
-      state.activeTeams = deleteByValue(state.activeTeams, 'name', action.payload);
+      state.activeTeams = deleteByValue<WritableDraft<ActiveTeam>>(state.activeTeams, 'name', action.payload);
     },
     
     changeTeamScore(state, action) {
       const foundIndex = state.activeTeams.findIndex((team: ActiveTeam) => team.name === action.payload.name);
       const teams = state.activeTeams.slice();
-      const currentTeamScore = teams[foundIndex].score
-      teams[foundIndex] = {
-        name: action.payload.name,
-        score: currentTeamScore + action.payload.score
-      };
-      state.activeTeams = teams;
+      if (teams[foundIndex]) {
+        const currentTeamScore = teams[foundIndex].score;
+        teams[foundIndex] = {
+          name: action.payload.name,
+          score: currentTeamScore + action.payload.score
+        };
+        state.activeTeams = teams;
+      }
     },
 
     addTeamToPlayed(state, action) {
@@ -74,7 +78,7 @@ const gameSettingsSlice = createSlice({
     },
 
     removeTeamFromPlayed(state, action) {
-      state.playedTeams = deleteByValue(state.playedTeams, 'name', action.payload);
+      state.playedTeams = deleteByValue<WritableDraft<Team>>(state.playedTeams, 'teamName', action.payload);
     },
 
     changeDictionary(state, action) {

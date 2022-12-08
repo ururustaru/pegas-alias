@@ -1,10 +1,10 @@
 {
-  "name": "client-server-template-with-vite",
+  "name": "Pegas_Alias",
   "private": true,
   "scripts": {
     "bootstrap": "yarn && node init.js && lerna clean && yarn && lerna bootstrap",
     "build": "lerna run build",
-    "dev:client": "lerna run dev  --scope=client",
+    "dev:client": "lerna run dev --scope=client",
     "dev:server": "lerna run dev --scope=server",
     "dev": "lerna run dev",
     "test": "lerna run test",
@@ -32,6 +32,7 @@
     "@types/enzyme": "^3.10.12",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-test-renderer": "^18.0.0",
+    "@types/axios-mock-adapter": "1.10.0",
     "axios-mock-adapter": "^1.21.2",
     "jest": "^28.0.0",
     "react-router-dom": "^6.4.2",

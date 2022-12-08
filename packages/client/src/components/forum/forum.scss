@@ -1,7 +1,11 @@
 @import './../../scss/base/variables';
 @import './../../scss/base/mixins';
 
-.forum {
+.forum ~ .fullscreen-btn {
+  display: none;
+}
+
+.forum__body {
   width: 800px !important;
   max-width: 100%;
   margin: 0 auto;

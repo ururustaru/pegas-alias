@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { RefObject, useRef, useState } from 'react'
 import { Button } from '../../components'
 import { Modal } from './modal'
 import './../../scss/form/form.scss'
@@ -15,10 +15,12 @@ export function EditAvatarModal(props: IModal) {
     setValue(name)
   }
 
-  const inputRef: any = useRef(null)
+  const inputRef: RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null)
 
   const handleClick = () => {
-    inputRef.current.click()
+    if (inputRef.current !== null) {
+      inputRef.current.click()
+    }
   }
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
